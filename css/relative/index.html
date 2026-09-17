@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Dashboard de Componentes Moderno</title>
+</head>
+<body>
+
+  <nav class="menu-sticky">
+    <div class="menu-container">
+      <div class="logo">Visual<span>Lab</span></div>
+      <div class="enlaces">
+        <a href="#seccion-foto">Ejercicio Pantalla</a>
+        <a href="#seccion-imagenes">Galería Fija</a>
+        <a href="#seccion-bloques-amarillos">Módulos Grid</a>
+        <a href="#seccion-margenes">Experimentos Margin</a>
+        <a href="#seccion-columnas">Multi-Columnas</a>
+        <a href="#seccion-texto">Artículos</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+
+    <section id="seccion-foto" class="seccion-contenedor">
+      <h2 class="titulo-seccion">Ejercicio</h2>
+      
+      <div class="pantalla-verde">
+        
+        <div class="caja-foto caja-red">relative</div>
+        
+        <div class="contenedor-azul">
+          
+          <div class="caja-foto caja-white">sticky</div>
+          
+          <div class="caja-foto caja-pink">absolute</div>
+          
+        </div>
+
+        <div class="barra-instructor">Instructor: Rider Geovanny Benavides Benavides</div>
+
+        <div class="caja-foto caja-orange-static">static</div>
+        
+      </div>
+    </section>
+
+    <section id="seccion-imagenes" class="seccion-contenedor">
+      <h2 class="titulo-seccion">Posicionamiento Absoluto Estructurado</h2>
+      <div class="contenedor-padre">
+        <div class="caja rojo">
+          <img src="https://picsum.photos/id/10/240/120" alt="Paisaje 1">
+        </div>
+        <div class="caja naranja">
+          <img src="https://picsum.photos/id/20/240/120" alt="Paisaje 2">
+        </div>
+        <div class="caja centro">
+          <img src="https://picsum.photos/id/30/240/120" alt="Paisaje 3">
+        </div>
+        <div class="caja amarillo">
+          <img src="https://picsum.photos/id/40/240/120" alt="Paisaje 4">
+        </div>
+        <div class="caja verde">
+          <img src="https://picsum.photos/id/50/240/120" alt="Paisaje 5">
+        </div>
+      </div>
+    </section>
+
+    <section id="seccion-bloques-amarillos" class="seccion-contenedor">
+      <h2 class="titulo-seccion">Paneles de Control Dinámicos</h2>
+      <div class="contenedor-bloques-amarillos">
+        <div class="bloque-amarillo bloque1">Módulo 01</div>
+        <div class="bloque-amarillo bloque2">Módulo 02</div>
+        <div class="bloque-amarillo bloque3">Módulo 03</div>
+        <div class="bloque-amarillo bloque4">Módulo 04</div>
+        <div class="bloque-amarillo bloque5">Módulo 05 (Fixed)</div>
+        <div class="bloque-amarillo bloque6">Módulo 06</div>
+        <div class="bloque-amarillo bloque7">Módulo 07 (Fixed)</div>
+        <div class="bloque-amarillo bloque8">Módulo 08</div>
+        <div class="bloque-amarillo bloque9">Módulo 09</div>
+        <div class="bloque-amarillo bloque10">Módulo 10</div>
+      </div>
+    </section>
+
+    <section id="seccion-margenes" class="seccion-contenedor">
+      <h2 class="titulo-seccion">Laboratorio de Márgenes y Rellenos</h2>
+      <div class="contenedor-experimentos">
+        
+        <div class="tarjeta-experimento contenedor-flex-col">
+          <span class="badge badge-azul">margin: auto</span>
+          <p class="texto-margin-auto">
+            Este bloque usa un ancho fijo y margin: auto, lo que distribuye el espacio sobrante equitativamente a los lados y lo centra por completo en su contenedor.
+          </p>
+        </div>
+
+        <div class="tarjeta-experimento">
+          <span class="badge badge-verde">padding: 30px</span>
+          <p class="texto-padding">
+            Este texto tiene un relleno interno generoso. El padding no empuja otros elementos, sino que crea un colchón de aire limpio entre el borde de la tarjeta y este párrafo.
+          </p>
+        </div>
+
+        <div class="tarjeta-experimento">
+          <span class="badge badge-naranja">margin-left: 80px</span>
+          <p class="texto-margin-left">
+            Este texto tiene un empuje rígido desde el borde izquierdo. Se desplaza exactamente 80 píxeles hacia la derecha pase lo que pase en la pantalla.
+          </p>
+        </div>
+
+        <div class="tarjeta-experimento contenedor-flex-row">
+          <span class="badge badge-pizarra">margin-left: auto</span>
+          <p class="texto-margin-left-auto">
+            Gracias al entorno Flexbox de la tarjeta, aplicar margin-left: auto absorbe todo el espacio libre de la izquierda, empujando este bloque de texto al extremo derecho de forma inteligente.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="seccion-columnas" class="seccion-contenedor">
+      <h2 class="titulo-seccion">Laboratorio de Maquetación Multi-columna</h2>
+      <div class="contenedor-experimentos">
+
+        <div class="tarjeta-experimento">
+          <div class="header-experimento">
+            <span class="badge badge-azul">column-gap</span>
+            <span class="badge badge-pizarra">column-rule-width / style / color</span>
+          </div>
+          <div class="texto-columnas-separadas">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. El espacio entre estas dos columnas está controlado rigurosamente por la propiedad column-gap con una medida amplia de 50px. Asimismo, la línea divisoria central se ha personalizado utilizando tres propiedades independientes: un grosor específico (column-rule-width), un estilo discontinuo (column-rule-style) y un color azul corporativo (column-rule-color).
+          </div>
+        </div>
+
+        <div class="tarjeta-experimento">
+          <span class="badge badge-verde">column-rule (abreviado)</span>
+          <div class="texto-columnas-rule">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. En este contenedor simplificamos la sintaxis agrupando el grosor, el estilo y el color en una sola línea mediante la propiedad shorthand column-rule. El texto fluye de manera natural dividiéndose automáticamente en tres columnas del mismo ancho, mientras que una elegante línea sólida gris separa cada bloque de lectura para simular un formato de periódico moderno y limpio.
+          </div>
+        </div>
+
+        <div class="tarjeta-experimento">
+          <span class="badge badge-naranja">column-span: all</span>
+          <div class="texto-columnas-span">
+            <h4 class="titulo-span">¡Este título cruza todas las columnas!</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. El elemento de título de arriba está configurado con column-span: all, lo que rompe temporalmente la disposición multi-columna para abarcar todo el ancho del contenedor. El párrafo inferior se vuelve a acomodar inmediatamente en las columnas definidas debajo de él. Es sumamente útil para maquetar portadas editoriales.
+            </p>
+          </div>
+        </div>
+
+        <div class="tarjeta-experimento">
+          <span class="badge badge-pizarra">column-fill: auto vs balance</span>
+          <div class="grid-column-fill">
+            <div class="col-fill-auto">
+              <h5 class="subtitulo-fill">column-fill: auto</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Con la propiedad auto, las columnas se van llenando secuencialmente hasta agotar la altura máxima del contenedor. Si el contenido es corto, las últimas columnas quedarán vacías.</p>
+            </div>
+            <div class="col-fill-balance">
+              <h5 class="subtitulo-fill">column-fill: balance</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Con balance, el navegador distribuye automáticamente el contenido de manera equitativa entre todas las columnas para que tengan la misma altura visual.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="seccion-texto" class="seccion-bloques">
+      <h2 class="titulo-seccion">Distribución de Contenido Editorial</h2>
+
+      <div class="bloque-texto-imagen img-derecha">
+        <div class="contenido-texto">
+          <h3>Texto con Imagen a la Derecha</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div class="imagen-absoluta">
+          <img src="https://picsum.photos/id/60/300/220" alt="Imagen Derecha">
+        </div>
+      </div>
+
+      <div class="bloque-texto-imagen img-izquierda">
+        <div class="contenido-texto">
+          <h3>Texto con Imagen a la Izquierda</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div class="imagen-absoluta">
+          <img src="https://picsum.photos/id/70/300/220" alt="Imagen Izquierda">
+        </div>
+      </div>
+        <div class="caja-foto caja-yellow">caja amarilla</div>
+        
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

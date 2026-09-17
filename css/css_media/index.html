@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Pro | Diseñador & Desarrollador</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Fondo de partículas brillantes de fondo -->
+    <div class="glow-bg">
+        <div class="blob color-1"></div>
+        <div class="blob color-2"></div>
+    </div>
+
+    <!-- Barra de Navegación -->
+    <header class="navbar">
+        <a href="#" class="logo">
+            <span class="gradient-text">Alex.Dev</span>
+        </a>
+        <button class="menu-toggle" aria-label="Menu" onclick="document.body.classList.toggle('nav-open')">
+            <span class="line-1"></span>
+            <span class="line-2"></span>
+        </button>
+        <nav class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#inicio" class="nav-item">Inicio</a></li>
+                <li><a href="#sobre-mi" class="nav-item">Sobre Mí</a></li>
+                <li><a href="#proyectos" class="nav-item">Proyectos</a></li>
+                <li><a href="#contacto" class="nav-item">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección Hero (Inicio) -->
+    <section id="inicio" class="hero-section">
+        <div class="hero-content">
+            <div class="status-badge">
+                <span class="pulse-dot"></span> Disponible para nuevos proyectos
+            </div>
+            <h1 class="hero-title">Construyendo el <span class="gradient-text">futuro digital</span> a través del código.</h1>
+            <p class="hero-subtitle">Especialista en desarrollo frontend enfocado en crear experiencias interactivas de alta fidelidad, rápidas y ultra-adaptables.</p>
+            <div class="hero-actions">
+                <a href="#proyectos" class="btn btn-gradient">Explorar Trabajos</a>
+                <a href="#contacto" class="btn btn-outline">Hablemos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenedor Principal -->
+    <main class="container">
+
+        <!-- Sección Sobre Mí -->
+        <section id="sobre-mi" class="about-section">
+            <div class="section-header">
+                <span class="section-tag">01. Trayectoria</span>
+                <h2>Sobre Mi Filosofía</h2>
+            </div>
+            <div class="glass-card about-grid">
+                <div class="about-text">
+                    <p>Me apasiona la intersección entre el diseño visual sofisticado y la ingeniería de software limpia. No solo construyo sitios web; optimizo la interacción humana con la tecnología.</p>
+                    <p>Cada línea de CSS y HTML está optimizada para cargar instantáneamente en cualquier pantalla, garantizando fluidez sin importar la orientación o potencia del dispositivo.</p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">HTML5</span>
+                    <span class="tech-badge">CSS3 Moderno</span>
+                    <span class="tech-badge">JavaScript Async</span>
+                    <span class="tech-badge">Responsive UI</span>
+                    <span class="tech-badge">Git & CI/CD</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Proyectos -->
+        <section id="proyectos" class="projects-section">
+            <div class="section-header">
+                <span class="section-tag">02. Portafolio</span>
+                <h2>Proyectos Destacados</h2>
+            </div>
+            <div class="projects-grid">
+                
+                <!-- Tarjeta 1 -->
+                <div class="glass-card project-card">
+                    <div class="project-preview">
+                        <div class="preview-glow preview-1"></div>
+                        <span>Fintech Platform</span>
+                    </div>
+                    <div class="project-details">
+                        <h3>Plataforma de Analítica Financiera</h3>
+                        <p>Interfaz de datos de alta velocidad con renderizado adaptable y modo oscuro adaptativo en tiempo real.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="glass-card project-card">
+                    <div class="project-preview">
+                        <div class="preview-glow preview-2"></div>
+                        <span>E-Commerce Engine</span>
+                    </div>
+                    <div class="project-details">
+                        <h3>Experiencia Minimalista de Compra</h3>
+                        <p>Plataforma de comercio electrónico optimizada para interacciones táctiles ultrarrápidas.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contacto" class="contact-section">
+            <div class="glass-card contact-box">
+                <span class="section-tag">03. ¿Qué sigue?</span>
+                <h2>Iniciemos algo asombroso</h2>
+                <p>¿Tienes una idea innovadora o necesitas reforzar tu equipo de desarrollo móvil y de escritorio? Mi bandeja de entrada está abierta.</p>
+                <a href="mailto:tuemail@ejemplo.com" class="btn btn-gradient">Enviar Mensaje Directo</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <p>&copy; 2026 Alex.Dev — Diseñado bajo estándares de vanguardia responsiva.</p>
+    </footer>
+
+    <div class="project-card-premium">
+        <div class="project-details">
+            <span class="project-badge-dinamico">Clase Hija 1</span>
+            <h3>Proyecto Cyan</h3>
+            <p>Este contenedor hereda los tonos azules del parent.</p>
+            <button class="project-button-dinamico">Clase Hija 2</button>
+        </div>
+    </div>
+
+    <div class="project-card-premium variante-alt">
+        <div class="project-details">
+            <span class="project-badge-dinamico">Clase Hija 1</span>
+            <h3>Proyecto Magenta</h3>
+            <p>Las mismas clases ahora son rosas porque el parent cambió el valor de la variable.</p>
+            <button class="project-button-dinamico">Clase Hija 2</button>
+        </div>
+    </div>
+
+    <section id="proyectos-flex" class="projects-section">
+        <div class="section-header">
+            <span class="section-tag">02. Portafolio</span>
+            <h2>Proyectos Destacados</h2>
+        </div>
+        
+        <div class="projects-flex-container">
+            
+            <div class="project-flex-card">
+                <div class="project-flex-preview">
+                    <div class="preview-glow preview-1"></div>
+                    <span>Fintech Platform</span>
+                </div>
+                <div class="project-flex-details">
+                    <h3>Plataforma de Analítica Financiera</h3>
+                    <p>Interfaz de datos de alta velocidad con renderizado adaptable y modo oscuro adaptativo en tiempo real.</p>
+                </div>
+            </div>
+
+            <div class="project-flex-card tarjeta-invertida">
+                <div class="project-flex-preview">
+                    <div class="preview-glow preview-2"></div>
+                    <span>E-Commerce Engine</span>
+                </div>
+                <div class="project-flex-details">
+                    <h3>Experiencia Minimalista de Compra</h3>
+                    <p>Plataforma de comercio electrónico optimizada para interacciones táctiles ultrarrápidas.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Script minimalista para cerrar menú móvil al hacer click en un link -->
+    <script>
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', () => document.body.classList.remove('nav-open'));
+        });
+    </script>
+    <script type="module" src="hola.js"></script>
+</body>
+</html>

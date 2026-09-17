@@ -1,0 +1,8 @@
+v_coderider/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.sqlite3
+db.sqlite3
+.vscode/

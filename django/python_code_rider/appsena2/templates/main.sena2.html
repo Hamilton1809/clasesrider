@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appsena 3 - Panel Principal</title>
+    <!-- Fuente moderna desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fe;
+            color: #2b3674;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Barra de navegación superior */
+        .navbar {
+            background: #ffffff;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #4318ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-badge {
+            background: #e6f4ea;
+            color: #137333;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Contenedor Principal */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Banner Banner Hero */
+        .hero-banner {
+            background: linear-gradient(135deg, #868CFF 0%, #4318FF 100%);
+            border-radius: 20px;
+            padding: 35px;
+            color: white;
+            margin-bottom: 25px;
+            box-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
+        }
+
+        .hero-banner h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .hero-banner p {
+            opacity: 0.9;
+            font-size: 15px;
+        }
+
+        /* Tarjetas de Estadísticas / Métricas */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0px 18px 40px rgba(112, 144, 176, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: #f4f7fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .stat-info h3 {
+            font-size: 13px;
+            color: #a3edde;
+            color: #8f9bba;
+            font-weight: 500;
+        }
+
+        .stat-info p {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2b3674;
+        }
+
+        /* Secciones de contenido */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0px 18px 40px rgba(112, 144, 176, 0.08);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* Tabla de información */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 8px;
+            border-bottom: 1px solid #f0f2f5;
+            font-size: 14px;
+        }
+
+        th {
+            color: #8f9bba;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Botones interactivos */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #4318ff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3311db;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f4f7fe;
+            color: #4318ff;
+        }
+
+        .btn-secondary:hover {
+            background: #e6ecfa;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #8f9bba;
+            font-size: 13px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación Superior -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>⚡</span> APPSENA 3
+        </div>
+        <span class="status-badge">● Sistema Activo</span>
+    </nav>
+
+    <div class="container">
+        <!-- Banner de Bienvenida -->
+        <div class="hero-banner">
+            <h1>¡Bienvenido a la Vista Avanzada de Appsena 3! 🚀</h1>
+            <p>Esta vista utiliza componentes modernos cargados dinámicamente desde tu proyecto en Django.</p>
+        </div>
+
+        <!-- Tarjetas de Métricas -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📂</div>
+                <div class="stat-info">
+                    <h3>Módulos Activos</h3>
+                    <p>3 Apps</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🌐</div>
+                <div class="stat-info">
+                    <h3>Servidor Local</h3>
+                    <p>127.0.0.1</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🐍</div>
+                <div class="stat-info">
+                    <h3>Backend</h3>
+                    <p>Django 6.0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-info">
+                    <h3>Estado</h3>
+                    <p>OK (200)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid de Contenido Principal -->
+        <div class="content-grid">
+            <!-- Tabla de Registro de Rutas -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Rutas Registradas en el Proyecto</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ruta URL</th>
+                            <th>Aplicación</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/appsena/</code></td>
+                            <td>Appsena Principal</td>
+                            <td><span style="color:#137333; font-weight: 600;">Activo</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>/appsena/appsena2/</code></td>
+                            <td>Appsena 2</td>
+                            <td><span style="color:#137333; font-weight: 600;">Activo</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>/appsena/appsena3/</code></td>
+                            <td>Template Actual</td>
+                            <td><span style="color:#4318ff; font-weight: 600;">En Pantalla</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Panel Lateral de Acciones -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Navegación Rápida</h2>
+                </div>
+                <div class="btn-group">
+                    <a href="/appsena/" class="btn btn-primary">Ir a Appsena Principal</a>
+                    <a href="/appsena/appsena2/" class="btn btn-secondary">Ir a Appsena 2</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Proyecto Django SENA - Desarrollo de Software</p>
+    </footer>
+
+</body>
+</html>

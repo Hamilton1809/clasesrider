@@ -1,0 +1,5 @@
+[
+  { "id": 1, "nombre": "Punto de Encuentro Central", "lat": 2.4419, "lng": -76.6063, "capacidad": 500, "estado": "Activo" },
+  { "id": 2, "nombre": "Zona Segura Norte", "lat": 2.4450, "lng": -76.6020, "capacidad": 300, "estado": "Activo" },
+  { "id": 3, "nombre": "Refugio Sur", "lat": 2.4380, "lng": -76.6100, "capacidad": 450, "estado": "Activo" }
+]

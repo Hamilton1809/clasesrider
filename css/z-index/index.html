@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master en CSS: Capas, Transformaciones y Fusiones</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="pantalla-principal">
+
+    <section class="seccion-proyecto">
+      <h2>1. Ejemplo de 4 Cajas (z-index)</h2>
+      <div class="contenedor-cajas">
+        <div class="caja caja-1">Caja 1 (z-index: 1)</div>
+        <div class="caja caja-2">Caja 2 (z-index: 4)</div>
+        <div class="caja caja-3">Caja 3 (z-index: 2)</div>
+        <div class="caja caja-4">Caja 4 (z-index: 3)</div>
+      </div>
+    </section>
+    <section class="seccion-proyecto">
+
+<h2>2. Baraja de Cartas Escalonada e Interactiva</h2>
+
+<div class="contenedor-baraja">
+    <div class="baraja">
+
+        <div class="carta carta-1">
+            <img src="https://st.depositphotos.com/2127699/2238/i/950/depositphotos_22388893-stock-photo-playing-card-ten-of-diamonds.jpg">
+        </div>
+
+        <div class="carta carta-2">
+            <img src="https://ih1.redbubble.net/image.921149355.8583/flat,750x,075,f-pad,750x1000,f8f8f8.jpg">
+        </div>
+
+        <div class="carta carta-3">
+            <img src="https://ih1.redbubble.net/image.921151589.8641/raf,360x360,075,t,fafafa:ca443f4786.jpg">
+        </div>
+
+        <div class="carta carta-4">
+            <img src="https://www.shutterstock.com/image-vector/king-spades-design-new-original-600w-2529636225.jpg">
+        </div>
+
+        <div class="carta carta-5">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/As_rombos.PNG">
+        </div>
+
+    </div>
+</div>
+
+</section>
+
+   
+    <section class="seccion-proyecto">
+      <h2>3. Transformaciones Continuas (Transform + Keyframes)</h2>
+      <div class="contenedor-transform">
+        <div class="caja-t t-rotate">Rotate</div>
+        <div class="caja-t t-scale">Scale</div>
+        <div class="caja-t t-skew">Skew</div>
+        <div class="caja-t t-matrix">Matrix</div>
+      </div>
+    </section>
+
+    <section class="seccion-proyecto">
+      <h2>4. Modos de Fusión Completo (Imágenes + Texto Animado)</h2>
+      <div class="rejilla-blend">
+        
+        <div class="tarjeta-blend">
+          <div class="capa-contenedor">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop" class="img-base" alt="Ciudad">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&auto=format&fit=crop" class="img-fusion blend-normal" alt="Patrón">
+            <span class="texto-animado">NORMAL</span>
+          </div>
+          <div class="info">mix-blend-mode: normal</div>
+        </div>
+
+        <div class="tarjeta-blend">
+          <div class="capa-contenedor">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop" class="img-base" alt="Ciudad">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&auto=format&fit=crop" class="img-fusion blend-multiply" alt="Patrón">
+            <span class="texto-animado">MULTIPLY</span>
+          </div>
+          <div class="info">mix-blend-mode: multiply</div>
+        </div>
+
+        <div class="tarjeta-blend">
+          <div class="capa-contenedor">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop" class="img-base" alt="Ciudad">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&auto=format&fit=crop" class="img-fusion blend-screen" alt="Patrón">
+            <span class="texto-animado">SCREEN</span>
+          </div>
+          <div class="info">mix-blend-mode: screen</div>
+        </div>
+
+        <div class="tarjeta-blend">
+          <div class="capa-contenedor">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop" class="img-base" alt="Ciudad">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&auto=format&fit=crop" class="img-fusion blend-overlay" alt="Patrón">
+            <span class="texto-animado">OVERLAY</span>
+          </div>
+          <div class="info">mix-blend-mode: overlay</div>
+        </div>
+
+        <div class="tarjeta-blend">
+          <div class="capa-contenedor">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop" class="img-base" alt="Ciudad">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&auto=format&fit=crop" class="img-fusion blend-darken" alt="Patrón">
+            <span class="texto-animado">DARKEN</span>
+          </div>
+          <div class="info">mix-blend-mode: darken</div>
+        </div>
+
+        <div class="tarjeta-blend">
+          <div class="capa-contenedor">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop" class="img-base" alt="Ciudad">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&auto=format&fit=crop" class="img-fusion blend-lighten" alt="Patrón">
+            <span class="texto-animado">LIGHTEN</span>
+          </div>
+          <div class="info">mix-blend-mode: lighten</div>
+        </div>
+
+        <div class="tarjeta-blend">
+          <div class="capa-contenedor">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop" class="img-base" alt="Ciudad">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&auto=format&fit=crop" class="img-fusion blend-dodge" alt="Patrón">
+            <span class="texto-animado">DODGE</span>
+          </div>
+          <div class="info">mix-blend-mode: color-dodge</div>
+        </div>
+
+        <div class="tarjeta-blend">
+          <div class="capa-contenedor">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop" class="img-base" alt="Ciudad">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&auto=format&fit=crop" class="img-fusion blend-saturation" alt="Patrón">
+            <span class="texto-animado">SATURATION</span>
+          </div>
+          <div class="info">mix-blend-mode: saturation</div>
+        </div>
+
+        <div class="tarjeta-blend">
+          <div class="capa-contenedor">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop" class="img-base" alt="Ciudad">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&auto=format&fit=crop" class="img-fusion blend-color" alt="Patrón">
+            <span class="texto-animado">COLOR</span>
+          </div>
+          <div class="info">mix-blend-mode: color</div>
+        </div>
+
+        <div class="tarjeta-blend">
+          <div class="capa-contenedor">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop" class="img-base" alt="Ciudad">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&auto=format&fit=crop" class="img-fusion blend-luminosity" alt="Patrón">
+            <span class="texto-animado">LUMINOSITY</span>
+          </div>
+          <div class="info">mix-blend-mode: luminosity</div>
+        </div>
+
+      </div>
+    </section>
+
+    </div>
+
+</body>
+</html>

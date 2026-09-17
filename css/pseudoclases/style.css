@@ -1,0 +1,272 @@
+/* Estilos base para todos los contenedores */
+
+.contenedor-caja, .contenedor-focus-within {
+
+    padding: 20px;
+
+    margin: 10px;
+
+    border: 2px solid #ccc;
+
+    border-radius: 8px;
+
+    transition: all 0.3s;
+
+}
+
+
+
+/* Pseudoclases de elementos */
+
+.btn-hover:hover { background-color: #ffcc00; }
+
+.btn-active:active { background-color: #ff5733; color: white; }
+
+.input-focus:focus { border: 2px solid #3498db; outline: none; }
+
+.contenedor-focus-within:focus-within { background-color: #e8f4fd; border-color: #3498db; }
+
+.btn-focus-visible:focus-visible { outline: 3px solid #2ecc71; outline-offset: 2px; }
+
+
+
+/* Pseudoclases de Enlaces */
+
+a:link { color: blue; }
+
+a:visited { color: purple; }
+
+a:hover { color: orange; }
+
+a:active { color: red; }
+
+/* Estilo del contenedor del texto */
+
+.contenedor-texto {
+
+    padding: 15px;
+
+    margin: 10px;
+
+    background-color: #f9f9f9;
+
+    border-left: 5px solid #3498db;
+
+    font-style: italic;
+
+}
+
+
+
+/* Ocultamos los radio buttons reales */
+
+input[type="radio"] { display: none; }
+
+
+
+/* Estilo del cuadro */
+
+.cuadro-texto {
+
+    border: 2px solid #333;
+
+    padding: 20px;
+
+    margin-top: 10px;
+
+    border-radius: 8px;
+
+}
+
+
+
+/* Por defecto ocultamos los textos */
+
+.texto-es, .texto-en { display: none; }
+
+
+
+/* Lógica: Si el radio está checkeado, muestra el texto correspondiente */
+
+#es-radio:checked ~ .cuadro-texto .texto-es { display: block; }
+
+#en-radio:checked ~ .cuadro-texto .texto-en { display: block; }
+
+
+
+/* Estilo de los botones */
+
+.botones label {
+
+    padding: 10px 20px;
+
+    background: #ccc;
+
+    cursor: pointer;
+
+    margin-right: 5px;
+
+    border-radius: 5px;
+
+}
+
+
+
+/* Color cuando el botón está activo */
+
+#es-radio:checked ~ .botones label[for="es-radio"],
+
+#en-radio:checked ~ .botones label[for="en-radio"] {
+
+    background: #3498db;
+
+    color: white;
+
+}
+
+/* Estilo base de los elementos */
+
+.contenedor-lista li {
+
+    padding: 10px;
+
+    border-bottom: 1px solid #ddd;
+
+    list-style: none;
+
+}
+
+
+
+/* Estilo base */
+
+.contenedor-lista li {
+
+    padding: 10px;
+
+    margin: 5px 0;
+
+    list-style: none;
+
+    border-radius: 4px;
+
+    color: white;
+
+    font-weight: bold;
+
+}
+
+
+
+/* Impares (1, 3, 5...) - Azules */
+
+.contenedor-lista li:nth-child(odd) {
+
+    background-color: #3498db;
+
+}
+
+
+
+/* Pares (2, 4, 6...) - Rojos */
+
+.contenedor-lista li:nth-child(even) {
+
+    background-color: #e74c3c;
+
+}
+
+
+
+/* Ejemplo extra: Destacar primero y último */
+
+.contenedor-lista li:first-child { border: 2px solid darkblue; }
+
+.contenedor-lista li:last-child { border: 2px solid darkred; }
+
+.contenedor-lista p:last-of-type {
+
+    background-color: #e74c3c;
+
+}.contenedor-lista p:first-of-type {
+
+    background-color: #3498db;
+
+}
+
+.custom-input { display: none; }
+
+
+
+  /* Estilo base de la "caja" */
+
+  .box {
+
+    display: inline-block;
+
+    padding: 10px;
+
+    border: 2px solid #333;
+
+    cursor: pointer;
+
+    margin: 5px;
+
+  }
+
+
+
+  /* 1. CHECKBOX CHECKED */
+
+  #check-c:checked + .box { background: #4caf50; color: white; }
+
+
+
+  /* 2. CHECKBOX INDETERMINATE (Simulado con una clase) */
+
+  .box-indet { background: #ff9800; color: white; }
+
+  .box-indet::before { content: "- "; }
+
+
+
+  /* 3. RADIO BUTTONS (Cambian según el seleccionado) */
+
+  #radio1:checked + .box, #radio2:checked + .box { background: #2196f3; color: white; }
+
+
+
+  /* 4. SELECT / OPTION (El select no se puede estilizar igual, usamos una alternativa) */
+
+  .select-simulado { padding: 10px; border: 2px solid #333; }
+  .button-container {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  /* Estilo para el botón habilitado */
+  .btn-enabled {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .btn-enabled:hover {
+    background-color: #0056b3;
+  }
+
+  /* Estilo para el botón deshabilitado */
+  .btn-disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed; /* Cambia el puntero a 'prohibido' */
+  }

@@ -1,0 +1,38 @@
+/* Centra todo el contenido en la pantalla */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5;
+}
+
+/* Organiza los cuadros en una cuadrícula de 3 columnas */
+.contenedor {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 15px; /* Espacio entre cuadros */
+}
+
+/* Diseño visual de cada cuadro */
+.cuadro {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none; /* Evita que el texto se sombree azul al hacer doble clic */
+}
+
+/* Cambia el color cuando pasas el mouse por encima */
+.cuadro:hover {
+    background-color: #2980b9;
+}

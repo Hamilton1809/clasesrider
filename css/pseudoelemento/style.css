@@ -1,0 +1,144 @@
+.contenedor { border: 1px solid #ccc; margin: 20px; padding: 15px; border-radius: 8px; }
+.box { padding: 10px; border: 1px dashed #666; margin-top: 10px; }
+
+/* Pseudo-elementos estáticos */
+.before-after::before { content: "➤ "; color: green; }
+.before-after::after { content: " [!]"; color: red; }
+
+.line-letter::first-line { color: blue; font-weight: bold; }
+.line-letter::first-letter { font-size: 2em; color: orange; }
+
+.select::selection { background: yellow; color: black; }
+
+.box li::marker { content: "★ "; color: gold; }
+
+input::placeholder { color: rgb(153, 15, 15); font-style: italic; }
+
+input::file-selector-button { background: black; color: white; padding: 5px; cursor: pointer; }
+
+div::spelling-error { text-decoration: underline wavy red; }
+div::grammar-error { text-decoration: underline wavy green; }
+
+#objetivo:target::target-text { background: cyan; }
+
+/* View Transitions CSS */
+#caja-transicion { view-transition-name: mi-caja; }
+
+::view-transition-group(mi-caja) { animation-duration: 1s; }
+::view-transition-old(mi-caja) { animation: fade-out 0.5s; }
+::view-transition-new(mi-caja) { animation: fade-in 0.5s; }
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+/* Estilo para el fondo oscuro cuando el modal está abierto */
+#mi-modal::backdrop {
+    background-color: rgba(0, 0, 255, 0.3); /* Azul semitransparente */
+    backdrop-filter: blur(5px);             /* Efecto de desenfoque */
+}
+
+/* Estilo para la cajita del diálogo */
+#mi-modal {
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding: 20px;
+}
+:root {
+    --gold: #d4af37;
+    --dark: #0a0a0a;
+    --white: #ffffff;
+}
+
+.luxury-card {
+    width: 350px;
+    background: var(--dark);
+    padding: 2px; /* Grosor del borde oro */
+    margin: 50px auto;
+    position: relative;
+}
+
+/* Marco decorativo premium */
+.luxury-card::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+}
+
+.card-inner {
+    background: var(--dark);
+    padding: 40px;
+    color: var(--white);
+    text-align: center;
+}
+
+.image-zone {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    background: url('juan.jpg') center/cover;
+    border: 2px solid var(--gold);
+}
+
+/* Inyección de datos mediante attr() */
+.name::before { content: attr(data-name); font-family: 'Playfair Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
+.nickname::before { content: attr(data-nickname); color: var(--gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; }
+.age::before { content: attr(data-age); }
+.status::before { content: attr(data-status); }
+
+.meta-data {
+    margin-top: 20px;
+    font-size: 0.7rem;
+    color: #888;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    text-transform: uppercase;
+}
+
+/* Efectos visuales con before y after */
+.name::after { content: ""; display: block; width: 30px; height: 1px; background: var(--gold); margin: 10px auto; }
+h1 {
+  color: #d4af37; /* Todos los H1 serán dorados */
+  font-family: serif;
+}
+
+p {
+  font-size: 16px; /* Todos los párrafos tendrán este tamaño */
+  line-height: 1.5;
+}
+/* Selecciona todos los inputs que tengan el atributo 'type' */
+input[type] {
+  border: 1px solid gray;
+}
+
+/* Selecciona solo los inputs de tipo 'password' */
+input[type="password"] {
+  background-color: #f9f9f9;
+}
+
+/* Selecciona enlaces que contienen el atributo 'target' */
+a[target] {
+  font-weight: bold;
+}
+/* Valor Exacto: Selecciona si el atributo class es EXACTAMENTE 'btn-primary' */
+[class="btn-primary"] {
+  background: blue;
+}
+
+/* Selector por prefijo (^=): Selecciona si el atributo class EMPIEZA por 'btn-' */
+[class^="btn-"] {
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+/* Selector por subcadena (*=): Selecciona si el valor contiene 'ejemplo' */
+[href*="ejemplo"] {
+  color: green;
+}
+
+/* Selector por sufijo ($=): Selecciona si el archivo es un PDF */
+[href$=".pdf"] {
+  color: red;
+}

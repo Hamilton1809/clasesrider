@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleate | Domina tu próxima entrevista laboral con IA</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-light: #f4f9ff;
+            --primary-light: #e0f2fe;
+            --primary: #38bdf8;
+            --primary-hover: #0284c7;
+            --accent-blue: #0284c7;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --white: #ffffff;
+            --card-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.08), 0 8px 10px -6px rgba(14, 165, 233, 0.05);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(244, 249, 255, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+            color: var(--white);
+            padding: 0.75rem 1.6rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--primary-light);
+            color: var(--accent-blue);
+            padding: 0.75rem 1.6rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary:hover {
+            background: #bae6fd;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 9rem 2rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .badge {
+            background-color: var(--primary-light);
+            color: var(--accent-blue);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            line-height: 1.15;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* Hero Preview Card */
+        .hero-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(224, 242, 254, 0.8);
+            position: relative;
+        }
+
+        .chat-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-bubble {
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            max-width: 85%;
+        }
+
+        .chat-ai {
+            background: var(--primary-light);
+            color: var(--text-dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .chat-user {
+            background: var(--accent-blue);
+            color: var(--white);
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .ai-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse 1.6s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* --- HOW IT WORKS --- */
+        .section-title {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .steps-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(224, 242, 254, 0.6);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+            background: var(--primary-light);
+            color: var(--accent-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- FEATURES --- */
+        .features {
+            background: var(--white);
+            padding: 5rem 2rem;
+            border-top: 1px solid rgba(56, 189, 248, 0.15);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-box {
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            background: var(--bg-light);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-blue);
+            color: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- VIRTUAL LIBRARY PREVIEW --- */
+        .library-preview {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .book-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(224, 242, 254, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .book-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .book-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-card p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- CTA BANNER --- */
+        .cta-banner {
+            max-width: 1200px;
+            margin: 3rem auto 6rem;
+            padding: 0 2rem;
+        }
+
+        .cta-content {
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--white);
+            box-shadow: 0 20px 30px rgba(2, 132, 199, 0.25);
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-content .btn-primary {
+            background: var(--white);
+            color: var(--accent-blue);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-content .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 7rem;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i data-lucide="sparkles"></i> Empleate<span>.</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#como-funciona">Cómo Funciona</a></li>
+                <li><a href="#caracteristicas">Simulacro IA</a></li>
+                <li><a href="#libreria">Librería Virtual</a></li>
+            </ul>
+            <a href="#comenzar" class="btn-primary">
+                Probar Simulacro <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-text">
+            <div class="badge">
+                <i data-lucide="cpu"></i> Entrevistas impulsadas por IA
+            </div>
+            <h1>Prepara tu entrevista con <span>Simulacros de IA</span> e impacta a tu reclutador</h1>
+            <p>Empleatu te entrena con entrevistas simuladas personalizadas según el puesto de trabajo que buscas. Practica, aprende en nuestra librería y consigue el empleo de tus sueños.</p>
+            <div class="hero-buttons">
+                <a href="#comenzar" class="btn-primary">Iniciar Simulacro Gratis</a>
+                <a href="#libreria" class="btn-secondary">Explorar Librería</a>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <div class="ai-status">
+                <div class="pulse-dot"></div> Simulador Activo - Entrevistador IA
+            </div>
+            <div class="chat-preview">
+                <div class="chat-bubble chat-ai">
+                    👋 ¡Hola! Veo que te postulas para <b>Desarrollador Web Junior</b>. Para empezar: ¿Podrías contarme sobre un proyecto desafiante que hayas completado?
+                </div>
+                <div class="chat-bubble chat-user">
+                    ¡Hola! Claro, reciéntemente desarrollé una aplicación de gestión utilizando JavaScript y consumo de APIs REST...
+                </div>
+                <div class="chat-bubble chat-ai">
+                    Excelente. ¿Cómo gestionaste la optimización del rendimiento y el manejo de errores en las llamadas a la API?
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="como-funciona" class="steps-container">
+        <div class="section-title">
+            <h2>¿Cómo funciona Empleatu?</h2>
+            <p>Un método de 3 pasos diseñado para transformar tus respuestas y aumentar tu confianza antes de la entrevista real.</p>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Cuestionario Inicial</h3>
+                <p>Ingresas el cargo al que quieres postularte, la industria y los requisitos principales de la vacante.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Simulacro con IA</h3>
+                <p>Nuestra IA asume el rol de tu entrevistador y realiza preguntas técnicas, situacionales y de personalidad en tiempo real.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Feedback y Aprendizaje</h3>
+                <p>Recibes un reporte detallado con tus fortalezas, áreas de mejora y lecturas recomendadas en nuestra librería.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="caracteristicas" class="features">
+        <div class="section-title">
+            <h2>Todo lo que necesitas para ser contratado</h2>
+            <p>Combinamos inteligencia artificial adaptativa con recursos educativos de alto valor.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon"><i data-lucide="bot"></i></div>
+                <h3>IA Entrevistadora Adaptativa</h3>
+                <p>Preguntas reales ajustadas al perfil laboral específico que quieres conseguir, simulando la presión de una entrevista real.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon"><i data-lucide="clipboard-check"></i></div>
+                <h3>Evaluación Inmediata</h3>
+                <p>Recibe puntuación de tus respuestas, claridad, tono y sugerencias concretas sobre qué responder mejor.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon"><i data-lucide="book-open"></i></div>
+                <h3>Librería Virtual Integrada</h3>
+                <p>Acceso a un catálogo completo de guías de estudio, plantillas de CV y lecturas recomendadas para destacar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIRTUAL LIBRARY PREVIEW -->
+    <section id="libreria" class="library-preview">
+        <div class="section-title">
+            <h2>Librería Virtual & Recursos</h2>
+            <p>Aprende las mejores técnicas de comunicación y preparación laboral.</p>
+        </div>
+
+        <div class="books-grid">
+            <div class="book-card">
+                <div>
+                    <span class="book-tag">Guía Práctica</span>
+                    <h4>El Método STAR para Entrevistas</h4>
+                    <p>Aprende a estructurar tus respuestas basándote en Situación, Tarea, Acción y Resultado.</p>
+                </div>
+                <a href="#" class="btn-secondary" style="justify-content: center;">Leer Guía</a>
+            </div>
+
+            <div class="book-card">
+                <div>
+                    <span class="book-tag">E-Book</span>
+                    <h4>Preguntas Difíciles: Respuestas Clave</h4>
+                    <p>Estrategias probadas para responder sobre pretensiones salariales y debilidades.</p>
+                </div>
+                <a href="#" class="btn-secondary" style="justify-content: center;">Leer E-Book</a>
+            </div>
+
+            <div class="book-card">
+                <div>
+                    <span class="book-tag">Plantilla</span>
+                    <h4>Optimizando tu CV para Filtros ATS</h4>
+                    <p>Diseña un currículum que supere los sistemas de selección automática de RRHH.</p>
+                </div>
+                <a href="#" class="btn-secondary" style="justify-content: center;">Descargar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION BANNER -->
+    <section id="comenzar" class="cta-banner">
+        <div class="cta-content">
+            <h2>¿Listo para asegurar tu próximo trabajo?</h2>
+            <p>Comienza hoy mismo con tu primer simulacro gratuito y descubre tus puntos fuertes frente a la Inteligencia Artificial.</p>
+            <a href="#" class="btn-primary">Empezar Simulacro Ahora</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">Empleatu<span>.</span></div>
+            <p style="color: #94a3b8; font-size: 0.9rem;">Tu plataforma inteligente para el éxito laboral.</p>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Empleatu. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

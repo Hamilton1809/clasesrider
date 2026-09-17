@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1 al 10 (Estáticos) -->
+    <div class="contenedor">
+        <h2 class="titulo">::before & ::after</h2>
+        <div class="box before-after">Texto con adorno</div>
+    </div>
+
+    <div class="contenedor">
+        <h2 class="titulo">::first-line & ::first-letter</h2>
+        <div class="box line-letter">Primera línea azul.<br>Segunda línea normal.</div>
+    </div>
+
+    <div class="contenedor">
+        <h2 class="titulo">::selection</h2>
+        <div class="box select">¡Selecciona este texto!</div>
+    </div>
+
+    <div class="contenedor">
+        <h2 class="titulo">::marker</h2>
+        <ul class="box"><li>Item 1</li></ul>
+    </div>
+
+    <div class="contenedor">
+        <h2 class="titulo">::placeholder</h2>
+        <input class="box" type="text" placeholder="Escribe algo...">
+    </div>
+
+    <div class="contenedor">
+        <h2 class="titulo">::file-selector-button</h2>
+        <input class="box" type="file">
+    </div>
+
+    <div class="contenedor">
+        <h2 class="titulo">::spelling-error & ::grammar-error</h2>
+        <div class="box" contenteditable="true" spellcheck="true">Escribe hhola (error)</div>
+    </div>
+
+    <div class="contenedor">
+        <h2 class="titulo">::target-text</h2>
+        <p id="objetivo" class="box">Objetivo</p>
+        <a href="#objetivo">Ir al objetivo</a>
+    </div>
+
+    <!-- 11. View Transitions -->
+    <div class="contenedor">
+        <h2 class="titulo">View Transitions</h2>
+        <button id="btn-transicion">Ejecutar Transición</button>
+        <div id="caja-transicion" class="box">Contenido a transicionar</div>
+    </div>
+    <!-- ... código anterior ... -->
+<div class="contenedor">
+    <h2 class="titulo">::backdrop (usando showModal)</h2>
+    <button id="btn-modal">Abrir Modal</button>
+    
+    <dialog id="mi-modal">
+        <p>¡edwin es gay!</p>
+        <button id="btn-cerrar">Cerrar</button>
+    </dialog>
+<div class="luxury-card" 
+     data-name="Juan Sanchez" 
+     data-nickname="Cantante Yandel" 
+     data-age="17 años" 
+     data-status="sexo: todos los dias">
+    
+    <div class="card-inner">
+        <div class="image-zone"></div>
+        <div class="text-zone">
+            <h1 class="name"></h1>
+            <h2 class="nickname"></h2>
+            <div class="meta-data">
+                <span class="age"></span>
+                <span class="status"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<h1>Título</h1> <p>Párrafo</p>
+<input type="text"> <input type="password">
+<div class="btn-primary">Botón</div>
+
+<div class="btn-danger">Eliminar</div>
+
+<a href="[https://ejemplo.com](https://ejemplo.com)">Enlace</a>
+ class="contenedor">
+
+ 
+    <script src="script.js"></script>
+</body>
+</html>

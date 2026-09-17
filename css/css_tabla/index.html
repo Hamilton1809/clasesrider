@@ -1,0 +1,510 @@
+<!-- Archivo: index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Registros</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="contenedor">
+
+        <!-- TITULO -->
+        <h1>SISTEMA DE REGISTRO DE USUARIOS</h1>
+
+        <p class="subtitulo">
+            Panel administrativo de información y control de usuarios
+        </p>
+
+        <!-- TABLA PRINCIPAL -->
+        <table cellspacing="0" cellpadding="12">
+
+            <!-- THEAD -->
+            <thead>
+
+                <tr>
+                    <th rowspan="2">FOTO</th>
+                    <th rowspan="2">ID</th>
+                    <th colspan="2">DATOS PERSONALES</th>
+                    <th rowspan="2">CORREO</th>
+                    <th rowspan="2">TELÉFONO</th>
+                    <th colspan="2">UBICACIÓN</th>
+                    <th rowspan="2">PROFESIÓN</th>
+                    <th rowspan="2">ESTADO</th>
+                </tr>
+
+                <tr>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th>CIUDAD</th>
+                    <th>PAÍS</th>
+                </tr>
+
+            </thead>
+
+            <!-- TBODY -->
+            <tbody>
+
+                <tr class="fila1">
+
+                    <td align="center" valign="middle">
+                        <img src="https://i.pravatar.cc/70?img=1" alt="">
+                    </td>
+
+                    <td align="center" valign="top">1</td>
+
+                    <td align="left" valign="top">Juan</td>
+
+                    <td align="right" valign="bottom">Pérez</td>
+
+                    <td align="center" valign="middle">
+                        juan@email.com
+                    </td>
+
+                    <td align="right" valign="middle">
+                        3001234567
+                    </td>
+
+                    <td align="left" valign="bottom">
+                        Bogotá
+                    </td>
+
+                    <td align="center" valign="top">
+                        Colombia
+                    </td>
+
+                    <td align="right" valign="bottom">
+                        Diseñador
+                    </td>
+
+                    <td align="center" valign="middle" class="activo">
+                        Activo
+                    </td>
+
+                </tr>
+
+                <tr class="fila2">
+
+                    <td align="center" valign="middle">
+                        <img src="https://i.pravatar.cc/70?img=5" alt="">
+                    </td>
+
+                    <td align="center" valign="top">2</td>
+
+                    <td align="left" valign="bottom">María</td>
+
+                    <td align="right" valign="top">Gómez</td>
+
+                    <td align="center" valign="middle">
+                        maria@email.com
+                    </td>
+
+                    <td align="right" valign="bottom">
+                        3019876543
+                    </td>
+
+                    <td align="left" valign="top">
+                        Medellín
+                    </td>
+
+                    <td align="center" valign="middle">
+                        Colombia
+                    </td>
+
+                    <td align="right" valign="bottom">
+                        Ingeniera
+                    </td>
+
+                    <td align="center" valign="middle" class="activo">
+                        Activo
+                    </td>
+
+                </tr>
+
+                <tr class="fila1">
+
+                    <td align="center" valign="middle">
+                        <img src="https://i.pravatar.cc/70?img=8" alt="">
+                    </td>
+
+                    <td align="center" valign="bottom">3</td>
+
+                    <td align="left" valign="middle">Carlos</td>
+
+                    <td align="right" valign="top">Ruiz</td>
+
+                    <td align="center" valign="middle">
+                        carlos@email.com
+                    </td>
+
+                    <td align="right" valign="top">
+                        3024567890
+                    </td>
+
+                    <td align="left" valign="bottom">
+                        Cali
+                    </td>
+
+                    <td align="center" valign="top">
+                        Colombia
+                    </td>
+
+                    <td align="right" valign="middle">
+                        Programador
+                    </td>
+
+                    <td align="center" valign="middle" class="inactivo">
+                        Inactivo
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+            <!-- TFOOT -->
+            <tfoot>
+
+                <tr>
+                    <td colspan="10" align="center">
+                        TOTAL DE REGISTROS: 3 USUARIOS
+                    </td>
+                </tr>
+
+            </tfoot>
+
+        </table>
+
+    </div>
+
+    <!-- CONTENEDOR DE LAS 3 TABLAS -->
+    <div class="contenedor-tablas">
+
+        <!-- TABLA IZQUIERDA -->
+        <div class="izquierda">
+
+            <h2>TABLA IZQUIERDA</h2>
+
+            <!-- ID SOLO PARA ESTA TABLA -->
+            <table id="tabla-izquierda" cellspacing="20" cellpadding="40">
+
+                <thead>
+
+                    <tr>
+                        <th colspan="2">USUARIOS</th>
+                    </tr>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr class="fila1">
+
+                        <td align="center" valign="top">
+                            1
+                        </td>
+
+                        <td align="left" valign="bottom">
+                            Juan
+                        </td>
+
+                    </tr>
+
+                    <tr class="fila2">
+
+                        <td align="center" valign="middle">
+                            2
+                        </td>
+
+                        <td align="right" valign="top">
+                            María
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+                <tfoot>
+
+                    <tr>
+                        <td colspan="2" align="center">
+                            REGISTROS: 2
+                        </td>
+                    </tr>
+
+                </tfoot>
+
+            </table>
+
+        </div>
+
+        <!-- TABLA CENTRO -->
+        <div class="centro">
+
+            <h2>TABLA CENTRO</h2>
+
+            <table cellspacing="0" cellpadding="10">
+
+                <thead>
+
+                    <tr>
+                        <th rowspan="2">ID</th>
+                        <th colspan="2">UBICACIÓN</th>
+                    </tr>
+
+                    <tr>
+                        <th>CIUDAD</th>
+                        <th>PAÍS</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr class="fila1">
+
+                        <td align="center" valign="middle">
+                            1
+                        </td>
+
+                        <td align="left" valign="top">
+                            Bogotá
+                        </td>
+
+                        <td align="right" valign="bottom">
+                            Colombia
+                        </td>
+
+                    </tr>
+
+                    <tr class="fila2">
+
+                        <td align="center" valign="top">
+                            2
+                        </td>
+
+                        <td align="left" valign="bottom">
+                            Medellín
+                        </td>
+
+                        <td align="right" valign="middle">
+                            Colombia
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+                <tfoot>
+
+                    <tr>
+                        <td colspan="3" align="center">
+                            REGISTROS: 2
+                        </td>
+                    </tr>
+
+                </tfoot>
+
+            </table>
+
+        </div>
+
+        <!-- TABLA DERECHA -->
+        <div class="derecha">
+
+            <h2>TABLA DERECHA</h2>
+
+            <table cellspacing="0" cellpadding="10">
+
+                <thead>
+
+                    <tr>
+                        <th colspan="2">ESTADOS</th>
+                    </tr>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>ESTADO</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr class="fila1">
+
+                        <td align="center" valign="middle">
+                            1
+                        </td>
+
+                        <td align="right" valign="bottom" class="activo">
+                            Activo
+                        </td>
+
+                    </tr>
+
+                    <tr class="fila2">
+
+                        <td align="center" valign="top">
+                            2
+                        </td>
+
+                        <td align="left" valign="middle" class="inactivo">
+                            Inactivo
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+                <tfoot>
+
+                    <tr>
+                        <td colspan="2" align="center">
+                            REGISTROS: 2
+                        </td>
+                    </tr>
+
+                </tfoot>
+
+            </table>
+
+        </div>
+
+    </div>
+<!-- ================================================= -->
+<!-- CONTENT BOX -->
+<!-- ================================================= -->
+
+<div class="content-box">
+
+    <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c" alt="">
+
+    <h2 style="color: black;">CONTENT-BOX</h2>
+
+    <p>
+        Esta caja CRECE demasiado porque
+        el padding y el borde se suman
+        al tamaño original.
+    </p>
+
+</div>
+
+<!-- ================================================= -->
+<!-- BORDER BOX -->
+<!-- ================================================= -->
+
+<div class="border-box">
+
+    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" alt="">
+
+    <h2 style="color: black;">BORDER-BOX</h2>
+
+    <p>
+        Esta caja mantiene el tamaño exacto
+        aunque tenga mucho padding y border.
+    </p>
+
+</div>
+
+<!-- ================================================= -->
+<!-- AUTO BOX -->
+<!-- ================================================= -->
+
+<div class="auto-box">
+
+    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7" alt="">
+
+    <h2 style="color: black;">AUTO-BOX</h2>
+
+    <p>
+        Esta caja usa margin auto
+        para centrarse automáticamente.
+    </p>
+
+</div>
+<!-- ================================================= -->
+<!-- DIV COVER -->
+<!-- ================================================= -->
+
+<div class="cover-box">
+    <h2>BACKGROUND-SIZE: COVER</h2>
+</div>
+
+<!-- ================================================= -->
+<!-- DIV CONTAIN -->
+<!-- ================================================= -->
+
+<div class="contain-box">
+    <h2>BACKGROUND-SIZE: CONTAIN</h2>
+</div>
+
+<!-- ================================================= -->
+<!-- DIV POSITION -->
+<!-- ================================================= -->
+
+<div class="position-box">
+    <h2>BACKGROUND-POSITION</h2>
+</div>
+
+<!-- ================================================= -->
+<!-- DIV SIZE PX -->
+<!-- ================================================= -->
+
+<div class="size-box">
+    <h2>BACKGROUND SIZE PIXELS</h2>
+</div>
+
+<!-- ================================================= -->
+<!-- DIV REPEAT -->
+<!-- ================================================= -->
+
+<div class="repeat-box">
+    <h2>BACKGROUND-REPEAT</h2>
+</div>
+
+<!-- ================================================= -->
+<!-- DIV COLOR -->
+<!-- ================================================= -->
+,
+<div class="color-box">
+    <h2>BACKGROUND-COLOR</h2>|
+</div>
+<div class="contenedor-imagenes">
+    <img src="paisaje.png" alt="Paisaje" class="paisaje">
+    <img src="oso4.png" alt="oso" class="oso">
+</div>
+
+<div class="contenedor-scroll-imagen">
+    <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c" alt="Tu imagen grande">
+</div>
+<div class="ventana-con-scroll">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Kawasaki_Ninja_H2.jpg/1280px-Kawasaki_Ninja_H2.jpg">
+</div>
+<div class="mi-degradado"></div>
+<div class="mi-degradadoo"></div>
+<div class="degradado-ultra-fino"></div>
+<div class="degradado-ultra-finoo"></div>
+<div class="html"></div>
+<div class="conic"></div>
+<div class="scene">
+  <div class="sun"></div>
+
+  <div class="sea">
+    <div class="reflection"></div>
+  </div>
+
+  <div class="sand"></div>
+</div>
+
+</body>
+</html>

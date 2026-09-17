@@ -1,0 +1,35 @@
+name: Flujo-Total-Automatico
+
+on:
+  push:
+    branches:
+      - 'feature/*' # Se activa al subir ramas feature/
+
+jobs:
+  automation:
+    name: "PR + Merge Automático"
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Crear Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
+          base: main
+          title: "Auto-Merge: ${{ github.ref_name }}"
+          body: "🤖 PR generada automáticamente."
+
+      - name: Autorizar y Merge
+        if: steps.cpr.outputs.pull-request-number != ''
+        run: |
+          gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --merge --auto
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

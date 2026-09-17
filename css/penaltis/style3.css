@@ -1,0 +1,1012 @@
+/*==========================================
+        PENALTY CHAMPIONS 2026
+===========================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#111;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/*=========================
+ENCABEZADO
+=========================*/
+
+.header{
+
+    width:100%;
+    background:#06192f;
+
+    border-bottom:4px solid gold;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 40px;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+}
+
+.logo{
+
+    font-size:30px;
+    font-weight:bold;
+    color:gold;
+    letter-spacing:2px;
+
+}
+
+.menu{
+
+    display:flex;
+    gap:25px;
+
+}
+
+.grupo{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.grupo label{
+
+    margin-bottom:6px;
+    font-weight:bold;
+
+}
+
+.grupo select{
+
+    width:180px;
+    height:40px;
+
+    border:none;
+    border-radius:8px;
+
+    padding-left:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+/*=========================
+FOCUS
+=========================*/
+
+.grupo select:focus{
+
+    outline:none;
+
+    box-shadow:0 0 10px gold;
+
+}
+
+/*=========================
+MARCADOR
+=========================*/
+
+.marcador{
+
+    width:95%;
+    margin:20px auto;
+
+    background:#092341;
+
+    border-radius:15px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px;
+
+    border:3px solid white;
+
+}
+
+.equipo{
+
+    width:300px;
+    text-align:center;
+
+}
+
+.equipo h2{
+
+    margin-bottom:10px;
+
+}
+
+.penales{
+
+    font-size:22px;
+    letter-spacing:8px;
+
+}
+
+.resultado{
+
+    text-align:center;
+
+}
+
+.resultado h1{
+
+    font-size:55px;
+    color:gold;
+
+}
+
+.resultado p{
+
+    margin-top:8px;
+
+    letter-spacing:3px;
+
+}
+
+/*=========================
+ESTADIO
+=========================*/
+
+.estadio{
+
+    display:flex;
+    justify-content:center;
+
+    margin-top:30px;
+
+}
+
+/*=========================
+CANCHA
+=========================*/
+
+.cancha{
+
+    width:1100px;
+    height:650px;
+
+    border:8px solid white;
+
+    border-radius:20px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    repeating-linear-gradient(
+        90deg,
+        #0d6f22 0px,
+        #0d6f22 70px,
+        #168d2f 70px,
+        #168d2f 140px
+    );
+
+}
+
+/*=========================
+ÁREA GRANDE
+=========================*/
+
+.cancha::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+    height:220px;
+
+    border:5px solid white;
+
+    left:50%;
+    transform:translateX(-50%);
+
+    top:0;
+
+}
+
+/*=========================
+CÍRCULO CENTRAL
+=========================*/
+
+.cancha::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    border:5px solid white;
+
+    left:50%;
+    transform:translateX(-50%);
+
+    bottom:120px;
+
+}
+
+/*=========================
+ARCO
+=========================*/
+
+.arco{
+
+    width:300px;
+    height:120px;
+
+    border:8px solid white;
+
+    border-bottom:none;
+
+    position:absolute;
+
+    left:50%;
+    transform:translateX(-50%);
+
+    top:20px;
+
+}
+
+.red{
+
+    width:100%;
+    height:100%;
+
+    background-image:
+
+    linear-gradient(white 2px,transparent 2px),
+
+    linear-gradient(90deg,white 2px,transparent 2px);
+
+    background-size:25px 25px;
+
+    opacity:.35;
+
+}
+
+/*=========================
+PORTERO
+=========================*/
+
+.portero{
+
+    position:absolute;
+
+    top:100px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:80px;
+
+    transition:.4s;
+
+}
+
+/*=========================
+PELOTA
+=========================*/
+
+.pelota{
+
+    position:absolute;
+
+    bottom:150px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:45px;
+
+    transition:1s;
+
+}
+
+/*=========================
+JUGADOR
+=========================*/
+
+.jugador{
+
+    position:absolute;
+
+    bottom:35px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:90px;
+
+}
+
+/*=========================
+PANEL
+=========================*/
+
+.panel{
+
+    width:95%;
+    margin:35px auto;
+
+    display:flex;
+    justify-content:space-between;
+
+}
+
+.card{
+
+    width:320px;
+
+    background:#10263e;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    border:2px solid white;
+
+}
+
+.card h2{
+
+    color:gold;
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    margin:10px 0;
+
+}
+
+/*=========================
+BARRAS
+=========================*/
+
+.barra{
+
+    width:100%;
+    height:18px;
+
+    background:#333;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:15px;
+
+}
+
+.potencia{
+
+    width:85%;
+    height:100%;
+
+    background:orange;
+
+}
+
+.precision{
+
+    width:90%;
+    height:100%;
+
+    background:limegreen;
+
+}
+
+/*=========================
+BANCA
+=========================*/
+
+.banca{
+
+    width:350px;
+
+    background:#10263e;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    border:2px solid white;
+
+}
+
+.banca h2{
+
+    text-align:center;
+    margin-bottom:20px;
+
+    color:gold;
+
+}
+
+#listaJugadores{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+#listaJugadores div{
+
+    padding:12px;
+
+    border-radius:10px;
+
+    background:#1f3f61;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+/*=========================
+HOVER
+=========================*/
+
+#listaJugadores div:hover{
+
+    transform:translateX(10px);
+
+    background:#2d6cb3;
+
+}
+
+/*=========================
+FIRST CHILD
+=========================*/
+
+#listaJugadores div:first-child{
+
+    border-left:6px solid gold;
+
+}
+
+/*=========================
+LAST CHILD
+=========================*/
+
+#listaJugadores div:last-child{
+
+    border-left:6px solid red;
+
+}
+
+/*=========================
+NTH CHILD IMPARES
+=========================*/
+
+#listaJugadores div:nth-child(odd){
+
+    background:#184d7d;
+
+}
+
+/*=========================
+NTH CHILD PARES
+=========================*/
+
+#listaJugadores div:nth-child(even){
+
+    background:#245f93;
+
+}
+
+/*==========================================
+        DIRECCIÓN DEL DISPARO
+==========================================*/
+
+.direccion{
+
+    width:95%;
+    margin:30px auto;
+    text-align:center;
+
+}
+
+.direccion h2{
+
+    margin-bottom:20px;
+    color:gold;
+
+}
+
+.grid-direccion{
+
+    width:420px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,120px);
+
+    gap:15px;
+
+    justify-content:center;
+
+}
+
+.grid-direccion button{
+
+    width:120px;
+    height:90px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#123b66;
+
+    color:white;
+
+    font-size:32px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+/*=========================
+HOVER
+=========================*/
+
+.grid-direccion button:hover{
+
+    background:#1f7ae0;
+
+    transform:scale(1.08);
+
+}
+
+/*=========================
+ACTIVE
+=========================*/
+
+.grid-direccion button:active{
+
+    transform:scale(.90);
+
+}
+
+/*=========================
+FOCUS VISIBLE
+=========================*/
+
+.grid-direccion button:focus-visible{
+
+    outline:4px solid gold;
+
+}
+
+/*==========================================
+        POTENCIA
+==========================================*/
+
+.potencia-section{
+
+    width:600px;
+
+    margin:40px auto;
+
+    text-align:center;
+
+}
+
+.contenedor-potencia{
+
+    width:100%;
+    height:28px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:#2b2b2b;
+
+    margin:20px 0;
+
+}
+
+#barraPotencia{
+
+    width:10%;
+
+    height:100%;
+
+    background:linear-gradient(90deg,green,lime,yellow,orange,red);
+
+    transition:.2s;
+
+}
+
+#btnPotencia{
+
+    width:220px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:#d35400;
+
+    color:white;
+
+    font-size:17px;
+
+    transition:.3s;
+
+}
+
+#btnPotencia:hover{
+
+    background:#f39c12;
+
+}
+
+#btnPotencia:active{
+
+    transform:scale(.95);
+
+}
+
+/*==========================================
+        NARRACIÓN
+==========================================*/
+
+.narracion{
+
+    width:95%;
+
+    margin:40px auto;
+
+    background:#10263e;
+
+    border:2px solid white;
+
+    border-radius:15px;
+
+    padding:20px;
+
+}
+
+.narracion h2{
+
+    color:gold;
+
+    margin-bottom:20px;
+
+}
+
+#comentarios{
+
+    min-height:120px;
+
+    line-height:32px;
+
+    font-size:18px;
+
+}
+
+/*==========================================
+        REGLAS
+==========================================*/
+
+.reglas{
+
+    width:95%;
+
+    margin:40px auto;
+
+    padding:20px;
+
+    background:#173554;
+
+    border-radius:15px;
+
+}
+
+.reglas h2{
+
+    color:gold;
+
+    margin-bottom:20px;
+
+}
+
+.reglas ol{
+
+    margin-left:30px;
+
+    line-height:35px;
+
+}
+
+/*=========================
+TARGET
+=========================*/
+
+#reglas:target{
+
+    border:4px solid gold;
+
+    box-shadow:0 0 20px gold;
+
+}
+
+/*==========================================
+        IDIOMAS
+==========================================*/
+
+.idiomas{
+
+    width:95%;
+
+    margin:30px auto;
+
+    background:#10263e;
+
+    padding:20px;
+
+    border-radius:15px;
+
+}
+
+:lang(es){
+
+    color:#ffd54f;
+
+}
+
+:lang(en){
+
+    color:#81d4fa;
+
+}
+
+/*==========================================
+        ENLACES
+==========================================*/
+
+.enlaces{
+
+    width:95%;
+
+    margin:30px auto;
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.enlaces a{
+
+    text-decoration:none;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    background:#0c5aa6;
+
+    color:white;
+
+    transition:.3s;
+
+}
+
+/*=========================
+LINK
+=========================*/
+
+.enlaces a:link{
+
+    color:white;
+
+}
+
+/*=========================
+VISITED
+=========================*/
+
+.enlaces a:visited{
+
+    color:#ddd;
+
+}
+
+/*=========================
+ANY LINK
+=========================*/
+
+.enlaces a:any-link{
+
+    font-weight:bold;
+
+}
+
+/*=========================
+HOVER
+=========================*/
+
+.enlaces a:hover{
+
+    background:#1b82e8;
+
+}
+
+/*==========================================
+        PANTALLA FINAL
+==========================================*/
+
+.pantalla-final{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.85);
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.campeon{
+
+    width:450px;
+
+    background:#0f243d;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    border:3px solid gold;
+
+}
+
+.campeon h1{
+
+    color:gold;
+
+    margin-bottom:20px;
+
+}
+
+.campeon h2{
+
+    font-size:40px;
+
+    margin-bottom:30px;
+
+}
+
+#reiniciar{
+
+    width:220px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    background:#f39c12;
+
+    color:white;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+#reiniciar:hover{
+
+    background:#ffbf3f;
+
+}
+
+#reiniciar:active{
+
+    transform:scale(.95);
+
+}
+
+/*==========================================
+        FOOTER
+==========================================*/
+
+footer{
+
+    margin-top:50px;
+
+    text-align:center;
+
+    padding:25px;
+
+    background:#06192f;
+
+}
+
+/*==========================================
+        OTRAS PSEUDOCLASES
+==========================================*/
+
+.panel:focus-within{
+
+    box-shadow:0 0 15px gold;
+
+}
+
+#listaJugadores div:nth-last-child(2){
+
+    border-right:6px solid cyan;
+
+}
+
+.card:first-of-type{
+
+    border-top:5px solid gold;
+
+}
+
+.banca:last-of-type{
+
+    border-bottom:5px solid red;
+
+}
+
+.resultado:only-of-type{
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:15px;
+
+}

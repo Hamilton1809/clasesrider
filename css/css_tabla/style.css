@@ -1,0 +1,723 @@
+/* Archivo: css/style.css */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: #0f172a;
+    padding: 40px;
+}
+
+/* CONTENEDOR */
+.contenedor{
+    width: 95%;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+/* TITULO */
+h1{
+    text-align: center;
+    color: #0f172a;
+    font-size: 38px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* SUBTITULO */
+.subtitulo{
+    text-align: center;
+    color: #475569;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+/* TABLAS */
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* THEAD */
+thead{
+    background: #1e293b;
+}
+
+thead th{
+    color: white;
+    border: 1px solid #334155;
+    font-weight: bold;
+}
+
+/* TBODY */
+tbody td{
+    border: 1px solid #cbd5e1;
+    color: #334155;
+}
+
+/* FILAS */
+.fila1{
+    background: white;
+}
+
+.fila2{
+    background: #f1f5f9;
+}
+
+/* IMAGENES */
+tbody img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #1e293b;
+}
+
+/* ESTADOS */
+.activo{
+    color: green;
+    font-weight: bold;
+}
+
+.inactivo{
+    color: red;
+    font-weight: bold;
+}
+
+/* TFOOT */
+tfoot{
+    background: #1e293b;
+}
+
+tfoot td{
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* CONTENEDOR TABLAS */
+.contenedor-tablas{
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* TABLA IZQUIERDA */
+.izquierda{
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+}
+
+/* TABLA CENTRO */
+.centro{
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* TABLA DERECHA */
+.derecha{
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 15px;
+}
+
+/* TITULOS */
+h2{
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* SOLO TABLA IZQUIERDA */
+#tabla-izquierda{
+    background: white;
+    border: 4px solid #1e293b;
+}
+/* TITULO CON DIFERENTES BORDES */
+
+.titulo-bordes{
+
+    margin-top: 60px;
+    padding: 25px;
+    text-align: center;
+    background: white;
+    color: #0f172a;
+    font-size: 35px;
+    font-weight: bold;
+
+    /* ESTILOS DE BORDES */
+    border-top-style: solid;
+    border-right-style: dotted;
+    border-bottom-style: dashed;
+    border-left-style: groove;
+
+    /* GROSOR */
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+
+    /* COLORES DIFERENTES */
+    border-top-color: red;
+    border-right-color: blue;
+    border-bottom-color: green;
+    border-left-color: orange;
+
+    
+}
+/* FONDO CON IMAGEN */
+
+/* Archivo: css/style.css */
+
+body{
+
+    background-image: url("https://www.shutterstock.com/image-vector/guinea-pig-wearing-traditional-pastuso-600w-1885026367.jpg");
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 40px;
+}
+
+/* TITULO */
+
+.titulo{
+
+    background: white;
+    padding: 25px;
+    text-align: center;
+    font-size: 40px;
+    color: #0f172a;
+    margin-bottom: 40px;
+
+    border-top: 8px solid red;
+    border-right: 8px dotted blue;
+    border-bottom: 8px dashed green;
+    border-left: 8px groove orange;
+}
+
+/* CONTENT BOX */
+
+.content-box{
+
+    width: 300px;
+    background: white;
+
+    padding: 30px;
+    border: 10px solid red;
+    margin-bottom: 30px;
+
+    box-sizing: content-box;
+}
+
+/* PADDING BOX */
+
+.padding-box{
+
+    width: 300px;
+    background: #dbeafe;
+
+    padding: 50px;
+    border: 10px solid blue;
+    margin-bottom: 30px;
+
+    box-sizing: content-box;
+}
+
+/* ================================================= */
+/* CONTENT-BOX */
+/* ================================================= */
+
+.content-box{
+
+    width: 300px;
+
+    background: white;
+
+    padding: 60px;
+
+    border: 20px solid red;
+
+    margin-top: 40px;
+
+    box-sizing: content-box;
+
+    color: black;
+}
+
+/*
+SE HACE MUCHO MÁS GRANDE
+porque padding y border
+SE SUMAN al width
+*/
+
+
+/* ================================================= */
+/* BORDER-BOX */
+/* ================================================= */
+
+.border-box{
+
+    width: 300px;
+
+    background: #dcfce7;
+
+    padding: 60px;
+
+    border: 20px solid green;
+
+    margin-top: 40px;
+
+    box-sizing: border-box;
+
+    color: black;
+}
+
+/*
+SE MANTIENE EN 300px
+aunque tenga padding y border
+*/
+
+
+/* ================================================= */
+/* AUTO-BOX */
+/* ================================================= */
+
+.auto-box{
+
+    width: 300px;
+
+    background: #dbeafe;
+
+    padding: 60px;
+
+    border: 20px solid blue;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 40px;
+
+    box-sizing: border-box;
+
+    color: black;
+}
+
+/*
+AUTO centra automáticamente
+la caja
+*/
+
+
+/* ================================================= */
+/* IMAGENES */
+/* ================================================= */
+
+.content-box img{
+
+    width: 100%;
+
+    height: 250px;
+
+    object-fit: cover;
+
+    border: 8px solid red;
+
+    margin-bottom: 20px;
+}
+
+/* MÁS PEQUEÑA PARA NOTAR DIFERENCIA */
+
+.border-box img{
+
+    width: 100%;
+
+    height: 120px;
+
+    object-fit: cover;
+
+    border: 8px solid green;
+
+    margin-bottom: 20px;
+}
+
+/* CENTRADA */
+
+.auto-box img{
+
+    width: 80%;
+
+    height: 180px;
+
+    display: block;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    object-fit: cover;
+
+    border: 8px solid blue;
+
+    margin-bottom: 20px;
+}
+/* ================================================= */
+/* ESTILO GENERAL */
+/* ================================================= */
+
+.cover-box,
+.contain-box,
+.position-box,
+.size-box,
+.repeat-box,
+.color-box{
+
+    width: 500px;
+    height: 250px;
+
+    margin-top: 40px;
+
+    border: 8px solid white;
+
+    color: white;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    line-height: 250px;
+}
+
+/* ================================================= */
+/* COVER */
+/* ================================================= */
+
+.cover-box{
+
+    background-image: url("https://images.unsplash.com/photo-1511919884226-fd3cad34687c");
+
+    background-size: cover;
+    border: #0f172a solid 8px;
+
+
+    background-position: center;
+}
+
+/*
+La imagen cubre TODO el div
+aunque se recorte
+*/
+
+
+/* ================================================= */
+/* CONTAIN */
+/* ================================================= */
+
+.contain-box{
+
+    background-image: url("https://images.unsplash.com/photo-1503376780353-7e6692767b70");
+
+    background-size: contain;
+
+    background-repeat: no-repeat;
+
+    background-position: center;
+
+    background-color: black;
+}
+
+/*
+La imagen entra completa
+sin recortarse
+*/
+
+
+/* ================================================= */
+/* POSITION */
+/* ================================================= */
+
+.position-box{
+
+    background-image: url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7");
+
+    background-size: cover;
+
+    background-position: top right;
+}
+
+/*
+Mueve la imagen
+arriba y derecha
+*/
+
+
+/* ================================================= */
+/* SIZE PIXELS */
+/* ================================================= */
+
+.size-box{
+
+    background-image: url("https://images.unsplash.com/photo-1511919884226-fd3cad34687c");
+
+    background-size: 200px 120px;
+
+    background-repeat: no-repeat;
+
+    background-position: center;
+    border: green solid 8px;
+
+    background-color: #111827;
+}
+
+/*
+Tamaño exacto en pixeles
+*/
+
+
+/* ================================================= */
+/* REPEAT */
+/* ================================================= */
+
+.repeat-box{
+
+    background-image: url("https://images.unsplash.com/photo-1503376780353-7e6692767b70");
+
+    background-size: 120px;
+
+    background-repeat: repeat;
+
+    background-color: black;
+}
+
+/*
+La imagen se repite
+muchas veces
+*/
+
+
+/* ================================================= */
+/* BACKGROUND COLOR */
+/* ================================================= */
+
+.color-box{
+
+    background-color: crimson;
+}
+
+/*
+Solo color de fondo
+sin imagen
+*/
+.contenedor-imagenes {
+            position: relative;
+            width: 500px;
+            height: 350px; /* Ajusta según tu necesidad */
+            overflow: hidden;
+            background-color: #f0f0f0;
+            
+        }
+
+        .paisaje {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .oso {
+            position: absolute;
+            width: 100px;
+            bottom: 10px;
+            right: 10px;
+            border: none;
+            background: transparent;
+            
+            /* --- EL TRUCO PARA QUE EL FONDO DEL OSO SE MIRE MENOS --- */
+            
+            /* 1. Mezcla el fondo del oso con el paisaje (elimina blancos) */
+            mix-blend-mode: multiply; 
+            
+            /* 2. Suaviza un poco la opacidad para que no sea tan brusco */
+            opacity: 0.9;
+            
+            /* 3. Opcional: difumina un poco los bordes del cuadro del oso */
+            filter: contrast(1.1); 
+        }
+  .contenedor-scroll-imagen {
+    width: 500px;          /* Ancho de la ventana */
+    height: 300px;         /* Altura fija de la ventana */
+    border: 4px solid #1e293b;
+    border-radius: 8px;
+    
+    /* ACTIVA LA BARRA DE DESPLAZAMIENTO */
+    overflow-y: scroll;    /* Muestra la barra vertical para subir y bajar */
+    overflow-x: hidden;    /* Oculta el scroll horizontal si no lo necesitas */
+}
+
+/* LA VENTANA CON EL "COSO" PARA SUBIR Y BAJAR */
+.ventana-con-scroll {
+    width: 500px;           /* El ancho que quieras para tu cuadro */
+    height: 350px;          /* La altura del cuadro en tu pantalla */
+    border: 5px solid #1e293b;
+    border-radius: 12px;
+    
+    /* Activa la barra para subir y bajar */
+    overflow-y: scroll;     
+    overflow-x: hidden;     /* Oculta el scroll de los lados */
+}
+
+/* LA IMAGEN GIGANTE DE ADENTRO */
+.imagen-gigante {
+    width: 100%;            /* Se ajusta al ancho del cuadro */
+    height: 800px;          /* ¡ESTE ES EL TRUCO! Al hacerla alta (ej. 800px), 
+                               la imagen se estira hacia abajo de forma oculta 
+                               y nunca se verá un fondo vacío. */
+    
+    object-fit: cover;      /* Hace que la imagen se adapte perfectamente 
+                               sin deformarse ni verse estirada feo */
+    
+    display: block;
+}
+.mi-degradado {
+    width: 100%;
+    height: 300px; /* Dale la altura que necesites para tu diseño */
+    border-radius: 15px; /* Bordes suaves como los de tu contenedor */
+
+    /* EL TRUCO DE LOS 4 COLORES */
+    background: linear-gradient(40deg, #0f172a 10%, #7c3aed 50%, #db2777 90%, #f97316 );
+}
+.mi-degradadoo {
+     width: 100%;
+    height: 250px;
+    margin: 50px auto;
+    border: 1px solid #1e293b;
+
+    /* EL TRUCO DE LOS 4 COLORES */
+    background: linear-gradient(30deg, red  , white , blue );
+}
+.degradado-ultra-fino {
+    width: 100%;
+    height: 250px;
+    border-radius: 15px;
+
+    /* EL MÁXIMO DIFUMINADO: Los colores se van perdiendo paso a paso */
+    background: linear-gradient(40deg, 
+        navy 0%,         /* Empieza bien Azul en la pura esquina */
+        white 50%,       /* Viaja desvaneciéndose continuamente hasta el blanco del centro */
+        crimson 100%     /* El blanco se va apagando y convirtiendo en Rojo hasta la otra esquina */
+    );
+}
+.degradado-ultra-finoo {
+   height: 200px;
+    width: 200px;
+    
+    /* CAMBIAMOS LINEAR POR RADIAL */
+    background-image: repeating-radial-gradient(
+        circle,      /* Le dice al navegador que los aros sean círculos perfectos */
+        red,         /* Empieza con rojo en el centro */
+        blue 10%     /* El azul llega al 10% y el patrón de aros se empieza a repetir */
+    );
+}
+.html {
+    height: 100px;
+    width: 100px;
+    background-image: radial-gradient(50px at 50% 100%, red, black, yellow, green,orange );
+    background-position: 0% 100% ;
+}
+.conic {
+    background: conic-gradient(red, orange, yellow, green, blue, indigo, violet, red);
+}
+
+
+.scene{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+
+  /* Cielo con resplandor amarillo circular */
+  background:
+    radial-gradient(
+      circle at center 58%,
+      #fff76a 0%,
+      #ffe600 12%,
+      #ffb300 24%,
+      #ff8c00 42%,
+      #ff7b00 75%
+    );
+}
+
+/* Sol */
+.sun{
+  position:absolute;
+  width:140px;
+  height:140px;
+  background:white;
+  border-radius:50%;
+  left:50%;
+  top:52%;
+  transform:translate(-50%, -50%);
+  box-shadow:0 0 80px rgba(255,255,255,0.9);
+  z-index:2;
+}
+
+/* Mar */
+.sea{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:42%;
+  background:linear-gradient(
+    to bottom,
+    #0057d9 0%,
+    #008cff 45%,
+    #58d6ff 100%
+  );
+  z-index:3;
+}
+
+/* Reflejo */
+.reflection{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:220px;
+  height:100%;
+  background:radial-gradient(
+    ellipse at top,
+    rgba(255,255,255,0.8) 0%,
+    rgba(255,255,255,0.35) 35%,
+    rgba(255,255,255,0) 75%
+  );
+  filter:blur(8px);
+}
+
+/* Arena */
+.sand{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:8%;
+  background:linear-gradient(
+    to bottom,
+    #e8cf8b,
+    #d9bd73
+  );
+  border-top-left-radius:40% 20px;
+  border-top-right-radius:40% 20px;
+  z-index:4;
+}

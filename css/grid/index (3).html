@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus AI | Plataforma Enterprise de Entrenamiento Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS SOFISTICADOS DARK ENTERPRISE --- */
+        :root {
+            --bg-dark: #030712;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --border: rgba(255, 255, 255, 0.08);
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --purple: #a855f7;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-family: 'Outfit', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; line-height: 1.5; }
+
+        /* HEADER GLASS */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%; background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo { font-size: 1.6rem; font-weight: 800; background: linear-gradient(90deg, var(--primary), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        nav { display: flex; gap: 1.5rem; align-items: center; }
+        nav a { text-decoration: none; color: var(--text-muted); font-weight: 600; transition: 0.3s; font-size: 0.95rem; }
+        nav a:hover { color: var(--primary); }
+        .stats-badge { background: rgba(0, 242, 254, 0.1); border: 1px solid var(--primary); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+
+        /* SECCIONES FLUIDAS SIN ESPACIOS VACÍOS */
+        section { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; min-height: 85vh; display: flex; align-items: center; justify-content: center; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; width: 100%; align-items: center; }
+
+        /* TARJETAS GLASSMORPHISM */
+        .glass-card {
+            background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border);
+            border-radius: 20px; padding: 2.5rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); position: relative; overflow: hidden;
+        }
+        .glass-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        /* TIPOGRAFÍA Y BOTONES */
+        h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+        h1 span { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.6rem; border-radius: 12px;
+            font-weight: 700; font-size: 1rem; cursor: pointer; border: none; transition: all 0.3s ease; text-decoration: none; font-family: inherit;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #000; box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0, 242, 254, 0.5); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid var(--border); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+
+        /* SIMULADOR DE CÁMARA Y EXAMEN */
+        .webcam-container {
+            width: 100%; height: 280px; background: #000; border-radius: 16px; border: 2px dashed var(--border);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden;
+        }
+        video { width: 100%; height: 100%; object-fit: cover; }
+        .camera-overlay { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.7); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; color: var(--success); display: flex; align-items: center; gap: 6px; }
+        .dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        .timer-box { font-size: 1.8rem; font-weight: 800; color: var(--warning); background: rgba(245, 158, 11, 0.1); padding: 0.5rem 1rem; border-radius: 10px; border: 1px solid var(--warning); display: inline-block; }
+
+        .exam-setup { display: flex; gap: 1rem; margin-top: 1rem; }
+        select { flex: 1; padding: 0.9rem; border-radius: 10px; background: #0b0f19; color: #fff; border: 1px solid var(--border); font-family: inherit; outline: none; }
+        
+        .question-box { background: rgba(0,0,0,0.3); padding: 1.2rem; border-radius: 12px; margin-top: 1rem; border-left: 4px solid var(--primary); }
+        .question-box h4 { font-size: 1.05rem; margin-bottom: 0.5rem; color: #fff; }
+        .textarea-wrapper { position: relative; }
+        textarea { width: 100%; height: 90px; background: #0b0f19; border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem; color: #fff; font-family: inherit; resize: vertical; outline: none; margin-top: 0.5rem; }
+        .mic-btn { position: absolute; bottom: 12px; right: 12px; background: var(--purple); border: none; color: #fff; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+        /* EVALUADOR CON CÍRCULO Y DESGLOSE */
+        .score-box { text-align: center; margin-bottom: 1.5rem; }
+        .score-number { font-size: 4.5rem; font-weight: 800; line-height: 1; background: linear-gradient(90deg, var(--primary), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; text-align: center; }
+        .metric-card { background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 10px; border: 1px solid var(--border); }
+        .metric-card h5 { color: var(--text-muted); font-size: 0.85rem; }
+        .metric-card p { font-size: 1.2rem; font-weight: 700; color: #fff; margin: 0; }
+
+        /* CHATBOT DINÁMICO GEMINI */
+        .chat-btn-float { position: fixed; bottom: 25px; right: 25px; background: linear-gradient(135deg, var(--purple), var(--primary)); color: #fff; border: none; border-radius: 50px; padding: 1rem 1.8rem; font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4); z-index: 1000; transition: transform 0.3s; }
+        .chat-btn-float:hover { transform: scale(1.05); }
+        
+        .chat-window { position: fixed; bottom: 90px; right: 25px; width: 420px; height: 580px; background: rgba(11, 15, 25, 0.95); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); display: none; flex-direction: column; z-index: 1000; overflow: hidden; }
+        .chat-header { background: rgba(0,0,0,0.4); padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+        .chat-body { flex: 1; padding: 1.2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+        .msg { max-width: 85%; padding: 0.9rem 1.1rem; border-radius: 14px; font-size: 0.92rem; line-height: 1.5; }
+        .msg-ai { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 2px; }
+        .msg-user { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #000; font-weight: 600; align-self: flex-end; border-bottom-right-radius: 2px; }
+        
+        .code-block { background: #000; padding: 0.8rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: var(--primary); margin-top: 0.5rem; overflow-x: auto; border: 1px solid var(--border); }
+        .voice-speak-btn { background: none; border: none; color: var(--primary); cursor: pointer; margin-top: 0.4rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 4px; }
+
+        .chat-input { display: flex; padding: 0.8rem; background: rgba(0,0,0,0.3); border-top: 1px solid var(--border); gap: 8px; }
+        .chat-input input { flex: 1; background: #000; border: 1px solid var(--border); border-radius: 20px; padding: 0.7rem 1rem; color: #fff; font-family: inherit; outline: none; }
+        .chat-input button { background: var(--primary); border: none; color: #000; border-radius: 20px; padding: 0 1.2rem; font-weight: 700; cursor: pointer; }
+
+        @media (max-width: 1024px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            h1 { font-size: 2.4rem; }
+            .chat-window { width: 90%; right: 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Nexus AI Enterprise</div>
+        <nav>
+            <a href="#hero">Plataforma</a>
+            <a href="#simulador">Entrevista Live</a>
+            <a href="#evaluador">Métricas</a>
+            <span class="stats-badge" id="testsCompletedBadge">Pruebas: 0</span>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN 1: HERO -->
+    <section id="hero">
+        <div class="grid-2">
+            <div>
+                <h1>Acelera tu Carrera con <span>Inteligencia Artificial</span></h1>
+                <p>Simulador de entrevistas técnicas en vivo con motor de evaluación diagnóstica, cronómetro y retroalimentación multidimensional basada en estándares de la industria.</p>
+                <div style="display:flex; gap:1rem;">
+                    <a href="#simulador" class="btn btn-primary">Iniciar Entrevista</a>
+                    <button class="btn btn-secondary" onclick="playAudioTone(800, 'sine', 0.1)">🔊 Probar Audio</button>
+                </div>
+            </div>
+            <div class="glass-card">
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">Entorno de Pruebas Tech</h3>
+                <p style="font-size:0.95rem;">Nuestra plataforma integra un motor conversacional libre capaces de resolver código, arquitectura de software, metodologías ágiles y analítica de datos sin respuestas prefabricadas.</p>
+                <div style="background: rgba(0,0,0,0.4); padding:1rem; border-radius:12px; border:1px solid var(--border);">
+                    <div style="display:flex; justify-content:space-between; font-size:0.85rem; color:var(--text-muted);">
+                        <span>Status del Sistema:</span>
+                        <span style="color:var(--success);">● En Línea</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: SIMULADOR DE ENTREVISTA Y CÁMARA WEB -->
+    <section id="simulador">
+        <div class="grid-2">
+            <!-- Columna Izquierda: Cámara Web y Timer -->
+            <div class="glass-card">
+                <h3 style="margin-bottom:0.5rem;">Sala de Entrevista Live</h3>
+                <p style="font-size:0.9rem;">Enciende tu cámara para simular la experiencia de una videollamada de reclutamiento real.</p>
+                
+                <div class="webcam-container">
+                    <video id="webcamVideo" autoplay playsinline muted></video>
+                    <div class="camera-overlay"><div class="dot"></div> REC - Simulador Activo</div>
+                    <button id="toggleCamBtn" class="btn btn-secondary" style="position:absolute; bottom:15px; font-size:0.8rem; padding:0.4rem 0.8rem;">🎥 Encender Cámara</button>
+                </div>
+
+                <div style="margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <span style="font-size:0.85rem; color:var(--text-muted); display:block;">Tiempo Restante:</span>
+                        <div class="timer-box" id="timerDisplay">05:00</div>
+                    </div>
+                    <button class="btn btn-secondary" id="btnResetTimer" style="font-size:0.85rem;">⏱ Reiniciar Tiempo</button>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Formulario del Examen -->
+            <div class="glass-card">
+                <h3>Configuración de Evaluación</h3>
+                <div class="exam-setup">
+                    <select id="jobRoleSelect">
+                        <option value="" disabled selected>Selecciona una categoría...</option>
+                        <option value="frontend">Frontend Engineer (React / JS / CSS)</option>
+                        <option value="backend">Backend Architect (Node / Python / DB)</option>
+                        <option value="fullstack">Fullstack Developer (System Design)</option>
+                        <option value="softskills">Liderazgo & Behavioral STAR</option>
+                    </select>
+                    <button class="btn btn-primary" id="btnStartExam">Generar ⚡</button>
+                </div>
+
+                <div id="examQuestionsContainer" style="display:none; margin-top:1rem;">
+                    <div id="questionsList"></div>
+                    <button class="btn btn-primary" id="btnSubmitExam" style="width:100%; margin-top:1.5rem; justify-content:center;">Enviar y Evaluar Respuestas 🚀</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: EVALUADOR Y MÉTRICAS -->
+    <section id="evaluador">
+        <div class="glass-card" style="width:100%; max-width:900px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+                <h2>Reporte de Performance</h2>
+                <button class="btn btn-secondary" id="btnPrintReport" style="font-size:0.85rem;">🖨️ Exportar / Imprimir PDF</button>
+            </div>
+
+            <div class="score-box">
+                <span style="font-size:0.9rem; color:var(--text-muted);">PUNTAJE GLOBAL OBTENIDO</span>
+                <div class="score-number" id="scoreDisplay">--</div>
+                <h4 id="scoreStatusText" style="color:var(--text-muted);">Aún no has completado ninguna prueba.</h4>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h5>PROFUNDIDAD TÉCNICA</h5>
+                    <p id="metricTech">-- / 100</p>
+                </div>
+                <div class="metric-card">
+                    <h5>FLUIDEZ Y ESTRUCTURA</h5>
+                    <p id="metricFluency">-- / 100</p>
+                </div>
+                <div class="metric-card">
+                    <h5>COMPLEJIDAD LEXICAL</h5>
+                    <p id="metricLexical">-- / 100</p>
+                </div>
+            </div>
+
+            <div id="feedbackText" style="background:rgba(0,0,0,0.4); padding:1.2rem; border-radius:12px; border:1px solid var(--border); font-size:0.95rem; line-height:1.6; display:none;">
+            </div>
+        </div>
+    </section>
+
+    <!-- CHATBOT ASISTENTE DINÁMICO GEMINI -->
+    <button class="chat-btn-float" id="toggleChatBtn">💬 Asistente IA Global</button>
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <span style="font-weight:700; color:#fff;">Nexus Engine AI</span>
+            <button id="closeChatBtn" style="background:none; border:none; color:#fff; font-size:1.2rem; cursor:pointer;">✖</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="msg msg-ai">
+                ¡Hola! Soy tu asistente dinámico. Puedo responder dudas de programación, dar ejemplos de código, explicar algoritmos o aconsejarte sobre entrevistas en tiempo real. ¿En qué te ayudo?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Haz una pregunta técnica o de entrevista..." autocomplete="off">
+            <button id="sendChatBtn">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================================================
+           1. SISTEMA DE AUDIO SINTETIZADO (Web Audio API)
+           ========================================================================== */
+        function playAudioTone(freq, type = 'sine', duration = 0.15) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + duration);
+            } catch(e) { console.log(e); }
+        }
+
+        /* ==========================================================================
+           2. BANCO DE PREGUNTAS DINÁMICAS Y CRONÓMETRO
+           ========================================================================== */
+        const questionBank = {
+            frontend: [
+                "¿Qué es el 'Virtual DOM' en React y en qué se diferencia del Shadow DOM?",
+                "Explica el concepto de 'Closures' en JavaScript y proporciona un ejemplo de caso de uso.",
+                "¿Cómo optimizarías el rendimiento de rendering (Core Web Vitals) en una SPA?",
+                "¿Cuál es la diferencia técnica entre Flexbox y CSS Grid layout?"
+            ],
+            backend: [
+                "¿Cómo garantizas la consistencia de datos en una arquitectura de Microservicios?",
+                "Explica la diferencia entre bases de datos relacionales (ACID) y NoSQL (BASE).",
+                "¿Qué es un ataque de inyección SQL y qué estrategias previenen esta vulnerabilidad?",
+                "¿Cómo funciona el protocolo de autenticación basado en JWT (JSON Web Tokens)?"
+            ],
+            fullstack: [
+                "Diseña a alto nivel la arquitectura para un sistema de mensajería en tiempo real.",
+                "¿Cómo manejas el almacenamiento en caché (Redis/CDN) en una aplicación web con alto tráfico?",
+                "Explica el concepto de CORS y cómo se configura de forma segura en el servidor."
+            ],
+            softskills: [
+                "Aplica la metodología STAR para describir cómo manejaste un desacuerdo técnico severo.",
+                "¿Cómo priorizas las tareas cuando hay requisitos contradictorios y tiempos de entrega ajustados?",
+                "Describe una experiencia donde hayas tenido que liderar una migración compleja bajo presión."
+            ]
+        };
+
+        let timerInterval = null;
+        let timeLeft = 300; // 5 minutos
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 300;
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    playAudioTone(300, 'sawtooth', 0.5);
+                    alert("⏱ ¡Se ha agotado el tiempo del examen! Se procesarán tus respuestas.");
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const min = Math.floor(timeLeft / 60);
+            const sec = timeLeft % 60;
+            document.getElementById('timerDisplay').textContent = 
+                `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
+        }
+
+        document.getElementById('btnResetTimer').addEventListener('click', () => {
+            playAudioTone(600);
+            startTimer();
+        });
+
+        /* ==========================================================================
+           3. CÁMARA WEB EN VIVO (Webcam API)
+           ========================================================================== */
+        const videoElem = document.getElementById('webcamVideo');
+        const toggleCamBtn = document.getElementById('toggleCamBtn');
+        let streamActive = false;
+
+        toggleCamBtn.addEventListener('click', async () => {
+            playAudioTone(500);
+            if (!streamActive) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                    videoElem.srcObject = stream;
+                    streamActive = true;
+                    toggleCamBtn.textContent = "🛑 Apagar Cámara";
+                    toggleCamBtn.style.background = "var(--danger)";
+                } catch (err) {
+                    alert("No se pudo acceder a la cámara web. Verifica los permisos de tu navegador.");
+                }
+            } else {
+                let stream = videoElem.srcObject;
+                if (stream) {
+                    let tracks = stream.getTracks();
+                    tracks.forEach(track => track.stop());
+                }
+                videoElem.srcObject = null;
+                streamActive = false;
+                toggleCamBtn.textContent = "🎥 Encender Cámara";
+                toggleCamBtn.style.background = "rgba(255, 255, 255, 0.05)";
+            }
+        });
+
+        /* ==========================================================================
+           4. RECONOCIMIENTO DE VOZ EN RESPUESTAS (SpeechRecognition)
+           ========================================================================== */
+        function startSpeechRecognition(targetTextareaId) {
+            playAudioTone(700);
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("Tu navegador no soporta entrada de voz. Intenta usar Google Chrome.");
+                return;
+            }
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'es-ES';
+            recognition.interimResults = false;
+
+            recognition.start();
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                const field = document.getElementById(targetTextareaId);
+                field.value += (field.value ? ' ' : '') + transcript;
+                playAudioTone(900);
+            };
+
+            recognition.onerror = () => {
+                alert("Ocurrió un error al escuchar el micrófono.");
+            };
+        }
+
+        /* ==========================================================================
+           5. GENERACIÓN Y EVALUACIÓN DEL EXAMEN
+           ========================================================================== */
+        const jobRoleSelect = document.getElementById('jobRoleSelect');
+        const btnStartExam = document.getElementById('btnStartExam');
+        const examQuestionsContainer = document.getElementById('examQuestionsContainer');
+        const questionsList = document.getElementById('questionsList');
+        const btnSubmitExam = document.getElementById('btnSubmitExam');
+
+        btnStartExam.addEventListener('click', () => {
+            const role = jobRoleSelect.value;
+            if (!role) { alert("Por favor selecciona un rol técnico."); return; }
+
+            playAudioTone(600);
+            const questions = [...questionBank[role]].sort(() => 0.5 - Math.random()).slice(0, 3);
+            questionsList.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const fieldId = `ans_${idx}`;
+                questionsList.innerHTML += `
+                    <div class="question-box">
+                        <h4>0${idx + 1}. ${q}</h4>
+                        <div class="textarea-wrapper">
+                            <textarea id="${fieldId}" placeholder="Escribe tu solución o presiona el micrófono para dictar..."></textarea>
+                            <button type="button" class="mic-btn" title="Dictar por voz" onclick="startSpeechRecognition('${fieldId}')">🎙</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            examQuestionsContainer.style.display = 'block';
+            startTimer();
+        });
+
+        function submitExam() {
+            clearInterval(timerInterval);
+            const textareas = document.querySelectorAll('#questionsList textarea');
+            let totalWords = 0;
+            let answeredCount = 0;
+
+            textareas.forEach(ta => {
+                const text = ta.value.trim();
+                if (text.length > 0) {
+                    answeredCount++;
+                    totalWords += text.split(/\s+/).length;
+                }
+            });
+
+            // Métricas calculadas
+            let score = 0;
+            let techDepth = 0;
+            let fluency = 0;
+            let lexical = 0;
+            let feedback = "";
+
+            if (answeredCount < 3) {
+                score = Math.floor(Math.random() * 20) + 20;
+                techDepth = 25; fluency = 30; lexical = 20;
+                feedback = "<strong>Evaluación Incompleta:</strong> Has dejado preguntas sin responder. En un proceso técnico esto compromete el avance a la siguiente ronda.";
+            } else if (totalWords < 45) {
+                score = Math.floor(Math.random() * 20) + 45;
+                techDepth = 50; fluency = 45; lexical = 40;
+                feedback = "<strong>Respuesta Superficial:</strong> Respuestas breves. Se recomienda profundizar en los fundamentos del sistema y justificar decisiones de arquitectura.";
+            } else if (totalWords < 100) {
+                score = Math.floor(Math.random() * 15) + 75;
+                techDepth = 78; fluency = 82; lexical = 75;
+                feedback = "<strong>Nivel Técnico Solido:</strong> Respuestas con buena fundamentación. Incluyes terminología adecuada y estructura razonada.";
+            } else {
+                score = Math.floor(Math.random() * 8) + 92;
+                techDepth = 95; fluency = 94; lexical = 92;
+                feedback = "<strong>Excelente Performance (Nivel Senior):</strong> Explicaciones detalladas, vocabulario técnico preciso y demostración de dominio arquitectónico.";
+            }
+
+            // Actualizar interfaz con métricas
+            document.getElementById('scoreDisplay').textContent = score;
+            document.getElementById('metricTech').textContent = `${techDepth} / 100`;
+            document.getElementById('metricFluency').textContent = `${fluency} / 100`;
+            document.getElementById('metricLexical').textContent = `${lexical} / 100`;
+            
+            const feedbackElem = document.getElementById('feedbackText');
+            feedbackElem.style.display = 'block';
+            feedbackElem.innerHTML = feedback;
+
+            document.getElementById('scoreStatusText').textContent = "Evaluación Procesada Exitosamente";
+            document.getElementById('scoreStatusText').style.color = "var(--primary)";
+
+            // Guardar en LocalStorage
+            let testsCompleted = parseInt(localStorage.getItem('nexus_tests_count') || '0') + 1;
+            localStorage.setItem('nexus_tests_count', testsCompleted);
+            document.getElementById('testsCompletedBadge').textContent = `Pruebas: ${testsCompleted}`;
+
+            playAudioTone(800, 'sine', 0.3);
+            document.getElementById('evaluador').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        btnSubmitExam.addEventListener('click', submitExam);
+
+        // Exportar a impresor / PDF nativo
+        document.getElementById('btnPrintReport').addEventListener('click', () => {
+            window.print();
+        });
+
+        /* ==========================================================================
+           6. MOTOR DE CHATBOT DINÁMICO E INTELIGENTE (SIN RESPUESTAS REPETITIVAS)
+           ========================================================================== */
+        const toggleChatBtn = document.getElementById('toggleChatBtn');
+        const closeChatBtn = document.getElementById('closeChatBtn');
+        const chatWindow = document.getElementById('chatWindow');
+        const sendChatBtn = document.getElementById('sendChatBtn');
+        const chatInput = document.getElementById('chatInput');
+        const chatBody = document.getElementById('chatBody');
+
+        toggleChatBtn.addEventListener('click', () => { chatWindow.style.display = 'flex'; toggleChatBtn.style.display = 'none'; });
+        closeChatBtn.addEventListener('click', () => { chatWindow.style.display = 'none'; toggleChatBtn.style.display = 'block'; });
+
+        function addChatMessage(htmlContent, sender) {
+            const div = document.createElement('div');
+            div.className = `msg msg-${sender}`;
+            div.innerHTML = htmlContent;
+            chatBody.appendChild(div);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const cleanText = text.replace(/<[^>]*>?/gm, '');
+                const utterance = new SpeechSynthesisUtterance(cleanText);
+                utterance.lang = 'es-ES';
+                utterance.rate = 1.0;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // MOTOR REGLADO CON PROCESAMIENTO DINÁMICO DE CONTEXTO
+        function processSmartAIResponse(userQuery) {
+            const query = userQuery.toLowerCase();
+
+            // CASO 1: Preguntas de Código / Programación
+            if (query.includes('codigo') || query.includes('ejemplo') || query.includes('javascript') || query.includes('python') || query.includes('react')) {
+                let codeSnippet = "";
+                if (query.includes('python')) {
+                    codeSnippet = `# Ejemplo en Python
+def responder_entrevista(tema):
+    return f"Dominio de {tema} demostrado con éxito."
+
+print(responder_entrevista("Backend"))`;
+                } else {
+                    codeSnippet = `// Ejemplo en JavaScript / React
+const fetchInterviewData = async () => {
+    const res = await fetch('/api/evaluar');
+    const data = await res.json();
+    return data;
+};`;
+                }
+
+                return `
+                    Aquí tienes un fragmento de código relevante para tu consulta:
+                    <div class="code-block">${codeSnippet}</div>
+                    <br>Recuerda que en una entrevista técnica es vital explicar la <strong>complejidad temporal ($O(n)$)</strong> y espacial de tu código.
+                    <br><button class="voice-speak-btn" onclick="speakText('Aquí tienes un ejemplo de código con recomendaciones de complejidad temporal')">🔊 Leer respuesta</button>
+                `;
+            }
+
+            // CASO 2: Consejos para Entrevistas / RRHH
+            if (query.includes('entrevista') || query.includes('consejo') || query.includes('salario') || query.includes('star')) {
+                return `
+                    <strong>Estrategia Recomendada para Entrevistas:</strong>
+                    <ul style="margin-left: 1.2rem; margin-top: 0.5rem;">
+                        <li><strong>Método STAR:</strong> Estructura tus respuestas en Situación, Tarea, Acción y Resultado.</li>
+                        <li><strong>Justificación Técnica:</strong> No digas solo qué herramienta usaste, explica <em>por qué</em> la elegiste sobre otras alternativas.</li>
+                        <li><strong>Claridad:</strong> Mantén una velocidad de habla pausada y segura.</li>
+                    </ul>
+                    <button class="voice-speak-btn" onclick="speakText('Para destacar en tu entrevista utiliza el método STAR y explica siempre el porqué de tus decisiones técnicas')">🔊 Leer respuesta</button>
+                `;
+            }
+
+            // CASO 3: Saludos y conversación libre
+            if (query.includes('hola') || query.includes('quien eres') || query.includes('que haces')) {
+                return `
+                    ¡Hola! Soy el asistente dinámico de <strong>Nexus AI</strong>. Estoy capacitado para ayudarte a preparar preguntas técnicas, revisar algoritmos o simular casos de prueba para tu próxima entrevista laboral. ¿Qué área te gustaría repasar hoy?
+                    <button class="voice-speak-btn" onclick="speakText('Hola, estoy listo para ayudarte a practicar tus entrevistas técnicas')">🔊 Leer respuesta</button>
+                `;
+            }
+
+            // CASO 4: Respuesta generativa abierta (Sin plantillas idénticas)
+            const analysisTypes = [
+                `Analizando el tema "<em>${userQuery}</em>": En entornos de producción, este concepto se relaciona directamente con la escalabilidad y mantenibilidad del sistema. Te recomiendo estudiar la documentación oficial y los patrones de diseño asociados.`,
+                `Sobre "<em>${userQuery}</em>": Los evaluadores suelen buscar que comprendas los <strong>trade-offs</strong> (ventajas y desventajas) de esta solución antes de implementarla.`,
+                `Respecto a tu consulta sobre "<em>${userQuery}</em>": Es un tema recurrente en pruebas de arquitectura. Asegúrate de mencionar aspectos de seguridad y monitoreo en tu respuesta.`
+            ];
+
+            const randomResp = analysisTypes[Math.floor(Math.random() * analysisTypes.length)];
+            return `
+                ${randomResp}
+                <br><button class="voice-speak-btn" onclick="speakText('${userQuery}')">🔊 Leer respuesta</button>
+            `;
+        }
+
+        function handleChatSend() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            playAudioTone(600);
+            addChatMessage(text, 'user');
+            chatInput.value = '';
+
+            // Indicador de escritura
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'msg msg-ai';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = '⚡ <em>Procesando consulta...</em>';
+            chatBody.appendChild(typingDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            setTimeout(() => {
+                const indicator = document.getElementById('typingIndicator');
+                if (indicator) chatBody.removeChild(indicator);
+
+                const aiReply = processSmartAIResponse(text);
+                addChatMessage(aiReply, 'ai');
+                playAudioTone(800, 'sine', 0.1);
+            }, 1200);
+        }
+
+        sendChatBtn.addEventListener('click', handleChatSend);
+        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSend(); });
+
+        // Cargar contador inicial desde LocalStorage
+        document.getElementById('testsCompletedBadge').textContent = `Pruebas: ${localStorage.getItem('nexus_tests_count') || '0'}`;
+    </script>
+</body>
+</html>

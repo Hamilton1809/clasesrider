@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio CSS Buttons - Versión Final Pulida</title>
+    <style>
+        /* --- Configuración General --- */
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght=500;700&family=Ubuntu:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Encabezado Blanco --- */
+        header {
+            background-color: #ffffff;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        header h1 {
+            font-size: 42px;
+            color: #333333;
+            font-weight: 400;
+        }
+
+        /* --- Contenedor Principal Gris --- */
+        .main-container {
+            background-color: #dbdbdb;
+            flex: 1;
+            display: flex;
+            padding: 50px;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- Panel de Botones (Izquierda) --- */
+        .buttons-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            align-items: flex-start;
+            width: 50%;
+        }
+
+        .row {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* --- Panel de Texto (Derecha) --- */
+        .text-panel {
+            width: 50%;
+            padding-left: 50px;
+            border-left: 2px solid #cecece;
+        }
+
+        .text-panel h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 64px;
+            color: #0099e5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .text-panel p {
+            font-family: 'Oswald', sans-serif;
+            font-size: 28px;
+            color: #1c3d5a;
+            text-transform: uppercase;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================
+           ESTILOS DE LOS BOTONES
+        ========================================================== */
+        
+        /* Base común para botones azules en 3D */
+        .btn-blue {
+            background: linear-gradient(to bottom, #00b4ff 0%, #0088cc 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 0 -1px 1px rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 4px 0 #005580,
+                0 6px 10px rgba(0,0,0,0.3);
+            
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+        .btn-blue:active {
+            transform: translateY(4px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 0px 0 #005580, 
+                0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Fila 1: Tarjeta con Corazón */
+        .card-love {
+            background-color: #ffffff;
+            border-radius: 8px;
+            width: 280px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-love .top-section {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .card-love .top-section .heart {
+            color: #ff2a2a;
+            font-size: 32px;
+        }
+
+        .card-love .btn-blue {
+            border-radius: 0 0 8px 8px;
+            width: 100%;
+            padding: 18px;
+            font-size: 16px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 5px 0 #005580,
+                -1.5px 5px 0 #005580,
+                1.5px 5px 0 #005580,
+                0 12px 18px rgba(0,0,0,0.35);
+        }
+
+        /* Fila 2: Cuadrito del "Click me" */
+        .sunken-container {
+            background-color: #e3e3e3;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 
+                inset 2px 2px 5px rgba(0,0,0,0.15), 
+                inset -2px -2px 5px rgba(255,255,255,0.8);
+            display: inline-block;
+        }
+
+        .btn-sunken-3d {
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 5px 0 #005580,
+                -1.5px 5px 0 #005580,
+                1.5px 5px 0 #005580,
+                0 7px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Segundo Botón Normal */
+        .btn-normal {
+            padding: 14px 35px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 6px 0 #005580,
+                -1.5px 6px 0 #005580,
+                1.5px 6px 0 #005580,
+                0 7px 0 #00334d,
+                0 12px 16px rgba(0,0,0,0.3);
+        }
+
+        .btn-normal:active {
+            transform: translateY(6px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 0px 0 #005580,
+                0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Fila 3: Botón con Flecha */
+        .btn-arrow {
+            padding-right: 65px;
+            /* CORRECCIÓN: Borde inferior más grueso (7px) */
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 7px 0 #005580,
+                -1.5px 7px 0 #005580,
+                1.5px 7px 0 #005580,
+                0 10px 14px rgba(0,0,0,0.3);
+        }
+
+        /* Animación acorde al nuevo borde de 7px */
+        .btn-arrow:active {
+            transform: translateY(7px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 0px 0 #005580,
+                0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* CORRECCIÓN: Flecha gruesa, corta y compacta */
+        .btn-arrow::after {
+            content: "➤"; /* Un carácter de flecha más compacto y grueso */
+            position: absolute;
+            right: 12px;
+            background: linear-gradient(to bottom, #0088cc 0%, #0077b3 100%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px; /* Tamaño ajustado para este carácter */
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); /* Sombra interna más marcada */
+            transition: transform 0.1s ease;
+            text-shadow: none; /* Quitamos la sombra del texto para que se vea plana y nítida */
+        }
+
+        .btn-arrow:active::after {
+            transform: translateY(-7px); /* Se mantiene en su sitio al pulsar */
+        }
+
+        /* Estructura del Número 1 */
+        .btn-number-container {
+            display: inline-flex;
+            align-items: flex-start;
+        }
+
+        .static-number {
+            background-color: #004466;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            width: 45px;
+            height: 47px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px 0 0 6px;
+            border-right: 1px solid #00334d;
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                0 7px 0 #002233,
+                -1px 7px 0 #002233,
+                0 10px 14px rgba(0,0,0,0.3);
+        }
+
+        .btn-number-click {
+            border-radius: 0 6px 6px 0;
+            padding: 14px 35px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 7px 0 #005580,
+                1.5px 7px 0 #005580,
+                0 10px 14px rgba(0,0,0,0.3);
+        }
+
+        .btn-number-click:active {
+            transform: translateY(7px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 0px 0 #005580,
+                0 2px 4px rgba(0,0,0,0.2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ejercicio</h1>
+    </header>
+
+    <div class="main-container">
+        
+        <div class="buttons-panel">
+            
+            <div class="row">
+                <div class="card-love">
+                    <div class="top-section">
+                        <span class="heart">♥</span>
+                    </div>
+                    <button class="btn-blue">Love this tutorial!!</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="sunken-container">
+                    <button class="btn-blue btn-sunken-3d">Click me!</button>
+                </div>
+
+                <button class="btn-blue btn-normal">Click me!</button>
+            </div>
+
+            <div class="row">
+                <button class="btn-blue btn-arrow">Click me!</button>
+                
+                <div class="btn-number-container">
+                    <div class="static-number">1</div>
+                    <button class="btn-blue btn-number-click">Click me!</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-panel">
+            <h2>CSS Buttons</h2>
+            <p>With Pseudo-Elements</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

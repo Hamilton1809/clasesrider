@@ -1,0 +1,27 @@
+<body>
+    <h1>Bienvenido a la app</h1>
+
+    {% if cursos %}
+        {% for curso in cursos %}
+            <div>
+                <h3>Competencia: {{ curso.competencia }}</h3>
+                <p><strong>Instructor:</strong> {{ curso.instructor }}</p>
+                <p><strong>Ambiente:</strong> {{ curso.ambiente }}</p>
+                <p><strong>Aprendiz:</strong> {{ curso.aprendiz }}</p>
+                
+                <!-- Nuevos campos en pantalla -->
+                <p><strong>Duración:</strong> {{ curso.duracion }}</p>
+                <p><strong>Cupos disponibles:</strong> {{ curso.cupos }}</p>
+                
+                <!-- Botones de acciones -->
+                <p>
+                    <a href="{% url 'detalle_curso' curso.id %}">Ver detalles</a> | 
+                    <a href="{% url 'eliminar_curso' curso.id %}" style="color: red;">Eliminar</a>
+                </p>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>No hay cursos disponibles.</p>
+    {% endif %}
+</body>

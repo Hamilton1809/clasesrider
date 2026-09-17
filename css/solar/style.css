@@ -1,0 +1,245 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #d6d6d6;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 1000px;
+            background: #fff;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        /* TÍTULO */
+        h1 {
+            background: #E6EAEB;
+            padding: 15px 30px;
+            font-size: 42px;
+            font-weight: bold;
+            color: #1A2E35;
+        }
+
+        .scene {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(to right, #26647D, #196890);
+            overflow: hidden;
+        }
+
+        .subtitle {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            color: white;
+            font-size: 24px;
+            z-index: 10;
+        }
+
+        /* SOL */
+        .sun {
+            position: absolute;
+            left: -250px;
+            top: 50px;
+            width: 400px;
+            height: 400px;
+            background: #cbc211;
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        /* CONOS DE LUZ (Izquierda) */
+        /* Intersección calculada matemáticamente para coincidir con la imagen */
+        .wedge-left {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: #94880b;
+            clip-path: polygon(0 50px, 496px 250px, 0 450px);
+            z-index: 1;
+        }
+
+        .wedge-right {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: #94880b;
+            clip-path: polygon(496px 250px, 620px 180px, 620px 320px);
+            z-index: 1;
+        }
+
+        .wedge-top {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: #979b21b7;
+            clip-path: polygon(0 50px, 620px 180px, 496px 250px);
+            z-index: 1;
+        }
+
+        .wedge-bot {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: #979b21b7;
+            clip-path: polygon(0 450px, 620px 320px, 496px 250px);
+            z-index: 1;
+        }
+
+        /* TIERRA */
+        .earth {
+            position: absolute;
+            left: 550px;
+            top: 180px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background-color: #65B9D4;
+            overflow: hidden;
+            z-index: 3;
+        }
+
+        /* Continentes simulados (África/Europa) */
+        .earth::before {
+            content: '';
+            position: absolute;
+            width: 90px;
+            height: 110px;
+            background: #739D27;
+            border-radius: 40px 60px 40px 20px;
+            top: 20px;
+            left: 5px;
+        }
+
+        /* Sombra nocturna de la Tierra */
+        .earth-shadow {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: rgba(0,0,0, 0.6);
+        }
+
+        /* LUNA */
+        .moon {
+            position: absolute;
+            left: 850px;
+            top: 230px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #AF4154;
+            box-shadow: inset -15px 0 0 rgba(0,0,0, 0.4);
+            z-index: 3;
+        }
+
+        /* SOMBRAS (Derecha) */
+        .umbra {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: #082231;
+            clip-path: polygon(620px 180px, 1000px 230px, 1000px 270px, 620px 320px);
+            z-index: 2;
+        }
+
+        .penumbra-top {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: #0e161b87;
+            clip-path: polygon(620px 180px, 1000px 80px, 1000px 230px);
+            z-index: 2;
+        }
+
+        .penumbra-bottom {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: #0e161b87;
+            clip-path: polygon(620px 320px, 1000px 270px, 1000px 420px);
+            z-index: 2;
+        }
+
+        /* ETIQUETAS */
+        .label {
+            position: absolute;
+            color: white;
+            font-size: 24px;
+            z-index: 5;
+        }
+
+        .label-sol { color: #111; left: 30px; top: 235px; }
+        .label-tierra { left: 585px; top: 130px; }
+        .label-luna { left: 835px; top: 90px; }
+        .label-umbra { left: 650px; top: 380px; }
+        .label-penumbra { left: 600px; top: 440px; }
+        
+        .footer {
+            position: absolute;
+            left: 30px;
+            bottom: 20px;
+            color: #A4C4D0;
+            font-size: 18px;
+            z-index: 10;
+        }
+
+        /* LÍNEAS CONECTORAS */
+        .luna-line {
+            position: absolute;
+            left: 868px;
+            top: 130px;
+            width: 2px;
+            height: 95px;
+            background: white;
+            z-index: 4;
+        }
+
+        .umbra-line {
+            position: absolute;
+            left: 740px;
+            top: 310px;
+            width: 30px;
+            height: 85px;
+            border-right: 2px solid white;
+            border-bottom: 2px solid white;
+            z-index: 4;
+        }
+
+        .umbra-line::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            right: -7px;
+            width: 10px;
+            height: 10px;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: #26657E;
+        }
+
+        .penumbra-line {
+            position: absolute;
+            left: 720px;
+            top: 370px;
+            width: 110px;
+            height: 85px;
+            border-right: 2px solid white;
+            border-bottom: 2px solid white;
+            z-index: 4;
+        }
+
+        .penumbra-line::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            right: -7px;
+            width: 10px;
+            height: 10px;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: #26657E;
+        }

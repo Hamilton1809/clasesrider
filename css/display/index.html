@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos de Display en CSS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="contenedor-demo">
+        <h2>1. Display: Block</h2>
+        <p>Estos elementos se comportan como bloques de construcción pesados: se apilan uno debajo del otro y ocupan todo el ancho disponible (o el 70% que les fijamos en el CSS).</p>
+        <div class="elemento-block">Bloque A (Ocupo mi propia línea)</div>
+        <div class="elemento-block">Bloque B (Fuerzo el salto de línea)</div>
+    </div>
+
+    <div class="contenedor-demo">
+        <h2>2. Display: Inline</h2>
+        <p>Aquí tienes un texto común de un párrafo donde queremos resaltar una <span class="elemento-inline">palabra importante</span> y luego otra <span class="elemento-inline">frase destacada</span>. Como ves, fluyen de forma natural con el texto. Si miras el CSS, verás que ignoraron por completo el ancho de 300px que intentamos forzarles.</p>
+    </div>
+
+    <div class="contenedor-demo">
+        <h2>3. Display: Inline-Block</h2>
+        <p>El comportamiento perfecto para un menú de navegación. Los botones se colocan uno al lado del otro, pero respetan el tamaño exacto de 120px que les dimos.</p>
+        <a href="#" class="elemento-inline-block">Inicio</a>
+        <a href="#" class="elemento-inline-block">Servicios</a>
+        <a href="#" class="elemento-inline-block">Contacto</a>
+    </div>
+    <div class="contenedor-demo">
+        <h2>Estado Normal (Referencia)</h2>
+        <p>Tres cajas normales alineadas una al lado de la otra.</p>
+        <div class="caja caja-1">Caja 1</div>
+        <div class="caja caja-2">Caja 2 (Normal)</div>
+        <div class="caja caja-3">Caja 3</div>
+    </div>
+
+    <div class="contenedor-demo">
+        <h2>Efecto con <code>display: none</code></h2>
+        <p>Ocultamos la Caja 2. Verás que la Caja 3 se mueve a la izquierda porque la Caja 2 ya no ocupa espacio.</p>
+        <div class="caja caja-1">Caja 1</div>
+        <div class="caja caja-2-none">Caja 2 (Oculta)</div>
+        <div class="caja caja-3">Caja 3</div>
+    </div>
+
+    <div class="contenedor-demo">
+        <h2>Efecto con <code>visibility: hidden</code></h2>
+        <p>Ocultamos la Caja 2. La caja desaparece de la vista, pero deja un hueco vacío enorme porque sigue ocupando su lugar.</p>
+        <div class="caja caja-1">Caja 1</div>
+        <div class="caja caja-2-hidden">Caja 2 (Invisible)</div>
+        <div class="caja caja-3">Caja 3</div>
+    </div>
+    <div class="contenedor-botones">
+        <h3>Botones en estado normal</h3>
+        <button class="btn btn-primario">Guardar</button>
+        <button class="btn btn-secundario">Editar</button>
+        <button class="btn btn-peligro">Eliminar</button>
+    </div>
+
+    <div class="contenedor-botones">
+        <h3>Botón central con <code>display: none</code></h3>
+        <p>El botón "Editar" desaparece por completo. El botón "Eliminar" se mueve y se pega a "Guardar".</p>
+        <button class="btn btn-primario">Guardar</button>
+        <button class="btn btn-secundario btn-oculto-none">Editar</button>
+        <button class="btn btn-peligro">Eliminar</button>
+    </div>
+
+    <div class="contenedor-botones">
+        <h3>Botón central con <code>visibility: hidden</code></h3>
+        <p>El botón "Editar" es invisible. Hay un hueco vacío y, por más que hagas clic en ese espacio, no pasará nada.</p>
+        <button class="btn btn-primario">Guardar</button>
+        <button class="btn btn-secundario btn-oculto-hidden">Editar</button>
+        <button class="btn btn-peligro">Eliminar</button>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GetPost Rider</title>
+</head>
+<body>
+<div class="contenedor">
+    <h1>Get y Post django</h1>
+    <secction class="card">
+    <h2>GET</h2>
+    <form method="GET">
+    <input
+    type="text" name="dato" placeholder="hamilton"
+    required>
+    <button type="submit">Enviar GET</button>
+    </form>
+    </secction>
+    <secction class="card">
+    <h2>POST</h2>
+    <form method="POST">
+    {% csrf_token %}
+    <input
+    type="text" name="dato" placeholder="hamilton"
+    required>
+    <button type="submit">Enviar POST</button>
+    </form>
+    </secction>
+    <secction class="resultado">
+    <h2>Resultado</h2>
+    {% if resultado %}
+        {{ resultado|safe }}
+    {% else %}
+        <p>aqui veras resultado</p>
+    {% endif %}
+    </secction>
+</body>
+</html>

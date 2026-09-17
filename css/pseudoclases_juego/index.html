@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penales: Colombia vs Francia - Interactivo</title>
+    <style>
+        /* === ESTILOS GENERALES === */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* === PANEL DE CONTROL (Superior) === */
+        .controls {
+            background: #2a2a2a;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 10;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        select, input, button {
+            padding: 10px 15px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        select, input {
+            background: #fff;
+            color: #333;
+        }
+
+        button {
+            background: #28a745;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(40, 167, 69, 0.3);
+        }
+
+        button:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(40, 167, 69, 0.4);
+        }
+
+        /* === LA CANCHA (Pitch) === */
+        .pitch {
+            width: 600px;
+            height: 400px;
+            background-color: #43A047;
+            background-image: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 50px,
+                rgba(0,0,0,0.08) 50px,
+                rgba(0,0,0,0.08) 100px
+            );
+            position: relative;
+            border: 4px solid #fff;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        /* === PORTERÍA === */
+        .goal {
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 45px;
+            border: 4px solid #fff;
+            border-bottom: none;
+            background-image: 
+                linear-gradient(45deg, rgba(255,255,255,0.4) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.4) 75%, rgba(255,255,255,0.4)), 
+                linear-gradient(-45deg, rgba(255,255,255,0.4) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.4) 75%, rgba(255,255,255,0.4));
+            background-size: 10px 10px;
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 5;
+        }
+
+        /* Área y punto penal */
+        .penalty-box {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 260px;
+            height: 120px;
+            border: 3px solid #fff;
+            border-top: none;
+        }
+
+        .penalty-arc {
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 50px;
+            border: 3px solid #fff;
+            border-radius: 0 0 100px 100px;
+            border-top: none;
+        }
+
+        .penalty-spot {
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(255,255,255,0.8);
+        }
+
+        /* === EL BALÓN === */
+        .ball {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #888888, #222222);
+            border-radius: 50%;
+            top: 86px; 
+            left: 292px; 
+            z-index: 15;
+            opacity: 0; 
+            transition: top 0.5s cubic-bezier(0.1, 0.8, 0.3, 1), 
+                        left 0.5s linear, 
+                        transform 0.5s ease;
+        }
+
+        /* Direcciones del disparo */
+        .ball.shoot-left { top: 15px; left: 230px; transform: scale(0.7); }
+        .ball.shoot-center { top: 15px; left: 292px; transform: scale(0.7); }
+        .ball.shoot-right { top: 15px; left: 354px; transform: scale(0.7); }
+
+        /* === CONTENEDOR DE JUGADORES === */
+        .players-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        /* === JUGADORES (Base) === */
+        .player {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        /* === MAGIA DE CSS: nth-of-type (Uniformes) === */
+        .player:nth-of-type(odd) {
+            background: linear-gradient(135deg, #002395, #00155c);
+            color: #fff;
+            border: 3px solid #ED2939; 
+        }
+
+        .player:nth-of-type(even) {
+            background: linear-gradient(135deg, #FCD116, #dca000);
+            color: #003893; 
+            border: 3px solid #CE1126; 
+        }
+
+        /* === MAGIA DE CSS: nth-of-type (Posiciones en la cancha) === */
+        .player:nth-of-type(1) { top: 200px; left: 80px; }   
+        .player:nth-of-type(2) { top: 250px; left: 180px; }  
+        .player:nth-of-type(3) { top: 280px; left: 275px; }  
+        .player:nth-of-type(4) { top: 250px; left: 370px; }  
+        .player:nth-of-type(5) { top: 200px; left: 470px; }  
+
+        /* === ESTADO DE COBRO DE PENAL === */
+        .player.taking-penalty {
+            top: 110px !important; 
+            left: 275px !important; 
+            transform: scale(1.15);
+            box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.6);
+            z-index: 25;
+        }
+
+        .player.fade-out {
+            opacity: 0.3;
+            filter: grayscale(80%);
+            pointer-events: none;
+        }
+        .goalkeeper{
+    position:absolute;
+    width:40px;
+    height:40px;
+    background:#666;
+    border-radius:50%;
+    top:20px;
+    left:280px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    z-index:20;
+    transition:left .4s;
+}
+
+.goalkeeper.left{
+    left:220px;
+}
+
+.goalkeeper.center{
+    left:280px;
+}
+
+.goalkeeper.right{
+    left:340px;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Panel de control superior -->
+    <div class="controls">
+        <select id="team-filter">
+            <option value="all">Todos los Equipos</option>
+            <option value="colombia">Selección Colombia (Pares)</option>
+            <option value="france">Selección Francia (Impares)</option>
+        </select>
+        
+        <input type="text" id="player-input" placeholder="Nombre (ej: James)" />
+        
+        
+
+        <button id="shoot-btn">Cobrar Penal</button>
+    </div>
+
+    <!-- Cancha de Fútbol -->
+    <div class="pitch">
+        <div class="goal"></div>
+        <div class="penalty-box"></div>
+        <div class="penalty-arc"></div>
+        <div class="penalty-spot"></div>
+        
+        <div class="ball" id="match-ball"></div>
+        <div class="goalkeeper" id="goalkeeper">🧤</div>
+
+        <div class="players-container">
+            <div class="player" data-team="france" data-name="mbappe">Mbappé</div>    
+            <div class="player" data-team="colombia" data-name="james">James</div>    
+            <div class="player" data-team="france" data-name="griezmann">Grizou</div> 
+            <div class="player" data-team="colombia" data-name="diaz">Díaz</div>      
+            <div class="player" data-team="france" data-name="giroud">Giroud</div>    
+        </div>
+    </div>
+
+    <script>
+        const teamFilter = document.getElementById('team-filter');
+        const playerInput = document.getElementById('player-input');
+       
+        const shootBtn = document.getElementById('shoot-btn');
+        const players = document.querySelectorAll('.player');
+        const ball = document.getElementById('match-ball');
+        const goalkeeper = document.getElementById('goalkeeper');
+
+        // Filtro de equipos
+        teamFilter.addEventListener('change', (e) => {
+            const selectedTeam = e.target.value;
+            
+            if(selectedTeam === 'colombia') playerInput.placeholder = "Ej: James, Diaz";
+            else if(selectedTeam === 'france') playerInput.placeholder = "Ej: Mbappe, Grizou";
+            else playerInput.placeholder = "Nombre (ej: James)";
+
+            players.forEach(player => {
+                player.classList.remove('taking-penalty');
+                resetBall(); 
+
+                if (selectedTeam === 'all' || player.dataset.team === selectedTeam) {
+                    player.classList.remove('fade-out');
+                } else {
+                    player.classList.add('fade-out');
+                }
+            });
+        });
+
+        function resetBall() {
+            ball.style.opacity = '0';
+            ball.classList.remove('shoot-left', 'shoot-center', 'shoot-right');
+        }
+
+        // Lógica de cobro
+        shootBtn.addEventListener('click', () => {
+            const inputName = playerInput.value.toLowerCase().trim();
+            const directions = ["left","center","right"];
+
+const direction = directions[Math.floor(Math.random()*3)];
+const keeperDirection = directions[Math.floor(Math.random()*3)];
+            let playerFound = false;
+
+            resetBall();
+            players.forEach(p => p.classList.remove('taking-penalty'));
+
+            players.forEach(player => {
+                if (player.dataset.name === inputName && !player.classList.contains('fade-out')) {
+                    playerFound = true;
+                    
+                    // El jugador corre
+                    player.classList.add('taking-penalty');
+                    
+                    // Aparece el balón
+                    setTimeout(() => {
+                        ball.style.opacity = '1';
+                        
+                        // El balón es pateado
+                        setTimeout(() => {
+                            ball.classList.add(`shoot-${direction}`);
+                            goalkeeper.classList.remove("left","center","right");
+goalkeeper.classList.add(keeperDirection);
+
+setTimeout(() => {
+
+    if(direction === keeperDirection){
+        alert("🧤 ¡El portero atajó el penal!");
+    }else{
+        alert("⚽ ¡GOOOL!");
+    }
+
+},500);
+                        }, 400); 
+                        
+                    }, 700);
+                }
+            });
+
+            if (!playerFound && inputName !== "") {
+                alert("Jugador no encontrado o inactivo. Jugadores disponibles: mbappe, james, griezmann, diaz, giroud.");
+            }
+        });
+    </script>
+</body>
+</html>

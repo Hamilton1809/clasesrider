@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass de Pseudoelementos y Perfil Premium</title>
+    <style>
+        /* --- Configuración Base y Estética General --- */
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #0f172a; /* Fondo oscuro profundo */
+            color: #334155;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        h1 {
+            color: #f8fafc;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Enlace de prueba para activar el target-text */
+        .btn-test-target {
+            background-color: #3b82f6;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+            transition: transform 0.2s;
+            margin-bottom: -10px;
+        }
+        .btn-test-target:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- 1. ::spelling-error --- */
+        ::spelling-error {
+            background-color: #fee2e2; 
+            color: #991b1b;            
+            text-decoration: underline dotted #ef4444 2px;
+        }
+
+        /* --- 2. ::target-text --- */
+        ::target-text {
+            background-color: #fef08a; 
+            color: #0f172a;            
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        /* --- 3. ::selection --- */
+        ::selection {
+            background-color: #fef08a;
+            color: #ca8a04;
+        }
+
+        /* --- DISEÑO DE PERFIL PREMIUM --- */
+        .perfil-card-premium {
+            width: 100%;
+            max-width: 900px;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .perfil-sidebar {
+            background: linear-gradient(180deg, #1e40af 0%, #1d4ed8 100%);
+            padding: 40px 24px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .perfil-brand h2 {
+            margin: 0 0 4px 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .perfil-brand p {
+            margin: 0 0 32px 0;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .perfil-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .perfil-menu li {
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0.7;
+        }
+
+        .perfil-menu li.active {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        .perfil-session-tag {
+            font-size: 0.8rem; 
+            opacity: 0.5;
+        }
+
+        .perfil-content {
+            padding: 40px;
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .perfil-block {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        /* FUNCIONALIDAD DE ATTR() */
+        .perfil-block::before {
+            content: attr(data-title);
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #3b82f6;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .perfil-block::after {
+            content: attr(data-step);
+            position: absolute;
+            right: 24px;
+            top: 20px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #e2e8f0;
+        }
+
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #dcfce7;
+            color: #15803d;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-status::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+        }
+
+        .todo-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .todo-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #2563eb;
+        }
+
+        .avatar-group {
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+        }
+
+        .avatar-demo {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-left: -10px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .editable-area {
+            outline: none;
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            border: 1px dashed #cbd5e1;
+            padding: 10px;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        /* --- CONTENEDOR DE LABORATORIO ORIGINAL --- */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            box-sizing: border-box;
+        }
+
+        .section {
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 20px;
+        }
+
+        .section:last-child {
+            border: none;
+        }
+
+        h3 {
+            color: #4f46e5;
+            margin-top: 0;
+        }
+
+        /* --- 4. ::before y ::after Estáticos --- */
+        .decorado {
+            position: relative;
+            padding-left: 25px;
+            font-weight: 500;
+        }
+        .decorado::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+        }
+        .decorado::after {
+            content: " (¡Nuevo!)";
+            color: #10b981;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* --- 5. ::first-line y ::first-letter --- */
+        .parrafo-Destacado::first-letter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4f46e5;
+            float: left;
+            margin-right: 8px;
+            line-height: 1;
+        }
+        .parrafo-Destacado::first-line {
+            font-weight: bold;
+            color: #1e293b;
+            text-transform: uppercase;
+        }
+
+        /* --- 6. ::placeholder y ::file-selector-button --- */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        input[type="text"]::placeholder {
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        input[type="file"]::file-selector-button {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background-color: #4338ca;
+        }
+
+        /* --- 7. ::marker --- */
+        ul.lista-personalizada li::marker {
+            content: "🚀 ";
+            font-size: 1.2rem;
+        }
+
+        /* --- 8. Errores genéricos del lab --- */
+        p::target-text { background-color: #ffde59; font-weight: bold; }
+        p::spelling-error { text-decoration: underline wavy red; }
+        p::grammar-error { text-decoration: underline wavy green; }
+
+        /* --- 9. ::backdrop y showModal() --- */
+        button.open-btn {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        dialog {
+            border: none;
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 400px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        dialog::backdrop {
+            background-color: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        /* ======================================================= */
+        /* NUEVOS ESTILOS UNIFICADOS: ATRIBUTOS Y COMBINADORES    */
+        /* ======================================================= */
+        
+        /* Selectores de Atributos */
+        .demo-atributos a {
+            display: inline-block;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .demo-atributos a[href^="https"] {
+            color: #10b981;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .demo-atributos a[href^="https"]::before {
+            content: "🔒 ";
+        }
+
+        .demo-atributos a[href$=".pdf"] {
+            color: #ef4444;
+            background-color: #fef2f2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .demo-atributos button[class*="admin"] {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+            margin-right: 10px;
+        }
+        
+        .demo-atributos .btn-sistema-invitado {
+            background-color: #e2e8f0;
+            color: #475569;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* Selectores Combinadores */
+        .disparador-alerta {
+            background-color: #f8fafc;
+            padding: 12px;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            margin: 0 0 12px 0;
+            text-align: center;
+            cursor: pointer;
+            color: #475569;
+            transition: background-color 0.2s;
+        }
+        .disparador-alerta:hover {
+            background-color: #f1f5f9;
+        }
+
+        .bloque-alerta-inmediato, 
+        .bloque-alerta-general {
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Combinador hermano adyacente (+) */
+        .disparador-alerta:hover + .bloque-alerta-inmediato {
+            background-color: #fffbeb;
+            color: #b45309;
+            border-color: #f59e0b;
+            transform: translateX(5px);
+        }
+
+        /* Combinador hermano general (~) */
+        .disparador-alerta:hover ~ .bloque-alerta-general {
+            background-color: #ecfdf5;
+            color: #047857;
+            border-color: #10b981;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Panel de Control Profesional</h1>
+
+    <a href="#:~:text=Ininterrumpido" class="btn-test-target">Simular Enlace a "Ininterrumpido" (::target-text)</a>
+
+    <div class="perfil-card-premium">
+        <div class="perfil-sidebar">
+            <div class="perfil-brand">
+                <h2>Mi Dashboard</h2>
+                <p>Módulos de Sistema v2.4</p>
+                <ul class="perfil-menu">
+                    <li class="active">🌐 Inicio</li>
+                    <li>📁 Proyectos</li>
+                    <li>📈 Reportes</li>
+                    <li>⚙️ Configuración</li>
+                </ul>
+            </div>
+            <div class="perfil-session-tag">Sesión: Admin</div>
+        </div>
+        
+        <div class="perfil-content">
+            <div class="perfil-block" data-title="Estado del Sistema" data-step="01">
+                <span class="badge-status">Optimizado e Ininterrumpido</span>
+            </div>
+
+            <div class="perfil-block" data-title="Notas de Revisión Ortográfica" data-step="02">
+                <div class="editable-area" contenteditable="true" spellcheck="true">
+                    Este parrafo contiene un herror de escritura a proposito para evaluar la funcionalidad. ¡Haz clic para editar e intentar escribir mal otra palabra!
+                </div>
+            </div>
+            
+            <div class="perfil-block" data-title="Tareas Pendientes" data-step="03">
+                <div class="todo-list">
+                    <div class="todo-item"><input type="checkbox" checked disabled> <span>Diseñar interfaz de usuario</span></div>
+                    <div class="todo-item"><input type="checkbox" disabled> <span>Implementar funcionalidad CSS avanzada</span></div>
+                    <div class="todo-item"><input type="checkbox" disabled> <span>Optimizar rendimiento y renderizado</span></div>
+                </div>
+            </div>
+            
+            <div class="perfil-block" data-title="Equipo Asignado" data-step="04">
+                <div class="avatar-group">
+                    <div class="avatar-demo" style="background-image: url('https://images.unsplash.com/photo-1534527741775-53994a69daeb?w=80');"></div>
+                    <div class="avatar-demo" style="background-image: url('https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80');"></div>
+                    <div class="avatar-demo" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80');"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="section">
+            <h3>1. ::selection</h3>
+            <p>Selecciona este texto con tu mouse para ver cómo cambia a fondo amarillo y letras cafés.</p>
+        </div>
+
+        <div class="section">
+            <h3>2. ::before y ::after</h3>
+            <p class="decorado">Este texto tiene elementos generados por CSS a sus lados.</p>
+        </div>
+
+        <div class="section">
+            <h3>3. ::first-letter y ::first-line</h3>
+            <p class="parrafo-Destacado">Esta es la primera línea que estará en mayúsculas y negrita gracias a CSS. El resto del párrafo continuará con su estilo completamente normal y fluido abajo.</p>
+        </div>
+
+        <div class="section">
+            <h3>4. ::placeholder y ::file-selector-button</h3>
+            <input type="text" placeholder="Escribe algo aquí (Placeholder en cursiva)...">
+            <input type="file">
+        </div>
+
+        <div class="section">
+            <h3>5. ::marker</h3>
+            <ul class="lista-personalizada">
+                <li>Primer elemento con cohete</li>
+                <li>Segundo elemento con cohete</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>6. Errores de Escritura (Soporte experimental)</h3>
+            <p contenteditable="true">Estoo es una prueva con un herror de hortografía.</p>
+        </div>
+
+        <div class="section">
+            <h3>7. HTMLDialogElement & ::backdrop</h3>
+            <button class="open-btn" id="openModal">Abrir Modal Moderno</button>
+            
+            <dialog id="miModal">
+                <h3>¡Hola desde el Modal!</h3>
+                <p>El fondo oscuro y borroso de atrás está controlado por el pseudoelemento <code>::backdrop</code>.</p>
+                <button id="closeModal">Cerrar</button>
+            </dialog>
+        </div>
+
+        <div class="section">
+            <h3>8. ::part y ::slotted (Shadow DOM)</h3>
+            <mi-tarjeta>
+                <span slot="titulo">Título insertado mediante Slot</span>
+            </mi-tarjeta>
+        </div>
+
+    </div>
+
+
+    <div class="container">
+        
+        <div class="section">
+            <h3>9. Selectores de Atributos Avanzados</h3>
+            <div class="demo-atributos">
+                <a href="https://www.ejemplo-seguro.com">Enlace Seguro Detectado (HTTPS)</a>
+                <br>
+                <a href="/descargas/documento.pdf">Descargar Archivo Detectado (PDF)</a>
+                <br><br>
+                <button class="btn-sistema-admin-global">Filtro Clase 'admin'</button>
+                <button class="btn-sistema-invitado">Filtro Normal</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>10. Selectores Combinadores (~ y +)</h3>
+            <div class="demo-combinadores">
+                <h4 class="disparador-alerta">Pasa el mouse aquí para probar los combinadores</h4>
+                
+                <div class="bloque-alerta-inmediato">
+                    <strong>Hermano Adyacente (+):</strong> Reacciono solo si soy el primero.
+                </div>
+                
+                <div class="bloque-alerta-general">
+                    <strong>Hermano General (~):</strong> Reaccionamos todos en grupo.
+                </div>
+                <div class="bloque-alerta-general">
+                    <strong>Hermano General (~):</strong> Reaccionamos todos en grupo.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        const modal = document.getElementById('miModal');
+        const openBtn = document.getElementById('openModal');
+        const closeBtn = document.getElementById('closeModal');
+
+        openBtn.addEventListener('click', () => { modal.showModal(); });
+        closeBtn.addEventListener('click', () => { modal.close(); });
+
+        class MiTarjeta extends HTMLElement {
+            constructor() {
+                super();
+                const shadow = this.attachShadow({ mode: 'open' });
+                shadow.innerHTML = `
+                    <style>
+                        ::slotted([slot="titulo"]) { font-weight: bold; color: #e11d48; }
+                        .caja-interna { padding: 10px; background: #f8fafc; border: 1px dashed #cbd5e1; }
+                    </style>
+                    <div class="caja-interna" part="tarjeta-interna">
+                        <slot name="titulo"></slot>
+                        <p>Texto interno del Shadow DOM</p>
+                    </div>
+                `;
+            }
+        }
+        customElements.define('mi-tarjeta', MiTarjeta);
+
+        const estiloPart = document.createElement('style');
+        estiloPart.innerHTML = `mi-tarjeta::part(tarjeta-interna) { border-left: 5px solid #4f46e5; }`;
+        document.head.appendChild(estiloPart);
+    </script>
+</body>
+</html>

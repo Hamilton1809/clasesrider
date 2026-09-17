@@ -1,0 +1,375 @@
+@import url("componentes.css");
+
+/* ==========================================================================
+   0. CONFIGURACIÓN DE TIPOGRAFÍA AVANZADA
+   ========================================================================== */
+@font-feature-values system-ui {
+    @styleset {
+        /* Activa variantes estilísticas si la tipografía del sistema las soporta */
+        variante-moderna: 1;
+    }
+    @character-variant {
+        /* Variantes específicas para caracteres individuales */
+        serif-en-i: 1;
+    }
+}
+
+/* Clases utilitarias para aplicar los estilos tipográficos */
+.text-advanced-features {
+    font-variant-alternates: styleset(variante-moderna);
+}
+
+.text-custom-i {
+    font-variant-alternates: character-variant(serif-en-i);
+}
+
+/* ==========================================================================
+   1. VARIABLES DE DISEÑO PREMIUM (Tema Futuro Oscuro)
+   ========================================================================== */
+:root {
+    --bg-deep: #050508;
+    --card-glass: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.07);
+    --primary-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --font-ui: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   2. ESTILOS BASE Y CONFIGURACIÓN CINEMÁTICA
+   ========================================================================== */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: var(--font-ui); scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Esferas de luz ambientales en el fondo */
+.glow-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1; overflow: hidden; pointer-events: none;
+}
+.blob {
+    position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15;
+}
+.color-1 { width: 400px; height: 400px; background: #00f2fe; top: -10%; right: -10%; }
+.color-2 { width: 500px; height: 500px; background: #7928ca; bottom: -10%; left: -10%; }
+
+/* Efecto Contenedor de Cristal */
+.glass-card {
+    background: var(--card-glass);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 30px;
+}
+
+.gradient-text {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   3. MENÚ INTERACTIVO Y NAVEGACIÓN (Móvil Primero)
+   ========================================================================== */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 24px; position: sticky; top: 0; z-index: 100;
+    background: rgba(5, 5, 8, 0.7); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.logo { font-size: 22px; font-weight: 800; text-decoration: none; }
+
+/* Botón Hamburguesa Estilizado */
+.menu-toggle {
+    background: none; border: none; cursor: pointer; display: flex;
+    flex-direction: column; gap: 6px; z-index: 200;
+}
+.menu-toggle span {
+    display: block; width: 24px; height: 2px; background: var(--text-primary);
+    transition: var(--transition-smooth);
+}
+
+/* Menú móvil tipo cortina superpuesta */
+.nav-container {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(5, 5, 8, 0.95); backdrop-filter: blur(30px);
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: var(--transition-smooth); z-index: 150;
+}
+.nav-links { list-style: none; text-align: center; }
+.nav-links li { margin: 25px 0; }
+.nav-links a {
+    font-size: 28px; font-weight: 700; color: var(--text-secondary);
+    text-decoration: none; transition: var(--transition-smooth);
+}
+.nav-links a:hover { color: var(--text-primary); letter-spacing: 1px; }
+
+/* Control del estado abierto mediante JS */
+body.nav-open .nav-container { opacity: 1; pointer-events: auto; }
+body.nav-open .menu-toggle .line-1 { transform: translateY(4px) rotate(45deg); }
+body.nav-open .menu-toggle .line-2 { transform: translateY(-4px) rotate(-45deg); }
+
+/* ==========================================================================
+   4. SECCIÓN HERO (Diseño de Impacto)
+   ========================================================================== */
+.hero-section {
+    padding: 60px 24px; text-align: center;
+    display: flex; align-items: center; justify-content: center;
+    min-height: calc(100vh - 80px);
+}
+.status-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.05); padding: 8px 16px;
+    border-radius: 100px; font-size: 13px; font-weight: 500; margin-bottom: 24px;
+    border: 1px solid var(--card-border);
+}
+.pulse-dot {
+    width: 8px; height: 8px; background: #10b981; border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+.hero-title { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+.hero-subtitle { color: var(--text-secondary); font-size: 16px; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+.hero-actions { display: flex; flex-direction: column; gap: 16px; }
+.btn {
+    padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 15px;
+    text-decoration: none; text-align: center; transition: var(--transition-smooth);
+}
+.btn-gradient { background: var(--primary-gradient); color: #000; }
+.btn-outline { border: 1px solid var(--card-border); color: var(--text-primary); }
+
+/* ==========================================================================
+   5. CONTENIDO GENERAL Y PROYECTOS
+   ========================================================================== */
+.container { padding: 40px 24px; max-width: 1200px; margin: 0 auto; }
+.section-header { margin-bottom: 32px; }
+.section-tag { font-size: 12px; font-weight: 700; color: #4facfe; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 8px;}
+.section-header h2 { font-size: 28px; font-weight: 800; }
+
+.about-grid { display: flex; flex-direction: column; gap: 24px; }
+.tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.tech-badge { background: rgba(255,255,255,0.04); border: 1px solid var(--card-border); padding: 6px 14px; border-radius: 8px; font-size: 13px; color: var(--text-secondary); }
+
+.projects-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.project-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.project-preview {
+    height: 200px; background: #0f111a; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; font-weight: 700; color: var(--text-secondary);
+}
+.preview-glow { position: absolute; width: 140px; height: 140px; filter: blur(50px); opacity: 0.3; }
+.preview-1 { background: #00f2fe; top: 10%; left: 10%; }
+.preview-2 { background: #f43f5e; bottom: 10%; right: 10%; }
+.project-details { padding: 24px; }
+.project-details h3 { font-size: 18px; margin-bottom: 8px; }
+.project-details p { color: var(--text-secondary); font-size: 14px; }
+
+.contact-box { text-align: center; padding: 60px 24px; }
+.contact-box h2 { font-size: 32px; margin: 12px 0; }
+.contact-box p { color: var(--text-secondary); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+.footer { text-align: center; padding: 40px; color: var(--text-secondary); font-size: 13px; border-top: 1px solid var(--card-border); }
+
+/* ==========================================================================
+   6. LAS MEDIA QUERIES AVANZADAS RECOMENDADAS (Visualización Absoluta)
+   ========================================================================== */
+
+/* PANTALLAS MEDIANAS / TABLETS (Ancho mínimo: 768px) */
+@media screen and (min-width: 768px) {
+    .menu-toggle { display: none; }
+    .nav-container { 
+        position: static; width: auto; height: auto; background: none; opacity: 1; pointer-events: auto; backdrop-filter: none;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links li { margin: 0; }
+    .nav-links a { font-size: 15px; font-weight: 500; }
+    
+    .hero-title { font-size: 54px; max-width: 800px; }
+    .hero-subtitle { font-size: 18px; }
+    .hero-actions { flex-direction: row; justify-content: center; }
+    
+    .about-grid { flex-direction: row; align-items: center; }
+    .about-text { flex: 1; }
+    .tech-stack { flex: 1; justify-content: flex-start; }
+    
+    .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+}
+
+/* PANTALLAS ANCHAS / DESKTOP (Ancho mínimo: 1024px) */
+@media screen and (min-width: 1024px) {
+    .hero-title { font-size: 64px; }
+    .section-header h2 { font-size: 40px; }
+}
+
+/* ORIENTACIÓN HORIZONTAL OPTIMIZADA (Celulares acostados - Max height: 500px) */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .hero-section { padding: 40px 24px; min-height: auto; }
+    .nav-links li { margin: 10px 0; }
+    .nav-links a { font-size: 20px; }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* INTERACCIÓN CON RATÓN (Dispositivos no táctiles - Pointer Fine) */
+@media screen and (pointer: fine) {
+    .nav-links a:hover { color: #00f2fe; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 242, 254, 0.2); }
+    .project-card { transition: var(--transition-smooth); }
+    .project-card:hover {
+        transform: translateY(-8px); border-color: rgba(0, 242, 254, 0.4);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+}
+
+/* INTERACCIÓN CON DEDOS (Móviles / Tablets - Pointer Coarse) */
+@media screen and (pointer: coarse) {
+    .btn, .nav-links a { padding: 16px 32px; } 
+}
+
+/* MODO CLARO INTELIGENTE */
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-deep: #f8fafc;
+        --card-glass: rgba(0, 0, 0, 0.02);
+        --card-border: rgba(0, 0, 0, 0.08);
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+    }
+    .blob { opacity: 0.08; }
+    .project-preview { background: #e2e8f0; }
+    .navbar { background: rgba(248, 250, 252, 0.8); }
+}
+
+/* ==========================================================================
+   7. VARIABLES LOCALES (Ámbito de Contenedores Padres)
+   ========================================================================== */
+
+/* El Contenedor Padre (Parent) */
+.project-card-premium {
+    --bg-card-dinamico: rgba(0, 242, 254, 0.05); 
+    --border-card-dinamico: rgba(0, 242, 254, 0.2);
+
+    background: var(--bg-card-dinamico);
+    border: 1px solid var(--border-card-dinamico);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Variante de Padre: Podemos cambiar el valor de la variable en otra clase */
+.project-card-premium.variante-alt {
+    --bg-card-dinamico: rgba(244, 63, 94, 0.05);
+    --border-card-dinamico: rgba(244, 63, 94, 0.2);
+}
+
+/* Clases Hijas que llaman a la variable del Padre usando var() */
+.project-badge-dinamico {
+    background-color: var(--bg-card-dinamico); 
+    border: 1px solid var(--border-card-dinamico);
+    padding: 4px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 12px;
+    width: fit-content;
+}
+
+.project-button-dinamico {
+    background: transparent;
+    border: 1px solid var(--border-card-dinamico);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.project-button-dinamico:hover {
+    background: var(--bg-card-dinamico);
+}
+
+/* ==========================================================================
+   8. MAQUETACIÓN AVANZADA CON FLEXBOX (CORREGIDO)
+   ========================================================================== */
+
+/* Contenedor principal */
+.projects-flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 30px;
+    margin-top: 32px;
+}
+
+/* Tarjeta base (Móviles: Todo en columna) */
+.project-flex-card {
+    display: flex;
+    flex-direction: column; 
+    /* Reducimos la base a 20em (approx 320px) para permitir que quepan 2 tarjetas por fila en PC */
+    flex: 1 1 20em; 
+    background: var(--card-glass);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+/* Estilos de los elementos internos */
+.project-flex-preview {
+    height: 200px;
+    background: #0f111a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.project-flex-details {
+    padding: 30px;
+    display: flex;
+    flex-direction: column; /* Apilamiento vertical normal del texto */
+    justify-content: center; 
+}
+
+/* CAMBIOS VISUALES EN PANTALLAS DE MÁS DE 768px */
+@media screen and (min-width: 768px) {
+    /* La tarjeta ocupa todo el ancho disponible para mostrar imagen y texto lado a lado */
+    .project-flex-card {
+        flex: 1 1 100%; 
+        flex-direction: row; /* Imagen a la izquierda, texto a la derecha */
+    }
+
+    /* Efecto zig-zag: Invertimos la segunda tarjeta */
+    .tarjeta-invertida {
+        flex-direction: row-reverse; /* Imagen a la derecha, texto a la izquierda */
+    }
+
+    /* Imagen y texto toman 50% de ancho cada uno */
+    .project-flex-preview, 
+    .project-flex-details {
+        flex: 1; 
+        width: 50%;
+        height: auto; /* Permite adaptarse a la altura del texto */
+    }
+}

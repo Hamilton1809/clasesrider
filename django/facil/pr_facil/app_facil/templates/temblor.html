@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Temblor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light my-5">
+
+    <div class="container d-flex justify-content-center">
+        <div class="card p-4 shadow-sm" style="max-width: 550px; width: 100%;">
+            <h3 class="text-center mb-4 text-primary">Registro de Temblor</h3>
+
+            <form action="{% url 'salida_temblor' %}" method="POST">
+                {% csrf_token %}
+
+                <!-- Campos de Registro -->
+                <div class="mb-3">
+                    <label for="lugar" class="form-label fw-bold">Lugar:</label>
+                    <input type="text" class="form-control" id="lugar" name="lugar" placeholder="Ej: Popayán" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="magnitud" class="form-label fw-bold">Magnitud:</label>
+                        <input type="number" step="0.1" class="form-control" id="magnitud" name="magnitud" placeholder="Ej: 5.4" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="profundidad" class="form-label fw-bold">Profundidad:</label>
+                        <input type="text" class="form-control" id="profundidad" name="profundidad" placeholder="Ej: 30 km" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="rango" class="form-label fw-bold">Rango:</label>
+                        <input type="text" class="form-control" id="rango" name="rango" placeholder="Ej: Moderado / Fuerte" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="area" class="form-label fw-bold">Área:</label>
+                        <input type="text" class="form-control" id="area" name="area" placeholder="Ej: Urbana / Cauca" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="fecha" class="form-label fw-bold">Fecha:</label>
+                        <input type="date" class="form-control" id="fecha" name="fecha" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="hora" class="form-label fw-bold">Hora:</label>
+                        <input type="time" class="form-control" id="hora" name="hora" required>
+                    </div>
+                </div>
+
+                <!-- Botones Principales -->
+                <div class="row g-2 mt-2">
+                    <div class="col-6">
+                        <button type="submit" name="action" value="enviar" class="btn btn-primary w-100">
+                            Enviar registro
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" name="action" value="listar" formnovalidate class="btn btn-secondary w-100">
+                            Listar todos
+                        </button>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <!-- Sección de Búsqueda Incluyendo Fecha y Hora -->
+                <div class="mb-2">
+                    <label for="query" class="form-label fw-bold text-dark">Buscar por ID, lugar, rango, área, magnitud, fecha u hora:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="query" name="query" placeholder="Ej: 1, Popayán, Fuerte, 5.4, 2026-08-31, 11:11...">
+                        <button type="submit" name="action" value="buscar" formnovalidate class="btn btn-info text-white">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

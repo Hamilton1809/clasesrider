@@ -1,0 +1,65 @@
+p {
+    color: red;
+    font-family: Avenir;
+}
+.my-class {
+    color: blue;
+    font-family: Avenir;
+}
+#my-id {
+    color: green;
+    font-family: Courier;
+}
+div p {
+    color: purple;
+    font-family: Avenir;
+}
+div, button, #my-id {
+    color: orange;
+    font-family: Avenir;
+}
+#first {
+    background-color: red;
+    width: auto;
+    font-family: Arial;
+}
+#second {
+    background-color: #19A5BD;
+    width: 200px;
+    font-family: Times New Roman;
+}
+#third {
+    background-color: rgb(253, 143, 89);
+    width: 50px;
+    font-family: Courier;
+}
+div {
+    margin: 10px;
+    padding: 5px;
+    color: black;
+}
+pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 1em 20px;
+}
+sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+.instructions {
+    position: relative;
+    top: 1.6 em;
+    display: block;
+}
+.instructions-container {
+    margin-bottom: 2em;
+}
+.instructions-container label {
+    margin-bottom: 1.2em;
+}

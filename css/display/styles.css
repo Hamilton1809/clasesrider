@@ -1,0 +1,189 @@
+/* Estilos generales de la página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 30px;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.contenedor-demo {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    margin-top: 0;
+    color: #2c3e50;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 8px;
+}
+
+/* ==========================================
+   1. EJEMPLO DISPLAY: BLOCK
+   ========================================== */
+.elemento-block {
+    display: block;
+    background-color: #e74c3c; /* Rojo */
+    color: white;
+    padding: 15px;
+    margin: 10px 0;
+    /* Ocupa el ancho que le asignemos y empuja el resto abajo */
+    width: 70%; 
+    border-radius: 4px;
+}
+
+/* ==========================================
+   2. EJEMPLO DISPLAY: INLINE
+   ========================================== */
+.elemento-inline {
+    display: inline;
+    background-color: #3498db; /* Azul */
+    color: white;
+    padding: 4px 8px;
+    font-weight: bold;
+    border-radius: 3px;
+    /* NOTA: Intentar poner width y height aquí no hará NADA */
+    width: 300px; 
+    height: 100px; 
+}
+
+/* ==========================================
+   3. EJEMPLO DISPLAY: INLINE-BLOCK
+   ========================================== */
+.elemento-inline-block {
+    display: inline-block;
+    background-color: #2ecc71; /* Verde */
+    color: white;
+    padding: 12px;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    /* Se alinean horizontalmente pero SÍ respetan estas dimensiones: */
+    width: 120px;
+    font-weight: bold;
+}
+
+.elemento-inline-block:hover {
+    background-color: #27ae60; /* Efecto al pasar el cursor */
+}
+.contenedor-demo {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+h2 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+code {
+    background-color: #eee;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* Diseño de las cajas */
+.caja {
+    display: inline-block; /* Las ponemos en fila para notar el movimiento */
+    width: 120px;
+    height: 100px;
+    line-height: 100px; /* Centra el texto verticalmente */
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+/* Colores para identificar el orden */
+.caja-1 { background-color: #34495e; }
+.caja-2 { background-color: #e67e22; }
+.caja-3 { background-color: #9b59b6; }
+
+
+/* ==========================================
+   APLICACIÓN DE LAS PROPIEDADES
+   ========================================== */
+
+/* Caso 1: Desaparece por completo y colapsa el espacio */
+.caja-2-none {
+    display: none; 
+    background-color: #e67e22;
+}
+
+/* Caso 2: Se vuelve invisible pero mantiene su espacio intacto */
+.caja-2-hidden {
+    visibility: hidden; 
+    display: inline-block; /* Necesita mantener su forma base */
+    width: 120px;
+    height: 100px;
+}
+.contenedor-botones {
+    background-color: #ffffff;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+code {
+    background-color: #f1f1f1;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* Estilo base de los botones */
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background 0.2s;
+}
+
+/* Colores de los botones */
+.btn-primario { background-color: #2563eb; color: white; }
+.btn-primario:hover { background-color: #1d4ed8; }
+
+.btn-secundario { background-color: #4b5563; color: white; }
+.btn-secundario:hover { background-color: #374151; }
+
+.btn-peligro { background-color: #dc2626; color: white; }
+.btn-peligro:hover { background-color: #b91c1c; }
+
+
+/* ==========================================
+   APLICACIÓN DE LAS PROPIEDADES EN BOTONES
+   ========================================== */
+
+/* Caso 1: Borrado del mapa */
+.btn-oculto-none {
+    display: none;
+}
+
+/* Caso 2: Fantasma (Invisible pero presente) */
+.btn-oculto-hidden {
+    visibility: hidden;
+}

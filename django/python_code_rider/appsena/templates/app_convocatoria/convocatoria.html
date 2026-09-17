@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convocatorias</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Convocatorias</h1>
+        {% if convocatorias %}
+            {% for convocatoria in convocatorias %}
+            <div class="tarjeta" style="border: 1px solid #ccc; margin: 10px; padding: 15px;">
+                <h2>{{ convocatoria.titulo_capacitacion }}</h2>
+                <div class="info">
+                    <p><strong>Duración:</strong> {{ convocatoria.duracion }}</p>
+                    <p><strong>Tipo:</strong> {{ convocatoria.tipo }}</p>
+                </div>
+                <div class="accion">
+                    <a href="#" class="btn">Ver detalles</a>
+                    <form action="#" method="post" style="display:inline;"></form>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-eliminar">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="mensaje">
+            <p>No hay convocatorias disponibles.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

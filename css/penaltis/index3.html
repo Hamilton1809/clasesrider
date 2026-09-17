@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Penalty Champions 2026</title>
+
+    <link rel="stylesheet" href="style3.css">
+
+</head>
+
+<body>
+
+    <!--==============================
+            ENCABEZADO
+    ==============================-->
+
+    <header class="header">
+
+        <div class="logo">
+
+            ⚽ PENALTY CHAMPIONS 2026
+
+        </div>
+
+        <div class="menu">
+
+            <div class="grupo">
+
+                <label>Equipo</label>
+
+                <select id="equipo">
+
+                    <option value="colombia">🇨🇴 Colombia</option>
+
+                    <option value="argentina">🇦🇷 Argentina</option>
+
+                    <option value="brasil">🇧🇷 Brasil</option>
+
+                    <option value="francia">🇫🇷 Francia</option>
+
+                    <option value="espana">🇪🇸 España</option>
+
+                    <option value="alemania">🇩🇪 Alemania</option>
+
+                </select>
+
+            </div>
+
+            <div class="grupo">
+
+                <label>Modo</label>
+
+                <select id="modo">
+
+                    <option value="equipo">
+                        Por Equipo
+                    </option>
+
+                    <option value="jugador">
+                        Por Jugador
+                    </option>
+
+                    <option value="color">
+                        Por Color
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="grupo">
+
+                <label>Jugador</label>
+
+                <select id="jugador">
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!--==============================
+            MARCADOR
+    ==============================-->
+
+    <section class="marcador">
+
+        <div class="equipo izquierda">
+
+            <h2 id="nombreEquipo">
+
+                🇨🇴 Colombia
+
+            </h2>
+
+            <div class="penales" id="penalesEquipo">
+
+                ⚪ ⚪ ⚪ ⚪ ⚪
+
+            </div>
+
+        </div>
+
+        <div class="resultado">
+
+            <h1>
+
+                <span id="goles">
+                    0
+                </span>
+
+                -
+
+                <span id="atajadas">
+                    0
+                </span>
+
+            </h1>
+
+            <p>
+
+                TANDA DE PENALES
+
+            </p>
+
+        </div>
+
+        <div class="equipo derecha">
+
+            <h2>
+
+                🧤 PORTERO
+
+            </h2>
+
+        </div>
+
+    </section>
+
+    <!--==============================
+            ESTADIO
+    ==============================-->
+
+    <main class="estadio">
+
+        <section class="cancha">
+
+            <!-- ARCO -->
+
+            <div class="arco">
+
+                <div class="red"></div>
+
+            </div>
+
+            <!-- PORTERO -->
+
+            <div class="portero" id="portero">
+
+                🧤
+
+            </div>
+
+            <!-- PELOTA -->
+
+            <div class="pelota" id="pelota">
+
+                ⚽
+
+            </div>
+
+            <!-- JUGADOR -->
+
+            <div class="jugador" id="jugadorCancha">
+
+                👤
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!--==============================
+            INFORMACIÓN
+    ==============================-->
+
+    <section class="panel">
+
+        <div class="card">
+
+            <h2 id="nombreJugador">
+
+                James Rodríguez
+
+            </h2>
+
+            <p id="tipoJugador">
+
+                Delantero
+
+            </p>
+
+            <p id="numeroJugador">
+
+                Número 10
+
+            </p>
+
+            <p>
+
+                Potencia
+
+            </p>
+
+            <div class="barra">
+
+                <div class="potencia" id="potencia"></div>
+
+            </div>
+
+            <p>
+
+                Precisión
+
+            </p>
+
+            <div class="barra">
+
+                <div class="precision" id="precision"></div>
+
+            </div>
+
+        </div>
+
+        <!-- BANCA -->
+
+        <div class="banca">
+
+            <h2>
+
+                COBRADORES
+
+            </h2>
+
+            <div id="listaJugadores">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!--==============================
+            DIRECCIÓN
+    ==============================-->
+
+    <section class="direccion">
+
+        <h2>
+
+            ¿Hacia dónde disparar?
+
+        </h2>
+
+        <div class="grid-direccion">
+
+            <button data-dir="arriba-izquierda">↖</button>
+
+            <button data-dir="arriba">⬆</button>
+
+            <button data-dir="arriba-derecha">↗</button>
+
+            <button data-dir="izquierda">⬅</button>
+
+            <button data-dir="centro">⚽</button>
+
+            <button data-dir="derecha">➡</button>
+
+            <button data-dir="abajo-izquierda">↙</button>
+
+            <button data-dir="abajo">⬇</button>
+
+            <button data-dir="abajo-derecha">↘</button>
+
+        </div>
+
+    </section>
+        <!--=====================================
+            BARRA DE POTENCIA
+    ======================================-->
+
+    <section class="potencia-section">
+
+        <h2>Potencia del disparo</h2>
+
+        <div class="contenedor-potencia">
+
+            <div id="barraPotencia"></div>
+
+        </div>
+
+        <button id="btnPotencia">
+            DETENER POTENCIA
+        </button>
+
+    </section>
+
+
+    <!--=====================================
+            NARRACIÓN
+    ======================================-->
+
+    <section class="narracion">
+
+        <h2>🎙 Narración del Partido</h2>
+
+        <div id="comentarios">
+
+            <p>Bienvenido a Penalty Champions 2026.</p>
+
+        </div>
+
+    </section>
+
+
+    <!--=====================================
+            REGLAS
+    ======================================-->
+
+    <section id="reglas" class="reglas">
+
+        <h2>Reglas</h2>
+
+        <ol>
+
+            <li>Selecciona un equipo.</li>
+
+            <li>Escoge el modo de cobro.</li>
+
+            <li>Selecciona la dirección del disparo.</li>
+
+            <li>Intenta marcar más goles que el portero.</li>
+
+        </ol>
+
+        <a href="#reglas">
+            Ver reglas
+        </a>
+
+    </section>
+
+
+    <!--=====================================
+            IDIOMAS
+    ======================================-->
+
+    <section class="idiomas">
+
+        <h2>Idioma de la Narración</h2>
+
+        <p lang="es">
+
+            ¡Qué emoción! Todo está listo para cobrar el penal.
+
+        </p>
+
+        <p lang="en">
+
+            Everything is ready to take the penalty.
+
+        </p>
+
+    </section>
+
+
+    <!--=====================================
+            ENLACES
+    ======================================-->
+
+    <section class="enlaces">
+
+        <a href="#reglas">
+
+            Ir a las reglas
+
+        </a>
+
+        <a href="https://www.fifa.com" target="_blank">
+
+            Sitio Oficial FIFA
+
+        </a>
+
+    </section>
+
+
+    <!--=====================================
+            PANTALLA FINAL
+    ======================================-->
+
+    <section id="pantallaFinal" class="pantalla-final">
+
+        <div class="campeon">
+
+            <h1>
+
+                🏆 CAMPEÓN 🏆
+
+            </h1>
+
+            <h2 id="campeon">
+
+                Colombia
+
+            </h2>
+
+            <button id="reiniciar">
+
+                JUGAR OTRA VEZ
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!--=====================================
+            FOOTER
+    ======================================-->
+
+    <footer>
+
+        <p>
+
+            Penalty Champions 2026 | Proyecto HTML, CSS y JavaScript
+
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

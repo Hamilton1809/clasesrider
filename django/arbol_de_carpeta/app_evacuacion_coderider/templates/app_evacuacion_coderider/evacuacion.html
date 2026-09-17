@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Evacuación Coderider</title>
+    <link rel="icon" href="{% static 'recursos/imagenes/iconos/icono.ico' %}" type="image/x-icon">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet Routing Machine CSS (Navegación / Rutas) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="{% static 'recursos/estilos/estilo.css' %}">
+
+    <style>
+        .leaflet-container img {
+            max-width: none !important;
+            max-height: none !important;
+        }
+
+        #mapa {
+            height: 520px;
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid #cbd5e1;
+            position: relative;
+            z-index: 1;
+            box-sizing: border-box;
+        }
+
+        .botonera-mapa {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-mapa {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .btn-verde { background-color: #16a34a; }
+        .btn-verde:hover { background-color: #15803d; }
+        .btn-azul { background-color: #2563eb; }
+        .btn-azul:hover { background-color: #1d4ed8; }
+        .btn-rojo { background-color: #dc2626; }
+        .btn-rojo:hover { background-color: #b91c1c; }
+        .btn-naranja { background-color: #ea580c; }
+        .btn-naranja:hover { background-color: #c2410c; }
+
+        .plano-img { width: 100%; max-width: 750px; height: auto; border-radius: 8px; border: 1px solid #cbd5e1; display: block; margin: 0 auto; }
+        .btn-descarga { display: inline-block; padding: 10px 16px; margin: 4px; background-color: #2563eb; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; }
+        .btn-datos { display: inline-block; padding: 10px 16px; margin: 4px; background-color: #0d9488; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; }
+        .btn-ver { display: inline-block; padding: 10px 16px; margin: 4px; background-color: #4f46e5; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; }
+        .btn-enviar { padding: 10px 20px; background-color: #dc2626; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .alerta-exito { padding: 12px; background-color: #dcfce7; color: #15803d; border: 1px solid #86efac; border-radius: 6px; margin-bottom: 15px; font-weight: bold; }
+
+        /* NAVBAR */
+        .navbar { background-color: #1e293b; display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 38px; width: auto; object-fit: contain; }
+        .logo-text { color: #ffffff; font-size: 1.25rem; font-weight: 700; }
+        .nav-links { display: flex; list-style: none; gap: 16px; margin: 0; padding: 0; flex-wrap: wrap; }
+        .nav-links li a { color: #cbd5e1; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding: 6px 12px; border-radius: 6px; }
+        .nav-links li a:hover { color: #ffffff; background-color: #334155; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{% static 'recursos/imagenes/fotos/leon.jpg' %}" alt="Logo Coderider" class="logo-img">
+            <span class="logo-text">Coderider</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'evacuacion' %}">Inicio</a></li>
+            <li><a href="{% url 'evacuacion' %}#sec-mapa">Mapa</a></li>
+            <li><a href="{% url 'evacuacion' %}#formulario">Reporte</a></li>
+            <li><a href="{% url 'evacuacion' %}#plano">Plano</a></li>
+            <li><a href="{% url 'evacuacion' %}#audios">Audios</a></li>
+            <li><a href="{% url 'evacuacion' %}#documentacion">Documentación</a></li>
+            <li><a href="{% url 'evacuacion' %}#datos">Datos Abiertos</a></li>
+        </ul>
+    </nav>   
+
+    <header>
+        <h1>Sistema Integrado de Evacuación Coderider</h1>
+        <p>Centro de Control y Gestión del Riesgo</p>
+    </header>
+
+    <div class="contenedor">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alerta-exito">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <main>
+            <section class="tarjeta">
+                <h2>imágenes</h2>
+                <img src="{% static 'recursos/imagenes/iconos/salida.jpg' %}" alt="Imagen de Evacuación" class="imagen-evacuacion">
+
+    
+   <!-- MAPA PRINCIPAL UNIFICADO -->
+<section class="card" id="sec-mapa">
+    <h2>🗺️ Mapa Interactivo de Evacuación</h2>
+    
+    <div class="botonera-mapa">
+        <button type="button" class="btn-mapa btn-verde" onclick="miUbicacionGPS()">📍 Mi Ubicación (GPS)</button>
+        <button type="button" class="btn-mapa btn-azul" onclick="centrarMapa()">🎯 Centrar Mapa</button>
+        <button type="button" class="btn-mapa btn-naranja" onclick="verSismos()">🌋 Ver Sismos Recientes</button>
+        <button type="button" class="btn-mapa btn-rojo" onclick="limpiarRuta()">❌ Limpiar Ruta</button>
+    </div>
+
+    <div id="mapa"></div>
+</section>
+                    <div id="mapa"></div>
+                </section>
+
+                <!-- FORMULARIO DE REPORTE -->
+                <section class="card" id="formulario">
+                    <h2>🚨 Reportar una Emergencia</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn-enviar">Enviar Reporte</button>
+                    </form>
+                </section>
+
+                <!-- PLANO -->
+                <section class="card" id="plano">
+                    <h2>🏢 Plano de Instalaciones</h2>
+                    <p>Siga las rutas indicadas en el mapa de evacuación física:</p>
+                    <img src="{% static 'recursos/imagenes/fotos/Plano.svg' %}" alt="Plano de evacuación" class="plano-img">
+                </section>
+
+                <!-- AUDIOS -->
+                <section class="card" id="audios">
+                    <h2>📢 Audios de Emergencia</h2>
+                    <div class="grid-2">
+                        <div>
+                            <p><b>Alerta General:</b></p>
+                            <audio controls src="{% static 'recursos/audios/alertas/alerta.mp3' %}" style="width: 100%;"></audio>
+                        </div>
+                        <div>
+                            <p><b>Mensaje de Ayuda:</b></p>
+                            <audio controls src="{% static 'recursos/audios/alertas/Ayuda.mp3' %}" style="width: 100%;"></audio>
+                        </div>
+                        <div>
+                            <p><b>Calma / Yoga:</b></p>
+                            <audio controls src="{% static 'recursos/audios/alertas/yoga.mp3' %}" style="width: 100%;"></audio>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- DOCUMENTACIÓN -->
+                <section class="card" id="documentacion">
+                    <h2>📁 Documentación y Kits de Emergencia</h2>
+                    <div style="margin-top: 15px;">
+                        <a href="{% static 'recursos/documentos/pdf/plan_evacuacion.pdf' %}" target="_blank" class="btn-descarga">
+                            📄 Ver / Descargar Plan (PDF)
+                        </a>
+                        <a href="{% static 'recursos/documentos/comprimidos/kit_evacuacion.zip' %}" download="kit_evacuacion.zip" class="btn-descarga">
+                            📦 Descargar Kit de Emergencia (.zip)
+                        </a>
+                    </div>
+                </section>
+
+                <!-- DATOS ABIERTOS -->
+                <section class="card" id="datos">
+                    <h2>📊 Datos Abiertos (Open Data)</h2>
+                    <p>Elija si desea visualizar el código estructurado o descargarlo a su disco duro:</p>
+                    <div style="margin-top: 15px;">
+                        <a href="{% static 'recursos/datos/json/puntos_evacuacion.json' %}" target="_blank" class="btn-ver">
+                            👁️ Ver JSON en Navegador
+                        </a>
+                        <a href="{% static 'recursos/datos/json/puntos_evacuacion.json' %}" download="puntos_evacuacion.json" class="btn-datos">
+                            💾 Descargar JSON
+                        </a>
+                        <a href="{% static 'recursos/datos/tablas/rutas_emergencia.csv' %}" download="rutas_emergencia.csv" class="btn-datos">
+                            📈 Descargar CSV
+                        </a>
+                    </div>
+                    <!-- CONTENEDOR PARA TABLA CSV -->
+                    <div id="contenedor-tabla-csv" style="margin-top: 20px;"></div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+ <!-- Variables Django -->
+<script>
+    const CSRF_TOKEN = '{{ csrf_token }}';
+    const URL_CSV = '{% static "recursos/datos/tablas/extintores.csv" %}';
+    const URL_JSON = '{% static "recursos/datos/json/puntos_evacuacion.json" %}';
+    const URL_GEO = '{% static "recursos/datos/geojson/ruta.geojson" %}';
+    const URL_API_SISMOS = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
+</script>
+
+<!-- Scripts -->
+<script src="{% static 'recursos/libs/leaflet/leaflet.js' %}"></script>
+<script src="{% static 'recursos/scripts/mapa.js' %}"></script>
+<script src="{% static 'recursos/scripts/tabla_csv.js' %}"></script>
+<script src="{% static 'recursos/scripts/sismos_api.js' %}"></script>
+
+</body>
+</html>

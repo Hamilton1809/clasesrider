@@ -1,0 +1,148 @@
+body{
+  margin:0;
+  overflow:hidden;
+  background:#111;
+}
+
+.scene{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+
+  /* Cielo amarillo fuerte y naranja suave afuera */
+  background:
+    radial-gradient(
+      circle at center 52%,
+
+      /* amarillo fuerte cerca del sol */
+      rgba(255,245,0,1) 0%,
+      rgba(255,235,0,0.98) 24%,
+      rgba(255,225,0,0.92) 42%,
+
+      /* naranja suave solo afuera */
+      rgba(255,190,0,0.38) 60%,
+      rgba(255,160,0,0.12) 78%,
+      rgba(255,140,0,0) 100%
+    ),
+
+    linear-gradient(
+      to bottom,
+      #ffb14a 0%,
+      #ffb02e 20%,
+      #ffc72c 48%,
+      #ffd94a 72%,
+      #fff27a 100%
+    );
+}
+
+/* --- SOL: Blanco fuerte en el centro con un difuminado expandido --- */
+.sun{
+  position:absolute;
+
+  width:150px;
+  height:150px;
+
+  left:50%;
+  top:58%;
+
+  transform:translate(-50%, -50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+
+      /* Centro fuertemente blanco */
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,1) 65%, 
+
+      /* Transición suave hacia el borde */
+      rgba(255,255,255,0.6) 85%,
+      rgba(255,245,210,0) 100%
+    );
+
+  /* Resplandor exterior para expandir y hacer notar mucho más el difuminado blanco */
+  box-shadow: 0 0 40px 15px rgba(255, 255, 255, 0.6);
+
+  z-index:2;
+
+  /* Desenfoque equilibrado para que el centro no pierda fuerza */
+  filter:blur(4px); 
+}
+
+/* Mar azul oscuro */
+.sea{
+  position:absolute;
+  bottom:0;
+
+  width:100%;
+  height:42%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #084dbb 0%,
+      #0056d6 25%,
+      #0e7aee 55%,
+      #1376c7 78%,
+      #1773d0 100%
+    );
+
+  /* línea superior más suave */
+  box-shadow:
+    inset 0 5px 8px rgba(255,255,180,0.05);
+
+  z-index:3;
+}
+
+/* Reflejo debajo del sol */
+.reflection{
+  position:absolute;
+
+  top:-15px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:140px;
+  height:100%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.15) 0%,
+      rgba(170,220,255,0.18) 30%,
+      rgba(70,150,230,0.22) 58%,
+      rgba(255,255,255,0) 88%
+    );
+
+  filter:blur(14px);
+}
+
+/* Arena */
+.sand{
+  position:absolute;
+  bottom:0;
+
+  width:100%;
+  height:12%;
+
+  z-index:4;
+
+  background:
+    linear-gradient(
+      to bottom,
+
+      /* pequeño difuminado arriba */
+      rgba(255,230,120,0.05) 0%,
+      rgba(239,210,143,0.16) 6%,
+
+      /* arena */
+      rgba(239,210,143,0.97) 18%,
+
+      /* arena sólida */
+      rgba(227,197,126,1) 100%
+    );
+}

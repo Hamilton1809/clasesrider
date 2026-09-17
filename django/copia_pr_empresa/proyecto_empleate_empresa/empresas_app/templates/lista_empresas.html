@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresas - Empléate</title>
+    <style>
+        :root {
+            --primary: #7097c0;
+            --primary-hover: #577ba4;
+            --primary-light: #ebf2f7;
+            --danger: #e28585;
+            --danger-hover: #d16464;
+            --bg: #f2f6f9;
+            --surface: #ffffff;
+            --text: #2b3947;
+            --text-light: #6a7c8e;
+            --border: #d4e0eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(112, 151, 192, 0.12);
+            padding: 2rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        h1 { margin: 0; font-size: 1.8rem; color: var(--text); }
+
+        .btn-add {
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-add:hover { background-color: var(--primary-hover); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: var(--primary-light);
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        tr:hover { background-color: #f7fafc; }
+
+        .action-link {
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+
+        .view-link { color: var(--primary); }
+        .view-link:hover { text-decoration: underline; color: var(--primary-hover); }
+        
+        .delete-link { color: var(--danger); }
+        .delete-link:hover { color: var(--danger-hover); text-decoration: underline; }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gestión de Empresas</h1>
+            <a href="{% url 'crear_empresa' %}" class="btn-add">+ Registrar Empresa</a>
+        </div>
+
+        {% if empresas %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>NIT</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for empresa in empresas %}
+                    <tr>
+                        <td>{{ empresa.nit }}</td>
+                        <td><strong>{{ empresa.nombre }}</strong></td>
+                        <td>{{ empresa.correo }}</td>
+                        <td>
+                            <a href="{% url 'detalle_empresa' empresa.id %}" class="action-link view-link">Ver Detalle</a>
+                            <a href="{% url 'eliminar_empresa' empresa.id %}" class="action-link delete-link" onclick="return confirm('¿Eliminar la empresa {{ empresa.nombre }}?');">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <p>No hay empresas registradas actualmente en el sistema Empléate.</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

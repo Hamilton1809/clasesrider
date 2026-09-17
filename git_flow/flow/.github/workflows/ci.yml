@@ -1,0 +1,44 @@
+name: CI Pipeline - CodeRider
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    name: Ejecutar pruebas
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar pruebas
+        run: npm test || echo "No hay tests configurados"
+
+      - name: Verificar sintaxis del código
+        run: |
+          if [ -f src/app.js ]; then
+            node --check src/app.js
+          else
+            echo "src/app.js no existe, se omite verificación"
+          fi

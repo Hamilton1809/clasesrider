@@ -1,0 +1,581 @@
+/*=========================
+    RESET
+==========================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#fff;
+}
+
+/*=========================
+        TITULO
+==========================*/
+
+header{
+    width:100%;
+    height:90px;
+    background:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+header h1{
+
+    font-size:60px;
+    font-weight:300;
+    color:#222;
+
+}
+
+/*=========================
+     CONTENEDOR GENERAL
+==========================*/
+
+.contenedor{
+
+    width:100%;
+    height:calc(100vh - 90px);
+
+    display:flex;
+
+    background:#d7d7d7;
+
+}
+
+/*=========================
+     LADO IZQUIERDO
+==========================*/
+
+.izquierda{
+
+    width:58%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:45px;
+
+}
+
+/*=========================
+      LADO DERECHO
+==========================*/
+
+.derecha{
+
+    width:42%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding-left:60px;
+
+    background:#dddddd;
+
+}
+
+.derecha h2{
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:72px;
+
+    color:#1aa3ea;
+
+    line-height:1;
+
+    letter-spacing:2px;
+
+}
+
+.derecha h3{
+
+    margin-top:25px;
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:48px;
+
+    color:#202020;
+
+    line-height:1.1;
+
+}
+
+/*=========================
+      TARJETA
+==========================*/
+
+.card{
+
+    width:340px;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 18px 25px rgba(0,0,0,.35);
+
+}
+
+.card-top{
+
+    height:110px;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.heart{
+
+    font-size:60px;
+
+    color:#dc4a4a;
+
+}
+
+.card-bottom{
+
+    height:85px;
+
+    background:linear-gradient(to bottom,#27b8f7,#0787d0);
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    text-shadow:2px 2px 3px rgba(0,0,0,.5);
+
+}
+
+/*=========================
+      FILAS
+==========================*/
+
+.fila{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:60px;
+
+}
+
+/*=========================
+      BOTONES
+==========================*/
+
+.btn{
+    border:none;
+    outline:none;
+    cursor:default;
+    user-select:none;
+
+    color:#bff8ff;
+    font-size:18px;
+
+    border-radius:8px;
+
+    background:linear-gradient(to bottom,#2ec4ff 0%,#1198df 60%,#0a83cc 100%);
+
+    text-shadow:1px 1px 2px rgba(0,0,0,.6);
+
+    box-shadow:
+        inset 0 2px 2px rgba(255,255,255,.45),
+        inset 0 -4px 4px rgba(0,0,0,.20),
+        0 5px 0 #0a517d,
+        0 8px 12px rgba(0,0,0,.30);
+
+    transition:none;
+}
+
+.btn:hover{
+    transform:none;
+}
+
+.btn:active{
+    transform:none;
+}
+
+/*=========================
+    BOTÓN CON MARCO
+==========================*/
+
+.marco{
+
+    width:170px;
+    height:120px;
+
+    background:#d8d8d8;
+
+    border-radius:10px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    box-shadow:
+        inset 0 2px 3px #fff,
+        inset 0 -3px 5px rgba(0,0,0,.18),
+        0 5px 12px rgba(0,0,0,.20);
+
+}
+
+.btn-gris{
+
+    width:135px;
+    height:70px;
+
+    border:2px solid #0f6fa8;
+
+}
+
+/*=========================
+      BOTÓN PEQUEÑO
+==========================*/
+
+.btn-pequeno{
+
+    width:130px;
+    height:62px;
+
+}
+
+/*=========================
+      BOTÓN FLECHA
+==========================*/
+
+.btn-flecha{
+
+    width:250px;
+    height:65px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 18px;
+
+}
+
+.btn-flecha .texto{
+
+    flex:1;
+    text-align:center;
+
+}
+
+.circulo{
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    background:linear-gradient(#216fa5,#174e79);
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:24px;
+
+    box-shadow:
+        inset 0 2px 2px rgba(255,255,255,.30),
+        0 3px 5px rgba(0,0,0,.30);
+
+}
+
+/*=========================
+      BOTÓN NÚMERO
+==========================*/
+
+.btn-numero{
+
+    width:270px;
+    height:65px;
+
+    display:flex;
+
+    padding:0;
+
+    overflow:hidden;
+
+}
+
+.numero{
+
+    width:60px;
+
+    background:linear-gradient(#195f96,#103f69);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    font-size:28px;
+    font-weight:bold;
+
+    border-right:2px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        inset 0 2px 2px rgba(255,255,255,.25),
+        inset 0 -4px 5px rgba(0,0,0,.25);
+
+}
+
+.btn-numero .texto{
+
+    flex:1;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+/*====================================
+      ACABADOS PROFESIONALES
+=====================================*/
+
+/* Fondo con un poco de profundidad */
+.contenedor{
+    background:linear-gradient(to bottom,#d9d9d9,#cfcfcf);
+}
+
+/* Tarjeta */
+.card{
+    position:relative;
+}
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:12px;
+    right:12px;
+    bottom:-12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.18);
+
+    filter:blur(8px);
+
+}
+
+/*=============================
+      TODOS LOS BOTONES
+==============================*/
+
+.btn{
+    position:relative;
+    overflow:hidden;
+}
+
+/* Brillo superior */
+
+.btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:4px;
+    right:4px;
+    top:4px;
+
+    height:45%;
+
+    border-radius:6px;
+
+    background:linear-gradient(
+        rgba(255,255,255,.45),
+        rgba(255,255,255,0)
+    );
+
+}
+
+/* Sombra inferior */
+
+.btn::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:8px;
+    right:8px;
+    bottom:6px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.15);
+
+}
+
+/*=============================
+      BOTÓN PRINCIPAL
+==============================*/
+
+.btn-gris{
+
+    background:
+    linear-gradient(
+        to bottom,
+        #38d4ff 0%,
+        #17a8ef 45%,
+        #0b82d2 100%
+    );
+
+}
+
+/*=============================
+      BOTÓN PEQUEÑO
+==============================*/
+
+.btn-pequeno{
+
+    background:
+    linear-gradient(
+        to bottom,
+        #34d0ff,
+        #0c8edc
+    );
+
+}
+
+/*=============================
+      BOTÓN FLECHA
+==============================*/
+
+.btn-flecha{
+
+    background:
+    linear-gradient(
+        to bottom,
+        #33d1ff,
+        #0b8bda
+    );
+
+}
+
+.circulo{
+
+    border:2px solid rgba(255,255,255,.15);
+
+}
+
+/*=============================
+      BOTÓN NÚMERO
+==============================*/
+
+.btn-numero{
+
+    background:
+    linear-gradient(
+        to bottom,
+        #35d3ff,
+        #0c8ad7
+    );
+
+}
+
+.numero{
+
+    background:
+    linear-gradient(
+        to bottom,
+        #236ea4,
+        #124a75
+    );
+
+}
+
+/*=============================
+      TEXTO BOTONES
+==============================*/
+
+.btn,
+.numero{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    font-weight:bold;
+
+    letter-spacing:.5px;
+
+}
+
+/*=============================
+      TEXTO DERECHO
+==============================*/
+
+.derecha h2{
+
+    text-shadow:
+    2px 2px 0 rgba(255,255,255,.35);
+
+}
+
+.derecha h3{
+
+    letter-spacing:1px;
+
+}
+
+/*=============================
+      ALINEACIÓN
+==============================*/
+
+.fila{
+
+    justify-content:center;
+
+}
+
+.marco{
+
+    margin-right:10px;
+
+}

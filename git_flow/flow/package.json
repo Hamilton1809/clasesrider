@@ -1,0 +1,11 @@
+{
+ "name": "flowcoderider",
+ "version": "1.00",
+ "type": "module",
+ "description": "primera aplicacion coderider flow",
+ "scripts": {
+ "start": "node src/app.js",
+ "test": "node test/app.test.js",
+ "build": "echo 'paso omitir par a produccion'"
+ }
+}

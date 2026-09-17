@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Empresa</title>
+    <style>
+        :root {
+            --primary: #7097c0;
+            --primary-light: #ebf2f7;
+            --bg: #f2f6f9;
+            --surface: #ffffff;
+            --text: #2b3947;
+            --text-light: #6a7c8e;
+            --border: #d4e0eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(112, 151, 192, 0.15);
+            padding: 2rem;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .card-header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .info-item {
+            background-color: var(--primary-light);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .info-label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 2rem;
+            background-color: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-back:hover {
+            background-color: var(--primary-light);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h1>{{ empresa.nombre }}</h1>
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-label">NIT (Identificación)</span>
+                <span class="info-value">{{ empresa.nit }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Representante Legal</span>
+                <span class="info-value">{{ empresa.representante }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Correo Electrónico</span>
+                <span class="info-value">{{ empresa.correo }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Teléfono de Contacto</span>
+                <span class="info-value">{{ empresa.telefono }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Dirección Física</span>
+                <span class="info-value">{{ empresa.direccion }}</span>
+            </div>
+        </div>
+
+        <a href="{% url 'lista_empresas' %}" class="btn-back">← Volver al listado</a>
+    </div>
+</body>
+</html>

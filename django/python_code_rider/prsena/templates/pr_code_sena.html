@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Principal - Proyecto SENA</title>
+    <!-- Fuente de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variables de color (Inspirado en estilo SENA y moderno) */
+        :root {
+            --color-principal: #39A900; /* Verde SENA */
+            --color-secundario: #00324D; /* Azul oscuro */
+            --color-fondo: #f4f7f6;
+            --color-blanco: #ffffff;
+            --sombra: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-fondo);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Barra de Navegación */
+        header {
+            background-color: var(--color-blanco);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-secundario);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--color-principal);
+        }
+
+        /* Sección Hero (Principal) */
+        .hero {
+            margin-top: 80px;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-secundario) 0%, #001f30 100%);
+            color: var(--color-blanco);
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #a0b2c0;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        /* Efecto de máquina de escribir */
+        #typewriter {
+            font-weight: 600;
+            color: var(--color-principal);
+            border-right: 3px solid var(--color-principal);
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        /* Contenedor de Tarjetas (Aplicaciones) */
+        .apps-container {
+            max-width: 1200px;
+            margin: -50px auto 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Diseño de cada Tarjeta */
+        .card {
+            background-color: var(--color-blanco);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--sombra);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            border-top: 5px solid transparent;
+        }
+
+        /* Colores dinámicos para los bordes de las tarjetas */
+        .card:nth-child(1) { border-top-color: #39A900; }
+        .card:nth-child(2) { border-top-color: #007bff; }
+        .card:nth-child(3) { border-top-color: #ff9800; }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: var(--color-secundario);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn {
+            background-color: var(--color-secundario);
+            color: var(--color-blanco);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .card:hover .btn {
+            background-color: var(--color-principal);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            color: #777;
+            margin-top: auto;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            💻 Proyecto<span>SENA</span>
+        </div>
+        <div style="font-weight: 600; color: #666;">Django Dev Server</div>
+    </header>
+
+    <!-- Sección principal con texto animado por JS -->
+    <main>
+        <section class="hero">
+            <h1>Bienvenido al Panel Principal</h1>
+            <p>Explora los módulos desarrollados en <span id="typewriter"></span></p>
+        </section>
+
+        <!-- Tarjetas de Navegación -->
+        <section class="apps-container">
+            
+            <!-- Tarjeta 1 -->
+            <a href="/appsena/" class="card">
+                <div class="card-icon">🚀</div>
+                <h3>Appsena 1</h3>
+                <p>Módulo principal. Contiene las vistas iniciales y funciones básicas de prueba del proyecto.</p>
+                <div class="btn">Ingresar al Módulo</div>
+            </a>
+
+            <!-- Tarjeta 2 -->
+            <a href="/appsena/appsena2/" class="card">
+                <div class="card-icon">⚙️</div>
+                <h3>Appsena 2</h3>
+                <p>Segundo módulo. Retorna respuestas HTTP directas desde la lógica de views.py.</p>
+                <div class="btn">Ingresar al Módulo</div>
+            </a>
+
+            <!-- Tarjeta 3 -->
+            <a href="/appsena/appsena3/" class="card">
+                <div class="card-icon">🎨</div>
+                <h3>Appsena 3</h3>
+                <p>Tercer módulo avanzado. Renderiza templates HTML completos y un dashboard moderno.</p>
+                <div class="btn">Ingresar al Módulo</div>
+            </a>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Desarrollo de Software - Ejecutado en Django 6.0</p>
+    </footer>
+
+    <!-- Scripts (JavaScript) -->
+    <script>
+        // 1. Efecto de Máquina de Escribir (Typewriter)
+        const textArray = ["Python.", "Django.", "HTML, CSS y JS.", "nuestro curso."];
+        const typewriterElement = document.getElementById("typewriter");
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentWord = textArray[wordIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typingSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typingSpeed = 2000; // Pausa al terminar de escribir
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % textArray.length;
+                typingSpeed = 500; // Pausa antes de la nueva palabra
+            }
+
+            setTimeout(type, typingSpeed);
+        }
+
+        // Iniciar el efecto cuando cargue la página
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(type, 1000);
+        });
+
+        // 2. Efecto de aparición (Fade-in) de las tarjetas al bajar
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.6s ease-out';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 300 + (index * 200)); // Efecto en cascada
+        });
+    </script>
+</body>
+</html>

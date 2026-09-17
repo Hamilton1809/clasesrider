@@ -1,0 +1,5 @@
+node modules/
+*.log
+.ps store
+dist/
+.env

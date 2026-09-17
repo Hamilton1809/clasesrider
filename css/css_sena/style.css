@@ -1,0 +1,218 @@
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY */
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+    /* Fondo con gradiente radial suave, como en el original */
+    background: radial-gradient(circle, #f5f5f5 0%, #dfe6ec 100%);
+}
+
+/* PARTICULAS - Mantenemos el efecto de fondo */
+body::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size:50px 50px;
+    opacity:.15;
+    animation:particulas 20s linear infinite;
+}
+
+/* TITULO - Mantenemos el estilo del título */
+h1{
+    position:absolute;
+    top:30px;
+    color:#1f1f1f;
+    letter-spacing:5px;
+    font-size:40px;
+    text-shadow: 0 3px 10px rgba(0,0,0,.2);
+    z-index: 20; /* Asegurar que esté sobre todo */
+}
+
+/* CONTENEDOR */
+.contenedor{
+    position:relative;
+    width:900px;
+    height:600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* BRILLO GENERAL */
+.contenedor::before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    left:100px;
+    top:-120px;
+    background: radial-gradient(rgba(0,174,255,.18), transparent 70%);
+    border-radius:50%;
+    filter:blur(40px);
+    animation:brillo 5s ease-in-out infinite;
+    z-index: 1; /* Detrás del emblema */
+}
+
+/* ========================= */
+/* CIRCULO (Mapa Flotante) */
+/* ========================= */
+.circulo{
+    position:absolute;
+    width:700px;
+    height:240px;
+    bottom:20px; /* Ajuste para que se vea más centrado en la parte inferior */
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background-image:url("image.png"); /* Asegúrate de tener esta imagen o usar la original */
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    box-shadow: 0 20px 40px rgba(0,0,0,.25), 0 0 40px rgba(0,174,255,.4);
+    animation:flotar 4s ease-in-out infinite;
+    transition:.5s;
+    z-index: 2; /* Sobre el brillo general, bajo el emblema */
+}
+
+/* PULSO COLOMBIA */
+.circulo::after{
+    content:"";
+    position:absolute;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    left:310px;
+    top:70px;
+    background: radial-gradient(rgba(255,255,255,.7), transparent);
+    animation:pulso 2s infinite;
+}
+
+/* SOMBRA DEL CIRCULO */
+.circulo::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:70px;
+    bottom:-60px;
+    left:100px;
+    border-radius:50%;
+    background: radial-gradient(rgba(0,0,0,.35), transparent);
+    filter:blur(20px);
+    z-index:-1; /* Detrás del círculo */
+}
+
+/* ========================= */
+/* NUEVO EMBLEMA INNOVADOR (Reemplaza al Triángulo) */
+/* ========================= */
+.emblema-sena-innovador{
+    position:absolute;
+    width:280px; /* Tamaño del nuevo emblema */
+    height:380px;
+    top: 150px; /* Ajuste de posición vertical */
+    left:50%;
+    transform:translateX(-50%);
+    background-image:url("sena.png"); /* Nueva imagen */
+    background-size:contain;
+    background-position:center;
+    background-repeat:no-repeat;
+    z-index:10; /* Sobre el círculo y el brillo */
+    /* Efectos de brillo verde neón más potentes y definidos */
+    filter:
+    drop-shadow(0 15px 30px rgba(0,0,0,.5))
+    drop-shadow(0 0 25px rgba(57,169,0,.8))
+    drop-shadow(0 0 5px rgba(57,169,0,1));
+    /* Animación de entrada y flotación */
+    animation: entradaEmblema 2s ease, flotarEmblema 4s ease-in-out infinite 2s; /* Comienza flotación después de la entrada */
+    transition:.5s;
+}
+
+/* HOVER EMBLEMA */
+.emblema-sena-innovador:hover{
+    transform:
+    translateX(-50%)
+    scale(1.1)
+    translateY(-10px); /* Ligeramente hacia arriba */
+    filter:
+    drop-shadow(0 20px 40px rgba(0,0,0,.6))
+    drop-shadow(0 0 40px rgba(57,169,0,1));
+}
+
+/* ========================= */
+/* ANIMACIONES */
+/* ========================= */
+
+/* Nueva animación de entrada para el emblema */
+@keyframes entradaEmblema{
+    0%{
+        opacity:0;
+        transform: translateX(-50%) translateY(-150px) scale(0.5); /* Más drástico */
+    }
+    100%{
+        opacity:1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+/* Nueva animación de flotación para el emblema, más sutil */
+@keyframes flotarEmblema{
+    0%, 100%{
+        transform: translateX(-50%) translateY(0);
+    }
+    50%{
+        transform: translateX(-50%) translateY(-15px);
+    }
+}
+
+@keyframes flotar{
+    0%, 100%{
+        transform: translateX(-50%) translateY(0px);
+    }
+    50%{
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+@keyframes brillo{
+    0%, 100%{
+        transform:scale(1);
+        opacity:.7;
+    }
+    50%{
+        transform:scale(1.08);
+        opacity:1;
+    }
+}
+
+@keyframes pulso{
+    0%{
+        transform:scale(.5);
+        opacity:1;
+    }
+    100%{
+        transform:scale(2.5);
+        opacity:0;
+    }
+}
+
+@keyframes particulas{
+    0%{
+        background-position:0 0;
+    }
+    100%{
+        background-position:0 1000px;
+    }
+}
+

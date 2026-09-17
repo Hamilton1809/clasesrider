@@ -1,0 +1,98 @@
+
+/* --- ESTILOS BASE Y DE CANCHA --- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.cancha {
+    background-color: #27ae60;
+    width: 80%;
+    height: 400px;
+    margin: 20px auto;
+    border: 5px solid white;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* --- ESTILO DE LOS JUGADORES --- */
+.jugador {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* Usamos pseudoclases para el hover de los jugadores */
+.jugador:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+.col { background-color: #f1c40f; color: #333; border: 3px solid #2980b9; }
+.fra { background-color: #2980b9; border: 3px solid #c0392b; }
+
+/* --- OCULTAR INPUTS REALES --- */
+input[type="radio"] {
+    display: none;
+}
+
+/* --- ESTILOS DE LOS BOTONES (LABELS) --- */
+.btn, .btn-jugador {
+    padding: 10px 15px;
+    background-color: #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+/* Pseudoclase :hover para los controles */
+.btn:hover, .btn-jugador:hover { background-color: #ccc; }
+
+/* --- LÓGICA DEL JUEGO CON :CHECKED --- */
+
+/* 1. Si se selecciona "Equipo Colombia", ocultamos los de Francia */
+#equipo-col:checked ~ .cancha .fra {
+    display: none;
+}
+
+/* 2. Si se selecciona "Equipo Francia", ocultamos los de Colombia */
+#equipo-fra:checked ~ .cancha .col {
+    display: none;
+}
+
+/* 3. Lógica para jugadores específicos (Ocultamos TODOS, y luego mostramos solo el seleccionado) */
+#col-1:checked ~ .cancha .jugador,
+#fra-1:checked ~ .cancha .jugador {
+    display: none;
+}
+
+#col-1:checked ~ .cancha #j-col-1 {
+    display: flex; /* Lo volvemos a mostrar */
+    transform: scale(1.5); /* Lo hacemos más grande porque es el elegido */
+}
+
+#fra-1:checked ~ .cancha #j-fra-1 {
+    display: flex;
+    transform: scale(1.5);
+}
+
+/* Colorear el botón activo usando :checked */
+#todos:checked ~ .panel-controles label[for="todos"],
+#equipo-col:checked ~ .panel-controles label[for="equipo-col"],
+#equipo-fra:checked ~ .panel-controles label[for="equipo-fra"] {
+    background-color: #34495e;
+    color: white;
+}

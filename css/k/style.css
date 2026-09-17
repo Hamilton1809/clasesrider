@@ -1,0 +1,214 @@
+/* ==========================================================================
+   1. RESET & BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background: radial-gradient(circle, #f5f5f5 0%, #dfe6ec 100%);
+}
+
+/* TÍTULO MOVIDO A LA DERECHA */
+.titulo-lateral {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: right;
+    z-index: 100;
+}
+
+.titulo-lateral h1 {
+    color: #1f1f1f;
+    letter-spacing: 3px;
+    font-size: 32px;
+    line-height: 1.4;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ESCENARIO PRINCIPAL */
+.contenedor {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+}
+
+/* ==========================================================================
+   2. PLATAFORMA 3D
+   ========================================================================== */
+.plataforma-3d {
+    position: absolute;
+    bottom: -210px; 
+    width: 800px;
+    height: 800px;
+    transform: rotateX(74deg) translateY(160px); 
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.disco {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.disco.amarillo {
+    width: 100%; height: 100%;
+    background: #f2c918;
+    box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25), inset 0 -20px 25px rgba(0, 0, 0, 0.15), 0 20px 0 #c9a40e;
+}
+
+.disco.azul {
+    width: 72%; height: 72%;
+    background: #05458a;
+    transform: translateZ(12px);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3), inset 0 -15px 20px rgba(0, 0, 0, 0.2), 0 12px 0 #032d5c;
+}
+
+.disco.rojo {
+    width: 62%; height: 62%;
+    background: #c21319;
+    transform: translateZ(24px);
+    box-shadow: 0 12px 15px rgba(0, 0, 0, 0.4), inset 0 -10px 15px rgba(0, 0, 0, 0.3), 0 10px 0 #850b10;
+}
+
+.centro-mapa {
+    width: 48%; height: 48%;
+    background: #151515; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateZ(8px);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
+    transform-style: preserve-3d;
+}
+
+.mapa-extrusion-real {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    clip-path: circle(50%); 
+    display: block;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   3. FLECHA TIPO CURSOR/CHEVRON CENTRADA
+   ========================================================================== */
+.triangulo-identidad-unificado {
+    position: absolute;
+    
+    /* ¡AQUÍ ESTÁ LA MAGIA! Subimos la flecha para que pegue en el puro centro */
+    bottom: 210px; 
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 340px;
+    height: 420px;
+    
+    /* Hendidura arriba (50% 22%) */
+    clip-path: polygon(0% 0%, 50% 100%, 100% 0%, 50% 22%);
+    
+    /* Colores */
+    background: 
+        linear-gradient(90deg, transparent 50%, #ffffff 50%),
+        linear-gradient(to bottom, #f2c918 33.33%, #05458a 33.33%, #05458a 66.66%, #f2c918 66.66%);
+    
+    z-index: 50;
+    
+    transform-origin: 50% 100%;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+    
+    animation: fijarPuntaYFlotar 4s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.triangulo-identidad-unificado:hover {
+    transform: translateX(-50%) scale(1.05);
+    cursor: pointer;
+}
+
+/* Contenedor del logo desplazado hacia abajo para evitar la hendidura */
+.contenedor-logo-derecho {
+    position: absolute;
+    right: 0;
+    top: 25%; 
+    width: 50%;
+    height: 40%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================================================
+   4. LOGO SENA 
+   ========================================================================== */
+.logo-sena-final {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    
+    transform: scale(1.3); 
+    transform-origin: center center;
+    
+    margin-left: -15px; 
+}
+
+.cabeza {
+    width: 10px;
+    height: 10px;
+    background: #000000; 
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.cuerpo-contenedor {
+    width: 50px;
+    height: 40px;
+    position: relative;
+}
+
+.trazo {
+    background: #000000; 
+    position: absolute;
+    border-radius: 3px;
+}
+
+.brazo-izq { width: 25px; height: 5px; top: 0; left: 0; }
+.pierna-izq { width: 5px; height: 30px; top: 0; left: 20px; transform-origin: top left; transform: rotate(20deg); }
+
+.brazo-der { width: 25px; height: 5px; top: 0; right: 0; }
+.pierna-der { width: 5px; height: 30px; top: 0; right: 20px; transform-origin: top right; transform: rotate(-20deg); }
+
+/* ==========================================================================
+   5. ANIMACIÓN: PUNTA FIJA CLAVADA
+   ========================================================================== */
+@keyframes fijarPuntaYFlotar {
+    0%, 100% {
+        transform: translateX(-50%) scaleY(1);
+    }
+    50% {
+        transform: translateX(-50%) scaleY(1.03); 
+    }
+}

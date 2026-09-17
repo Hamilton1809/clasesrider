@@ -1,0 +1,96 @@
+body {
+    background-color: #a8d586;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.login-box {
+    background: white;
+    display: flex;
+    border-radius: 30px;
+    width: 850px;
+    height: 550px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.form-section { 
+    flex: 1; 
+    padding: 50px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+}
+
+/* Botón Apple corregido */
+.apple-btn {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.apple-btn img { width: 16px; }
+
+.divider { text-align: center; margin: 20px 0; color: #888; font-size: 14px; }
+
+input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    box-sizing: border-box;
+}
+
+.options { display: flex; justify-content: space-between; font-size: 13px; margin: 10px 0; }
+.forgot-link { color: #555; text-decoration: none; }
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: #ff9800; /* Naranja como pediste */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.image-section {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Fusión de la imagen con el blanco */
+.image-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, white 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.signup-text { text-align: center; font-size: 14px; margin-top: 20px; }

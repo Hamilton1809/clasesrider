@@ -1,0 +1,4 @@
+id,ruta,tipo_desastre,tiempo_evacuacion_min,nivel_riesgo
+1,Ruta A - Salida Norte,Sismo,5,Bajo
+2,Ruta B - Salida Principal,Incendio,3,Bajo
+3,Ruta C - Elevacion Sur,Inundacion,8,Medio
