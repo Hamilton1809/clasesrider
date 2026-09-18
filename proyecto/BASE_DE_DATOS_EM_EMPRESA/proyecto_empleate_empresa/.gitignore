@@ -1,0 +1,22 @@
+# Python / Byte-compiled
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Entornos virtuales
+venv/
+env/
+ENV/
+.env
+
+# Base de datos local de desarrollo
+db.sqlite3
+db.sqlite3-journal
+
+# Archivos de IDEs
+.vscode/
+.idea/
+
+# Archivos de log
+*.log

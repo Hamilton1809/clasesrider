@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorías - Empléate</title>
+    <style>
+        :root { --primary: #7097c0; --primary-hover: #577ba4; --bg: #f2f6f9; --surface: #ffffff; --text: #2b3947; --border: #d4e0eb; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); padding: 2rem; display: flex; justify-content: center; }
+        .container { background-color: var(--surface); border-radius: 12px; padding: 2rem; width: 100%; max-width: 900px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .btn-add { background-color: var(--primary); color: white; text-decoration: none; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 1rem; border-bottom: 1px solid var(--border); text-align: left; }
+        th { background-color: #ebf2f7; }
+        .badge-active { background-color: #d1e7dd; color: #0f5132; padding: 0.2rem 0.5rem; border-radius: 10px; }
+        .badge-inactive { background-color: #f8d7da; color: #842029; padding: 0.2rem 0.5rem; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gestión de Categorías</h1>
+            <a href="{% url 'crear_categoria' %}" class="btn-add">+ Crear Categoría</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cat in categorias %}
+                <tr>
+                    <td><strong>{{ cat.nombre }}</strong></td>
+                    <td>{{ cat.tipo_categoria }}</td>
+                    <td><span class="{% if cat.estado %}badge-active{% else %}badge-inactive{% endif %}">{% if cat.estado %}Activa{% else %}Inactiva{% endif %}</span></td>
+                    <td>
+                        <a href="{% url 'detalle_categoria' cat.id %}">Ver</a> | 
+                        <a href="{% url 'eliminar_categoria' cat.id %}" onclick="return confirm('¿Eliminar?');" style="color:red;">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4" style="text-align:center;">No hay categorías creadas.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

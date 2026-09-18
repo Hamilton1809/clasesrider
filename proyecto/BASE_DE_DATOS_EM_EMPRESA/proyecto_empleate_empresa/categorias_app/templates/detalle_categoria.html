@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Categoría</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f2f6f9; padding: 2rem; display: flex; justify-content: center; }
+        .card { background: white; padding: 2rem; border-radius: 12px; width: 100%; max-width: 500px; }
+        .info { background: #ebf2f7; padding: 0.8rem; border-left: 4px solid #7097c0; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>{{ categoria.nombre }}</h1>
+        <div class="info"><strong>Tipo:</strong> {{ categoria.tipo_categoria }}</div>
+        <div class="info"><strong>Estado:</strong> {% if categoria.estado %}Activa{% else %}Inactiva{% endif %}</div>
+        <div class="info"><strong>Descripción:</strong> {{ categoria.descripcion }}</div>
+        <div class="info"><strong>Fecha de registro:</strong> {{ categoria.fecha_creacion }}</div>
+        <a href="{% url 'lista_categorias' %}">← Volver al listado</a>
+    </div>
+</body>
+</html>
