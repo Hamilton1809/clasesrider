@@ -1,0 +1,56 @@
+# ==========================================
+# Entornos Virtuales
+# ==========================================
+v_empleate/
+**/v_empleate/
+venv/
+**/venv/
+env/
+**/env/
+.venv/
+**/.venv/
+ENV/
+
+# ==========================================
+# Base de Datos Local (SQLite)
+# ==========================================
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+
+# ==========================================
+# Archivos compilados de Python y Caché
+# ==========================================
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# ==========================================
+# Configuración de IDEs (VS Code / PyCharm)
+# ==========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==========================================
+# Variables de Entorno y Secretos
+# ==========================================
+.env
+.env.local
+
+# ==========================================
+# Archivos Estáticos, Multimedia y Logs
+# ==========================================
+staticfiles/
+media/
+*.log
+
+# ==========================================
+# Archivos del Sistema Operativo
+# ==========================================
+.DS_Store
+Thumbs.db

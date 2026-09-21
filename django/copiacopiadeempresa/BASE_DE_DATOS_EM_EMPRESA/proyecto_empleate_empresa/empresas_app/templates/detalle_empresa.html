@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Empresa - {{ empresa.nombre }}</title>
+    <style>
+        :root {
+            --primary: #7097c0;
+            --primary-light: #ebf2f7;
+            --bg: #f2f6f9;
+            --surface: #ffffff;
+            --text: #2b3947;
+            --text-light: #6a7c8e;
+            --border: #d4e0eb;
+            --edit: #f39c12;
+            --edit-hover: #e67e22;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(112, 151, 192, 0.15);
+            padding: 2rem;
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .card-header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 0.3rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .info-item {
+            background-color: var(--primary-light);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .info-label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-value {
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            background-color: var(--primary);
+            color: white;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-back {
+            background-color: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-back:hover { background-color: var(--primary-light); }
+
+        .btn-edit {
+            background-color: var(--edit);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-edit:hover { background-color: var(--edit-hover); }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h1>{{ empresa.nombre }}</h1>
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-label">NIT (Identificación)</span>
+                <span class="info-value">{{ empresa.nit }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Representante Legal</span>
+                <span class="info-value">{{ empresa.representante }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Correo Electrónico</span>
+                <span class="info-value">{{ empresa.correo }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Teléfono de Contacto</span>
+                <span class="info-value">{{ empresa.telefono }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Dirección Física</span>
+                <span class="info-value">{{ empresa.direccion }}</span>
+            </div>
+
+            <!-- RELACIÓN 1 A MUCHOS -->
+            <div class="section-title">Categoría Principal (Relación 1 a Muchos)</div>
+            <div class="info-item">
+                <span class="info-label">Categoría Asignada</span>
+                <span class="info-value">
+                    {% if empresa.categoria %}
+                        {{ empresa.categoria.nombre }} ({{ empresa.categoria.tipo_categoria }})
+                    {% else %}
+                        <em>No tiene categoría asignada</em>
+                    {% endif %}
+                </span>
+            </div>
+
+            <!-- RELACIÓN MUCHOS A MUCHOS -->
+            <div class="section-title">Beneficios Ofrecidos (Relación Muchos a Muchos)</div>
+            <div class="info-item">
+                <span class="info-label">Lista de Beneficios</span>
+                <div style="margin-top: 5px;">
+                    {% for beneficio in empresa.beneficios.all %}
+                        <span class="badge">{{ beneficio.nombre }}</span>
+                    {% empty %}
+                        <em>No se han asignado beneficios a esta empresa</em>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- RELACIÓN 1 A 1 -->
+            <div class="section-title">Perfil Extra (Relación 1 a 1)</div>
+            <div class="info-item">
+                <span class="info-label">Sitio Web</span>
+                <span class="info-value">
+                    {% if empresa.perfil_extra.sitio_web %}
+                        <a href="{{ empresa.perfil_extra.sitio_web }}" target="_blank">{{ empresa.perfil_extra.sitio_web }}</a>
+                    {% else %}
+                        <em>No registrado</em>
+                    {% endif %}
+                </span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">LinkedIn</span>
+                <span class="info-value">
+                    {% if empresa.perfil_extra.link_linkedin %}
+                        <a href="{{ empresa.perfil_extra.link_linkedin }}" target="_blank">{{ empresa.perfil_extra.link_linkedin }}</a>
+                    {% else %}
+                        <em>No registrado</em>
+                    {% endif %}
+                </span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">Misión / Historia</span>
+                <span class="info-value">
+                    {{ empresa.perfil_extra.descripcion_larga|default:"Sin descripción detallada registrada." }}
+                </span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="{% url 'lista_empresas' %}" class="btn-back">← Volver al listado</a>
+            <a href="{% url 'editar_empresa' empresa.id %}" class="btn-edit">Editar Empresa</a>
+        </div>
+    </div>
+</body>
+</html>
