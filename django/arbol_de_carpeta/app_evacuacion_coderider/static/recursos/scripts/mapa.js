@@ -20,10 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // 1. Inicializar mapa
     map = L.map('mapa').setView([latBase, lngBase], 14);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap contributors, Humanitarian OpenStreetMap Team'
     }).addTo(map);
+
+    // Inicializar la capa para los sismos
+    capaSismos = L.layerGroup().addTo(map);
+
     // Ajustar renderizado visual
     setTimeout(function() {
         map.invalidateSize();
@@ -124,7 +128,13 @@ window.centrarMapa = function() {
 
 // 🌋 3. Ver Sismos Recientes
 window.verSismos = function() {
-    if (!capaSismos) return;
+    if (!map) return;
+
+    // Si la capa aún no ha sido agregada al mapa, la creamos
+    if (!capaSismos) {
+        capaSismos = L.layerGroup().addTo(map);
+    }
+
     capaSismos.clearLayers();
 
     var url = typeof URL_API_SISMOS !== 'undefined' ? URL_API_SISMOS : "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
